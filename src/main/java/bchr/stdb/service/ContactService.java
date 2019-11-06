@@ -1,6 +1,7 @@
 package bchr.stdb.service;
 
 import bchr.stdb.dao.ContactDao;
+import bchr.stdb.entity.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +13,12 @@ public class ContactService {
     @Autowired
     ContactDao contactDao;
 
-    public List<bchr.stdb.entity.Contact> getAllUsers() {
-        return this.contactDao.findAll();
+    public List<Contact> getAllContacts() {
+        List<Contact> contactList = this.contactDao.findAll();
+        return contactList;
     }
 
-    public bchr.stdb.entity.Contact addUser(bchr.stdb.entity.Contact user) {
-        return this.contactDao.save(user);
+    public Contact addContact(Contact contact) {
+        return this.contactDao.save(contact);
     }
 }

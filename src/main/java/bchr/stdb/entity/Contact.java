@@ -1,6 +1,7 @@
 package bchr.stdb.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "CONTACT_TABLE")
@@ -19,6 +20,32 @@ public class Contact {
     @Column(name = "EMAIL", length = 70)
     private String email;
 
-    protected Contact() {
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Contact() {
+    }
+
+    public Contact(String lastName, String firstName, String email) {
+        this.lastName=lastName;
+        this.firstName=firstName;
+        this.email=email;
     }
 }
