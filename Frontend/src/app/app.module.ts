@@ -8,6 +8,9 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {ContactService} from "./contact.service";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import {ContactService} from "./contact.service";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatTableModule
   ],
   providers: [ContactService],
   bootstrap: [AppComponent]

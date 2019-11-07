@@ -1,22 +1,28 @@
-<div class="card my-5">
-  <div class="card-body">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nachname</th>
-        <th scope="col">Vorname</th>
-        <th scope="col">Email</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let contact of contacts">
-        <td>{{ contact.id }}</td>
-        <td>{{ contact.lastName }}</td>
-        <td>{{ contact.firstName }}</td>
-        <td><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<table mat-table [dataSource]="contacts">
+
+  <ng-container matColumnDef="Vorname">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let contact"> {{contact.position}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Nachname">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let contact"> {{contact.name}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef> Weight </th>
+    <td mat-cell *matCellDef="let contact"> {{contact.weight}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="symbol">
+    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

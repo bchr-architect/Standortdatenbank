@@ -10,6 +10,7 @@ import {ContactService} from "../contact.service";
 export class ContactListComponent implements OnInit {
 
   contacts: Contact[];
+  displayedColumns: string[] = ['Vorname', 'Nachname', 'Email'];
   constructor(private contactService: ContactService) { }
 
   ngOnInit() {

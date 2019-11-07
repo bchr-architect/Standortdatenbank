@@ -23,7 +23,7 @@ export class ContactFormComponent  {
   }
 
   gotoUserList() {
-    this.router.navigate(['/contacts']);
+    this.router.navigate(['']);
   }
 
 
