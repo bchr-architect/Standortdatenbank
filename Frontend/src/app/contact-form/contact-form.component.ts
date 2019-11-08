@@ -19,11 +19,12 @@ export class ContactFormComponent  {
   }
 
   onSubmit() {
-    this.contactService.save(this.contact).subscribe((result => this.gotoUserList))
+    this.contactService.save(this.contact).subscribe();
+    this.gotoUserList();
   }
 
   gotoUserList() {
-    this.router.navigate(['']);
+    this.router.navigate(['contacts']);
   }
 
 

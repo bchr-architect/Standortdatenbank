@@ -7,19 +7,19 @@
   <table mat-table [dataSource]="tableSource" matSort>
 
     <!-- ID Column -->
-    <ng-container matColumnDef="Nachname">
+    <ng-container matColumnDef="lastName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
       <td mat-cell *matCellDef="let contact"> {{contact.lastName}} </td>
     </ng-container>
 
     <!-- Progress Column -->
     <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> firstName </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
       <td mat-cell *matCellDef="let contact"> {{contact.firstName}} </td>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="Email">
+    <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Email </th>
       <td mat-cell *matCellDef="let contact"> {{contact.email}} </td>
     </ng-container>

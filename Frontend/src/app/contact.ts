@@ -1,6 +1,6 @@
 export class Contact {
   email: string
-  vorname: string
+  firstName: string
   lastName: string
 
 }
