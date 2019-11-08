@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Contact} from "../contact";
 import {ContactService} from "../contact.service";
+import {MatSort} from "@angular/material/sort";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-contact-list',
@@ -9,14 +12,30 @@ import {ContactService} from "../contact.service";
 })
 export class ContactListComponent implements OnInit {
 
-  contacts: Contact[];
-  displayedColumns: string[] = ['Vorname', 'Nachname', 'Email'];
-  constructor(private contactService: ContactService) { }
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  tableSource: MatTableDataSource<Contact>;
+  displayedColumns: string[] = ['firstName', 'Nachname', 'Email'];
+  private contacts: Contact[];
+  constructor(private contactService: ContactService) {
+    this.tableSource= new MatTableDataSource<Contact>(this.contacts)
+
+  }
 
   ngOnInit() {
     this.contactService.findAll().subscribe(data => {
-      this.contacts=data;
+      this.tableSource.data=data;
+      this.tableSource.sort = this.sort;
+      this.tableSource.paginator = this.paginator;
     });
+  }
+
+  applyFilter(filterValue: string) {
+    this.tableSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.tableSource.paginator) {
+      this.tableSource.paginator.firstPage();
+    }
   }
 
 }
