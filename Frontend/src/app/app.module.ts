@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContactListComponent } from './contact-list/contact-list.component';
-import { ContactFormComponent } from './contact-form/contact-form.component';
+import { ContactListComponent } from './components/contact-list/contact-list.component';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {ContactService} from "./contact.service";
+import {ContactService} from "./services/contact.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatTableModule} from "@angular/material/table";
@@ -16,12 +16,19 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatInputModule} from "@angular/material/input";
 import {MatSortModule} from "@angular/material/sort";
+import { AccountListComponent } from './components/account-list/account-list.component';
+import {AccountFormComponent} from "./components/account-form/account-form.component";
+
 
 @NgModule({
   declarations: [
   AppComponent,
   ContactListComponent,
-  ContactFormComponent
+  ContactFormComponent,
+  AccountListComponent,
+  AccountFormComponent
+
+
   ],
   imports: [
     BrowserModule,

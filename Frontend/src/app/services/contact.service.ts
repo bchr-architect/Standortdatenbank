@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Contact} from "./contact";
+import {Contact} from "../modules/contact";
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class ContactService {
   }
 
   public findAll(): Observable<Contact[]> {
+
     return this.http.get<Contact[]>(this.contactUrl+ '/all');
   }
 
