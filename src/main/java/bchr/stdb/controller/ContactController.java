@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/contacts")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ContactController {
     @Autowired
     ContactService contactService;
 
     @RequestMapping(value="/all", method = RequestMethod.GET)
-    public List<Contact> getAllUsers() {
-        return contactService.getAllUsers();
+    public List<Contact> getAllContacts() {
+        return contactService.getAllContacts();
     }
 
-    @RequestMapping(value = "/addcustomer", method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody()
-    public Contact addNewUser(@RequestBody Contact user) {
-        return this.contactService.addUser(user);
+
+    @PostMapping(path={"/add"})
+    public Contact addNewContact(@RequestBody Contact contact) {
+        return this.contactService.addContact(contact);
     }
 }
