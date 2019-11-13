@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+  margin-left: auto;
+
+}
+.contact-table {
+  width:100%;
+}
+
+button {
+  text-decoration-line: none;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  float: right;
+}
