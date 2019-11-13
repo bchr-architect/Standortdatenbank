@@ -1,0 +1,26 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #accountForm="ngForm">
+      <div class="form-group">
+        <label for="compName">Firmenname</label>
+        <input type="text" [(ngModel)]="account.compName"
+               class="form-control"
+               id="compName"
+               name="compName"
+               placeholder="Firmenname"
+               required #compName="ngModel">
+      </div>
+      <label for="email">Email</label>
+      <input type="text" [(ngModel)]="account.email"
+             class="form-control"
+             id="email"
+             name="email"
+             placeholder="examplecompany@email.com"
+             required #email="ngModel">
+
+
+      <button type="submit" [disabled]="!accountForm.form.valid"
+              class="btn btn-info">Submit</button>
+    </form>
+  </div>
+</div>

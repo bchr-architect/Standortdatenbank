@@ -1,9 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Contact} from "../contact";
-import {ContactService} from "../contact.service";
+import {ContactService} from "../../services/contact.service";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Contact} from "../../modules/contact";
 
 @Component({
   selector: 'app-contact-list',
@@ -17,14 +18,18 @@ export class ContactListComponent implements OnInit {
   tableSource: MatTableDataSource<Contact>;
   displayedColumns: string[] = ['firstName', 'lastName', 'email'];
   private contacts: Contact[];
-  constructor(private contactService: ContactService) {
-    this.tableSource= new MatTableDataSource<Contact>(this.contacts)
+
+  constructor(private contactService: ContactService,
+              private route: ActivatedRoute,
+              private router: Router) {
+    this.tableSource = new MatTableDataSource<Contact>(this.contacts)
+
 
   }
 
   ngOnInit() {
     this.contactService.findAll().subscribe(data => {
-      this.tableSource.data=data;
+      this.tableSource.data = data;
       this.tableSource.sort = this.sort;
       this.tableSource.paginator = this.paginator;
     });
@@ -38,4 +43,7 @@ export class ContactListComponent implements OnInit {
     }
   }
 
+  goToContactAdd() {
+    this.router.navigate(['addcontact']);
+  }
 }

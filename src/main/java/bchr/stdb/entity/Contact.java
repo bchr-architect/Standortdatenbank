@@ -20,6 +20,10 @@ public class Contact {
     @Column(name = "EMAIL", length = 70)
     private String email;
 
+    @ManyToOne
+    @JoinColumn(name="ACCOUNT")
+    private Account account;
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -41,6 +45,14 @@ public class Contact {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Contact() {
