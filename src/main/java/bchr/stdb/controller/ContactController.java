@@ -11,6 +11,7 @@ import java.util.List;
 @RequestMapping("/contacts")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ContactController {
+
     @Autowired
     ContactService contactService;
 
