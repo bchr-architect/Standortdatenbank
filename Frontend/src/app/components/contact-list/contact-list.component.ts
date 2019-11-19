@@ -5,6 +5,8 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Contact} from "../../modules/contact";
+import {MatDialog} from "@angular/material/dialog";
+import {ContactFormComponent} from "../contact-form/contact-form.component";
 
 @Component({
   selector: 'app-contact-list',
@@ -18,10 +20,12 @@ export class ContactListComponent implements OnInit {
   tableSource: MatTableDataSource<Contact>;
   displayedColumns: string[] = ['firstName', 'lastName', 'email'];
   private contacts: Contact[];
+  private contact: Contact;
 
   constructor(private contactService: ContactService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              public dialog: MatDialog) {
     this.tableSource = new MatTableDataSource<Contact>(this.contacts)
 
 
@@ -46,4 +50,22 @@ export class ContactListComponent implements OnInit {
   goToContactAdd() {
     this.router.navigate(['addcontact']);
   }
+
+  openAddContactDialog() {
+    const dialogRef = this.dialog.open(ContactFormComponent, {
+      width: '300px',
+      data: {contact: this.contact}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.contact = result;
+      this.contactService.findAll().subscribe(data => {
+        this.tableSource.data = data;
+        this.tableSource.sort = this.sort;
+        this.tableSource.paginator = this.paginator;
+      });
+    });
+  }
+
 }

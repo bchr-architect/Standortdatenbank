@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {ContactService} from "./services/contact.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +18,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSortModule} from "@angular/material/sort";
 import { AccountListComponent } from './components/account-list/account-list.component';
 import {AccountFormComponent} from "./components/account-form/account-form.component";
+import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -42,7 +43,9 @@ import {AccountFormComponent} from "./components/account-form/account-form.compo
     MatFormFieldModule,
     MatPaginatorModule,
     MatInputModule,
-    MatSortModule
+    MatSortModule,
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [ContactService],
   bootstrap: [AppComponent]

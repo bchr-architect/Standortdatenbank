@@ -1,37 +1,38 @@
-<div class="card my-5">
-  <div class="card-body">
-    <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
-      <div class="form-group">
-        <label for="last name">Nachname</label>
-        <input type="text" [(ngModel)]="contact.lastName"
-               class="form-control"
-               id="last name"
-               name="last name"
-               placeholder="Nachname"
-               required #lastName="ngModel">
-      </div>
-      <div [hidden]="!lastName.pristine" class="alert alert-danger">Nachname wird benötigt</div>
-      <label for="first name">Vorname</label>
-      <input type="text" [(ngModel)]="contact.firstName"
-             class="form-control"
-             id="first name"
-             name="first name"
-             placeholder="Vorname"
-             required #firstName="ngModel">
-  <div [hidden]="!lastName.pristine" class="alert alert-danger">Nachname wird benötigt</div>
 
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" [(ngModel)]="contact.email"
-               class="form-control"
-               id="email"
-               name="email"
-               placeholder="example@gmail.com"
-               required #email="ngModel">
 
-      </div>
-      <button type="submit" [disabled]="!contactForm.form.valid"
-              class="btn btn-info">Submit</button>
-    </form>
-  </div>
+
+<div class="container">
+  <h1>Contact Form</h1>
+  <form #contactForm="ngForm">
+    <div class="form-group">
+      <mat-form-field>
+      <label for="firstname">Vorname</label>
+      <input matInput type="text" class="form-control" id="firstname" required
+      [(ngModel)]="contact.firstName"
+      name="firstname">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+      <label for="lastname">Nachname</label>
+      <input matInput type="text" class="form-control" id="lastname" required
+      [(ngModel)]="contact.lastName"
+      name="lastname">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+      <label for="email">email</label>
+      <input matInput type="text" class="form-control" id="email" required
+             [(ngModel)]="contact.email"
+      name="email">
+      </mat-form-field>
+    </div>
+
+
+    <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+
+  </form>
 </div>
