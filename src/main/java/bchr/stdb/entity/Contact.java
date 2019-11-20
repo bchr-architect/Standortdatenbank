@@ -1,5 +1,8 @@
 package bchr.stdb.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -21,7 +24,8 @@ public class Contact {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name="ACCOUNT")
+    @JoinColumn(name = "Account_id")
+    @JsonManagedReference
     private Account account;
 
     public void setLastName(String lastName) {

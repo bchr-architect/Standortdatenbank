@@ -1,6 +1,6 @@
 import { Contact} from "./contact";
 
 export class Account {
-  name: string;
+  compName: string;
   email: string;
 }
