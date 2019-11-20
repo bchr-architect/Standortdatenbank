@@ -23,9 +23,9 @@ public class Contact {
     @Column(name = "EMAIL", length = 70)
     private String email;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "Account_id")
-    @JsonManagedReference
     private Account account;
 
     public void setLastName(String lastName) {
@@ -52,10 +52,13 @@ public class Contact {
     }
 
     public Account getAccount() {
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return account;
     }
 
     public void setAccount(Account account) {
+
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         this.account = account;
     }
 
@@ -66,5 +69,11 @@ public class Contact {
         this.lastName=lastName;
         this.firstName=firstName;
         this.email=email;
+    }
+    public Contact(String lastName, String firstName, String email, Account account) {
+        this.lastName=lastName;
+        this.firstName=firstName;
+        this.email=email;
+        this.account=account;
     }
 }

@@ -13,12 +13,18 @@ public class ContactService {
     @Autowired
     ContactDao contactDao;
 
-    public List<Contact> getAllContacts() {
-        List<Contact> contactList = this.contactDao.findAll();
+    public List getAllContacts() {
+        List contactList = this.contactDao.findAll();
         return contactList;
     }
 
     public Contact addContact(Contact contact) {
         return this.contactDao.save(contact);
+    }
+
+    public List<Contact> getAllContactsWithAccounts() {
+
+        List<Contact> contactList= this.contactDao.findAllContactsWithAccount();
+        return contactList;
     }
 }

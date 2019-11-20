@@ -29,6 +29,7 @@ export class AccountListComponent implements OnInit {
       this.accountTableSource.data =data;
       this.accountTableSource.sort = this.sort;
       this.accountTableSource.paginator = this.paginator;
+      console.log(this.accountTableSource.data[0].compName)
 
 
     })

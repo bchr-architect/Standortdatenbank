@@ -13,6 +13,7 @@ import {ContactFormComponent} from "../contact-form/contact-form.component";
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css']
 })
+
 export class ContactListComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -36,9 +37,9 @@ export class ContactListComponent implements OnInit {
       this.tableSource.data = data;
       this.tableSource.sort = this.sort;
       this.tableSource.paginator = this.paginator;
-      this.contact=data[1];
-      console.log(this.contact)
     });
+
+
   }
 
   applyFilter(filterValue: string) {
