@@ -3,6 +3,7 @@ package bchr.stdb.controller;
 import bchr.stdb.entity.Contact;
 import bchr.stdb.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +16,9 @@ public class ContactController {
     @Autowired
     ContactService contactService;
 
-    @RequestMapping(value="/all", method = RequestMethod.GET)
-    public List<Contact> getAllContacts() {
+    @GetMapping(path = {"/all"})
+
+    public List getAllContacts() {
         return contactService.getAllContacts();
     }
 

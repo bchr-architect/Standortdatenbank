@@ -1,5 +1,7 @@
 package bchr.stdb.entity;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -20,9 +22,10 @@ public class Contact {
     @Column(name = "EMAIL", length = 70)
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name="ACCOUNT")
-    private Account account;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "Account_id")
+    @JsonIgnoreProperties("contacts")
+    public Account account;
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -62,5 +65,11 @@ public class Contact {
         this.lastName=lastName;
         this.firstName=firstName;
         this.email=email;
+    }
+    public Contact(String lastName, String firstName, String email, Account account) {
+        this.lastName=lastName;
+        this.firstName=firstName;
+        this.email=email;
+        this.account=account;
     }
 }

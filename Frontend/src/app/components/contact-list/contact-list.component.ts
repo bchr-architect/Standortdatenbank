@@ -7,18 +7,20 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Contact} from "../../modules/contact";
 import {MatDialog} from "@angular/material/dialog";
 import {ContactFormComponent} from "../contact-form/contact-form.component";
+import {Account} from "../../modules/account";
 
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css']
 })
+
 export class ContactListComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   tableSource: MatTableDataSource<Contact>;
-  displayedColumns: string[] = ['firstName', 'lastName', 'email'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email','account'];
   private contacts: Contact[];
   private contact: Contact;
 
@@ -34,9 +36,18 @@ export class ContactListComponent implements OnInit {
   ngOnInit() {
     this.contactService.findAll().subscribe(data => {
       this.tableSource.data = data;
+      this.tableSource.data.forEach(entry=> {
+        if(!entry.account) {
+          entry.account=new Account();
+          entry.account.compName="";
+          entry.account.email="";
+        }
+      })
       this.tableSource.sort = this.sort;
       this.tableSource.paginator = this.paginator;
     });
+
+
   }
 
   applyFilter(filterValue: string) {
@@ -62,6 +73,13 @@ export class ContactListComponent implements OnInit {
       this.contact = result;
       this.contactService.findAll().subscribe(data => {
         this.tableSource.data = data;
+        this.tableSource.data.forEach(entry=> {
+          if(!entry.account) {
+            entry.account=new Account();
+            entry.account.compName="";
+            entry.account.email="";
+          }
+        })
         this.tableSource.sort = this.sort;
         this.tableSource.paginator = this.paginator;
       });

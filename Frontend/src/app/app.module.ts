@@ -19,6 +19,8 @@ import {MatSortModule} from "@angular/material/sort";
 import { AccountListComponent } from './components/account-list/account-list.component';
 import {AccountFormComponent} from "./components/account-form/account-form.component";
 import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog
     MatInputModule,
     MatSortModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule,
+    MatSelectModule
   ],
   providers: [ContactService],
   bootstrap: [AppComponent]

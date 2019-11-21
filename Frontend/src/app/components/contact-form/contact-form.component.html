@@ -1,33 +1,40 @@
-
-
-
 <div class="container">
   <h1>Contact Form</h1>
   <form #contactForm="ngForm">
     <div class="form-group">
       <mat-form-field>
-      <label for="firstname">Vorname</label>
-      <input matInput type="text" class="form-control" id="firstname" required
-      [(ngModel)]="contact.firstName"
-      name="firstname">
+        <label for="firstname">Vorname</label>
+        <input matInput type="text" class="form-control" id="firstname" required
+               [(ngModel)]="contact.firstName"
+               name="firstname">
       </mat-form-field>
     </div>
 
     <div class="form-group">
       <mat-form-field>
-      <label for="lastname">Nachname</label>
-      <input matInput type="text" class="form-control" id="lastname" required
-      [(ngModel)]="contact.lastName"
-      name="lastname">
+        <label for="lastname">Nachname</label>
+        <input matInput type="text" class="form-control" id="lastname" required
+               [(ngModel)]="contact.lastName"
+               name="lastname">
       </mat-form-field>
     </div>
 
     <div class="form-group">
       <mat-form-field>
-      <label for="email">email</label>
-      <input matInput type="text" class="form-control" id="email" required
-             [(ngModel)]="contact.email"
-      name="email">
+        <label for="email">email</label>
+        <input matInput type="text" class="form-control" id="email" required
+               [(ngModel)]="contact.email"
+               name="email">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <label>Account</label>
+        <mat-select [(value)]="contact.account">
+        <mat-option *ngFor="let account of accounts" [value]="account">
+          {{account.compName}}
+        </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 

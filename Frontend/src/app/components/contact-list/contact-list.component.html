@@ -3,28 +3,35 @@
 </mat-form-field>
 
 <button mat-raised-button color="primary"
-        (click)="openAddContactDialog()">Kontakt hinzufügen
+        (click)="openAddContactDialog() ">Kontakt hinzufügen
 </button>
 
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="tableSource" matSort>
+  <table mat-table [dataSource]="tableSource" matSort
+    matSortActive="lastName"
+    matSortDirection="asc" >
 
-    <!-- ID Column -->
+    <!-- LastName Coloumn -->
     <ng-container matColumnDef="lastName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname</th>
       <td mat-cell *matCellDef="let contact"> {{contact.lastName}} </td>
     </ng-container>
 
-    <!-- Progress Column -->
+    <!-- Firstname Column -->
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname</th>
       <td mat-cell *matCellDef="let contact"> {{contact.firstName}} </td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- Email Column -->
     <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
       <td mat-cell *matCellDef="let contact"> {{contact.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="account">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Account</th>
+      <td mat-cell *matCellDef="let contact"> {{contact.account.compName}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
