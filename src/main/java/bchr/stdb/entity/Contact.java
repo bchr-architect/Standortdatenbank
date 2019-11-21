@@ -1,7 +1,6 @@
 package bchr.stdb.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,10 +22,10 @@ public class Contact {
     @Column(name = "EMAIL", length = 70)
     private String email;
 
-    @JsonBackReference
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Account_id")
-    private Account account;
+    @JsonIgnoreProperties("contacts")
+    public Account account;
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -52,13 +51,10 @@ public class Contact {
     }
 
     public Account getAccount() {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return account;
     }
 
     public void setAccount(Account account) {
-
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         this.account = account;
     }
 

@@ -56,6 +56,7 @@ export class ContactFormComponent implements OnInit{
   }
 
   onSubmit() {
+
     this.contactService.save(this.contact).subscribe();
     this.dialogRef.close();
   }

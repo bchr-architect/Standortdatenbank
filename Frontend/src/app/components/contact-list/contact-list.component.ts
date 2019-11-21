@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Contact} from "../../modules/contact";
 import {MatDialog} from "@angular/material/dialog";
 import {ContactFormComponent} from "../contact-form/contact-form.component";
+import {Account} from "../../modules/account";
 
 @Component({
   selector: 'app-contact-list',
@@ -35,6 +36,13 @@ export class ContactListComponent implements OnInit {
   ngOnInit() {
     this.contactService.findAll().subscribe(data => {
       this.tableSource.data = data;
+      this.tableSource.data.forEach(entry=> {
+        if(!entry.account) {
+          entry.account=new Account();
+          entry.account.compName="";
+          entry.account.email="";
+        }
+      })
       this.tableSource.sort = this.sort;
       this.tableSource.paginator = this.paginator;
     });
@@ -65,6 +73,13 @@ export class ContactListComponent implements OnInit {
       this.contact = result;
       this.contactService.findAll().subscribe(data => {
         this.tableSource.data = data;
+        this.tableSource.data.forEach(entry=> {
+          if(!entry.account) {
+            entry.account=new Account();
+            entry.account.compName="";
+            entry.account.email="";
+          }
+        })
         this.tableSource.sort = this.sort;
         this.tableSource.paginator = this.paginator;
       });

@@ -1,7 +1,6 @@
 package bchr.stdb.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -25,7 +24,7 @@ public class Account {
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
-    @JsonManagedReference
+    @JsonIgnoreProperties("account")
     private Set<Contact> contacts = new HashSet<>();
 
     public Account() {
@@ -67,5 +66,9 @@ public class Account {
     public void addContact(Contact contact) {
         this.contacts.add(contact);
         contact.setAccount(this);
+    }
+
+    public String toString() {
+        return this.compName;
     }
 }

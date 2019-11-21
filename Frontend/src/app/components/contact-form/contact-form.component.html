@@ -30,8 +30,8 @@
     <div class="form-group">
       <mat-form-field>
         <label>Account</label>
-        <mat-select>
-        <mat-option *ngFor="let account of accounts" value="account">
+        <mat-select [(value)]="contact.account">
+        <mat-option *ngFor="let account of accounts" [value]="account">
           {{account.compName}}
         </mat-option>
         </mat-select>

@@ -4,5 +4,5 @@ export class Contact {
   email: string
   firstName: string
   lastName: string
-  compName: string
+  account: Account
 }
