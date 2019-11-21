@@ -17,11 +17,13 @@ public class ContactController {
     ContactService contactService;
 
     @GetMapping(path = {"/all"})
+
     public List getAllContacts() {
         return contactService.getAllContacts();
     }
 
-    @PostMapping(path = {"/add"})
+
+    @PostMapping(path={"/add"})
     public Contact addNewContact(@RequestBody Contact contact) {
         return this.contactService.addContact(contact);
     }
