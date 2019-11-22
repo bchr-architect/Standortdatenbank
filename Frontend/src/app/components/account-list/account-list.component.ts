@@ -16,21 +16,22 @@ export class AccountListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   accountTableSource: MatTableDataSource<Account>;
-  displayedColumns: string[] = ['compName', 'email'];
+  displayedColumns: string[] = ['compName', 'email', 'createdDate'];
   private accounts: Account[];
+  selectedRowIndex: number = -1;
 
   constructor(private accountService: AccountService,
               private route: ActivatedRoute,
               private router: Router) {
     this.accountTableSource = new MatTableDataSource<Account>(this.accounts)
   }
+
   ngOnInit() {
-    this.accountService.findAll().subscribe(data=> {
-      this.accountTableSource.data =data;
+    this.accountService.findAll().subscribe(data => {
+      this.accountTableSource.data = data;
+      this.accountTableSource.data.forEach(account => this.checkNullValues(account))
       this.accountTableSource.sort = this.sort;
       this.accountTableSource.paginator = this.paginator;
-      console.log(this.accountTableSource.data[0].compName)
-
 
     })
   }
@@ -43,8 +44,15 @@ export class AccountListComponent implements OnInit {
     }
   }
 
+  checkNullValues(entry: any) {
+    if (!entry.createdDate) {
+      entry.createdDate = Date.UTC(2019, 11, 20, 13, 45, 0);
+    }
+  }
+
   goToAccountAdd() {
     this.router.navigate(['addaccount']);
   }
+
 
 }

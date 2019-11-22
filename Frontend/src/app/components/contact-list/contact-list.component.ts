@@ -20,9 +20,10 @@ export class ContactListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   tableSource: MatTableDataSource<Contact>;
-  displayedColumns: string[] = ['firstName', 'lastName', 'email','account'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'account', 'createdDate'];
   private contacts: Contact[];
   private contact: Contact;
+  selectedRowIndex: number = -1;
 
   constructor(private contactService: ContactService,
               private route: ActivatedRoute,
@@ -36,12 +37,8 @@ export class ContactListComponent implements OnInit {
   ngOnInit() {
     this.contactService.findAll().subscribe(data => {
       this.tableSource.data = data;
-      this.tableSource.data.forEach(entry=> {
-        if(!entry.account) {
-          entry.account=new Account();
-          entry.account.compName="";
-          entry.account.email="";
-        }
+      this.tableSource.data.forEach(entry => {
+        this.checkNullValues(entry);
       })
       this.tableSource.sort = this.sort;
       this.tableSource.paginator = this.paginator;
@@ -73,12 +70,10 @@ export class ContactListComponent implements OnInit {
       this.contact = result;
       this.contactService.findAll().subscribe(data => {
         this.tableSource.data = data;
-        this.tableSource.data.forEach(entry=> {
-          if(!entry.account) {
-            entry.account=new Account();
-            entry.account.compName="";
-            entry.account.email="";
-          }
+        this.tableSource.data.forEach(entry => {
+
+          this.checkNullValues(entry);
+
         })
         this.tableSource.sort = this.sort;
         this.tableSource.paginator = this.paginator;
@@ -86,4 +81,23 @@ export class ContactListComponent implements OnInit {
     });
   }
 
+  checkNullValues(entry: any) {
+    if (!entry.account) {
+      entry.account = new Account();
+      entry.account.compName = "";
+      entry.account.email = "";
+    }
+
+    if (!entry.createdDate) {
+      entry.createdDate = Date.UTC(2019, 11, 20, 13, 45, 0);
+    }
+  }
+
+
+
+  highlight(row){
+    this.selectedRowIndex = row.id;
+  }
 }
+
+

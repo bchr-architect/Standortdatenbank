@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+  margin-left: auto;
+
+}
+.account-table {
+  width:100%;
+}
+
+button {
+  text-decoration-line: none;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  float: right;
+  margin-right: 20px;
+}
+
+mat-form-field {
+  margin-left: 20px;
+}
+
+/*https://stackoverflow.com/questions/49740143/angular-material-to-highlight-a-table-row-on-mouse-over?rq=1*/
+.mat-row:hover {
+  background-color: #cbb6ee
+}
