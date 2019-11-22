@@ -1,26 +1,27 @@
-<div class="card my-5">
-  <div class="card-body">
-    <form (ngSubmit)="onSubmit()" #accountForm="ngForm">
-      <div class="form-group">
-        <label for="compName">Firmenname</label>
-        <input type="text" [(ngModel)]="account.compName"
-               class="form-control"
-               id="compName"
-               name="compName"
-               placeholder="Firmenname"
-               required #compName="ngModel">
-      </div>
-      <label for="email">Email</label>
-      <input type="text" [(ngModel)]="account.email"
-             class="form-control"
-             id="email"
-             name="email"
-             placeholder="examplecompany@email.com"
-             required #email="ngModel">
+<div class="container">
+  <h1>Account Form</h1>
+  <form #accountForm="ngForm">
+    <div class="form-group">
+      <mat-form-field>
+        <label for="compname">Firmenname</label>
+        <input matInput type="text" class="form-control" id="compname" required
+               [(ngModel)]="account.compName"
+               name="firstname">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <label for="email">email</label>
+        <input matInput type="text" class="form-control" id="email" required
+               [(ngModel)]="account.email"
+               name="email">
+      </mat-form-field>
+    </div>
 
 
-      <button type="submit" [disabled]="!accountForm.form.valid"
-              class="btn btn-info">Submit</button>
-    </form>
-  </div>
+
+    <button mat-raised-button color="primary" type="submit"  (click)="onSubmit()">Submit</button>
+
+  </form>
 </div>

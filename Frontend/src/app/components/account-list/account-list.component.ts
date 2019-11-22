@@ -5,6 +5,9 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {AccountService} from "../../services/account.service";
 import {Account} from "../../modules/account";
+import {ContactFormComponent} from "../contact-form/contact-form.component";
+import {AccountFormComponent} from "../account-form/account-form.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-account-list',
@@ -18,11 +21,13 @@ export class AccountListComponent implements OnInit {
   accountTableSource: MatTableDataSource<Account>;
   displayedColumns: string[] = ['compName', 'email', 'createdDate'];
   private accounts: Account[];
+  private account: Account;
   selectedRowIndex: number = -1;
 
   constructor(private accountService: AccountService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              public dialog: MatDialog) {
     this.accountTableSource = new MatTableDataSource<Account>(this.accounts)
   }
 
@@ -50,9 +55,25 @@ export class AccountListComponent implements OnInit {
     }
   }
 
-  goToAccountAdd() {
-    this.router.navigate(['addaccount']);
-  }
+  openAddAccountDialog() {
+    const dialogRef = this.dialog.open(AccountFormComponent, {
+      width: '300px',
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.account = result;
+      this.accountService.findAll().subscribe(data => {
+        this.accountTableSource.data = data;
+        this.accountTableSource.data.forEach(entry => {
+
+          this.checkNullValues(entry);
+
+        })
+        this.accountTableSource.sort = this.sort;
+        this.accountTableSource.paginator = this.paginator;
+      });
+    });
+  }
 
 }

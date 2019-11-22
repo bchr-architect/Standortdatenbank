@@ -92,12 +92,6 @@ export class ContactListComponent implements OnInit {
       entry.createdDate = Date.UTC(2019, 11, 20, 13, 45, 0);
     }
   }
-
-
-
-  highlight(row){
-    this.selectedRowIndex = row.id;
-  }
 }
 
 
