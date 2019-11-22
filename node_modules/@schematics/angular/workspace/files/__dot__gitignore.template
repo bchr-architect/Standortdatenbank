@@ -31,7 +31,7 @@ speed-measure-plugin*.json
 !.vscode/extensions.json
 .history/*
 
-# misc
+# bchr.stdb.misc
 /.sass-cache
 /connect.lock
 /coverage

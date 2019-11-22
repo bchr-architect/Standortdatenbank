@@ -34,8 +34,14 @@
       <td mat-cell *matCellDef="let contact"> {{contact.account.compName}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="createdDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>erstellt am</th>
+      <td mat-cell *matCellDef="let contact"> {{contact.createdDate | date: 'd.L.y'}} </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let contact; columns: displayedColumns;">
+    <tr mat-row *matRowDef="let contact
+        columns: displayedColumns">
     </tr>
   </table>
 

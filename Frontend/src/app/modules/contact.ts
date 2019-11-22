@@ -5,4 +5,6 @@ export class Contact {
   firstName: string
   lastName: string
   account: Account
+  createdDate: number
+  modifiedDate: number
 }

@@ -1,13 +1,15 @@
 package bchr.stdb.entity;
 
+import bchr.stdb.misc.Auditable;
 import com.fasterxml.jackson.annotation.*;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "CONTACT_TABLE")
-public class Contact {
+public class Contact extends Auditable {
     @Column(name = "ID")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
