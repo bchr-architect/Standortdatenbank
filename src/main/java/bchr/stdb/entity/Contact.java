@@ -20,6 +20,9 @@ public class Contact {
     @Column(name = "EMAIL", length = 70)
     private String email;
 
+    @Column(name = "PHONE", length = 30)
+    private String phoneNr;
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -43,12 +46,17 @@ public class Contact {
         this.email = email;
     }
 
+    public String getPhoneNr(){return phoneNr;}
+
+    public void setPhoneNr(String phoneNr){this.phoneNr = phoneNr;}
+
     public Contact() {
     }
 
-    public Contact(String lastName, String firstName, String email) {
+    public Contact(String lastName, String firstName, String email, String phoneNr) {
         this.lastName=lastName;
         this.firstName=firstName;
         this.email=email;
+        this.phoneNr=phoneNr;
     }
 }
