@@ -57,7 +57,9 @@ export class AccountListComponent implements OnInit {
 
   openAddAccountDialog() {
     const dialogRef = this.dialog.open(AccountFormComponent, {
-      width: '300px',
+      width: '700px',
+      height: '300px',
+      data: {account: this.account}
     });
 
     dialogRef.afterClosed().subscribe(result => {

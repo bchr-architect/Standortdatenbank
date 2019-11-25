@@ -61,7 +61,8 @@ export class ContactListComponent implements OnInit {
 
   openAddContactDialog() {
     const dialogRef = this.dialog.open(ContactFormComponent, {
-      width: '300px',
+      width: '500px',
+      height: '550px',
       data: {contact: this.contact}
     });
 
