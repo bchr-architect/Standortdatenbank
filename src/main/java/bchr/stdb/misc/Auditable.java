@@ -40,4 +40,6 @@ public class Auditable {
         this.lastModifiedDate = lastModifiedDate;
     }
 
+    // kann hier auch der erstellende SQL User abgefragt oder beigefügt werden? - Marlon
+
 }
