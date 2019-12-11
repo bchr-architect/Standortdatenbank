@@ -36,5 +36,5 @@ mat-form-field {
 
 /*https://stackoverflow.com/questions/49740143/angular-material-to-highlight-a-table-row-on-mouse-over?rq=1*/
 .mat-row:hover {
-  background-color: #cbb6ee
+  background-color: #FFB55F;
 }
