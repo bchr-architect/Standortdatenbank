@@ -5,10 +5,12 @@ import com.fasterxml.jackson.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.Date;
 
 @Entity
 @Table(name = "CONTACT_TABLE")
+@Transactional
 public class Contact extends Auditable {
     @Column(name = "ID")
     @Id
