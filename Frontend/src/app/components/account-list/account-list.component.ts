@@ -12,7 +12,7 @@ import {MatDialog} from "@angular/material/dialog";
 @Component({
   selector: 'app-account-list',
   templateUrl: './account-list.component.html',
-  styleUrls: ['./account-list.component.css']
+  styleUrls: ['./account-list.component.scss']
 })
 export class AccountListComponent implements OnInit {
 

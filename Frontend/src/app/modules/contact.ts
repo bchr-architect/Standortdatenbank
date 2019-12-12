@@ -7,4 +7,5 @@ export class Contact {
   account: Account
   createdDate: number
   modifiedDate: number
+  notes: string;
 }

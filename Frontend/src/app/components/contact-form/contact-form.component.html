@@ -27,6 +27,7 @@
                name="email">
       </mat-form-field>
     </div>
+
     <div class="form-group">
       <mat-form-field>
         <label>Account</label>
@@ -38,6 +39,17 @@
       </mat-form-field>
     </div>
 
+    <div class ="form-group">
+    <mat-form-field>
+      <mat-label>Notizen hinzufügen</mat-label>
+      <textarea matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5">
+      </textarea>
+    </mat-form-field>
+    </div>
 
     <button mat-raised-button color="primary" type="submit"  (click)="onSubmit()">Submit</button>
 
