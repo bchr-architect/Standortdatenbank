@@ -12,7 +12,7 @@ import {Account} from "../../modules/account";
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
-  styleUrls: ['./contact-list.component.css']
+  styleUrls: ['./contact-list.component.scss']
 })
 
 export class ContactListComponent implements OnInit {
@@ -20,7 +20,7 @@ export class ContactListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   tableSource: MatTableDataSource<Contact>;
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'account', 'createdDate'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'account', 'createdDate', 'notes'];
   private contacts: Contact[];
   private contact: Contact;
   selectedRowIndex: number = -1;

@@ -3,26 +3,18 @@
   display: flex;
 }
 
-.mat-toolbar.mat-primary {
-  /*background: #FFB55F;*/
-  color: #FFFFFF;
-}
-
 img {
-  position: relative;
   top: 6px;
   height: 60px;
-}
-
-.mat-tab-link {
-  font-weight: lighter;
-  font-size: 12pt;
+  position: relative;
 }
 
 .mat-tab-link {
   margin: 20px;
-  color: white;
   text-decoration-line: none;
+  font-weight: lighter;
+  font-size: 12pt;
+  color: white;
 }
 
 table {

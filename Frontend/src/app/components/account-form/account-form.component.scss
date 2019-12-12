@@ -14,18 +14,12 @@ h1{
   margin-right: 20px;
 }
 
-::ng-deep .mat-focused .mat-form-field-ripple{
-  background-color: #FFB55F !important;
-}
-
 button {
   position: relative;
   top: 115px;
   left: 430px;
-  background-color:#FFB55F;
 }
 
 .mat-raised-button {
-  background-color:#FFB55F;
   font-weight: lighter;
 }

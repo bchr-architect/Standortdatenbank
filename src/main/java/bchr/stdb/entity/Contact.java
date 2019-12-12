@@ -267,7 +267,7 @@ public class Contact extends Auditable {
         return homepage;
     }
 
-   public String getCreatorID() {
+    public String getCreatorID() {
         return creatorID;
     }
 

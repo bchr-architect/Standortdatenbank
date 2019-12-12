@@ -12,7 +12,7 @@ import {map, startWith} from "rxjs/operators";
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
-  styleUrls: ['./contact-form.component.css']
+  styleUrls: ['./contact-form.component.scss']
 })
 export class ContactFormComponent implements OnInit{
 
@@ -39,7 +39,8 @@ export class ContactFormComponent implements OnInit{
         'firstName': [this.contact.firstName],
         'lastName': [this.contact.lastName],
         'email': [this.contact.email, [Validators.email]],
-        'account': [this.contact.account]
+        'account': [this.contact.account],
+        'notes': [this.contact.notes]
       }
     )
 

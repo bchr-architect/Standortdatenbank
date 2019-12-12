@@ -13,13 +13,13 @@
 
     <!-- LastName Coloumn -->
     <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nachname</th>
       <td mat-cell *matCellDef="let contact"> {{contact.lastName}} </td>
     </ng-container>
 
     <!-- Firstname Column -->
     <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Vorname</th>
       <td mat-cell *matCellDef="let contact"> {{contact.firstName}} </td>
     </ng-container>
 
@@ -29,14 +29,22 @@
       <td mat-cell *matCellDef="let contact"> {{contact.email}} </td>
     </ng-container>
 
+    <!-- Account Column -->
     <ng-container matColumnDef="account">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Account</th>
       <td mat-cell *matCellDef="let contact"> {{contact.account.compName}} </td>
     </ng-container>
 
+    <!-- Create Column -->
     <ng-container matColumnDef="createdDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>erstellt am</th>
       <td mat-cell *matCellDef="let contact"> {{contact.createdDate | date: 'd.L.y'}} </td>
+    </ng-container>
+
+    <!-- Notes Column -->
+    <ng-container matColumnDef="notes">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Notizen</th>
+      <td mat-cell *matCellDef="let contact"> {{contact.notes}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
