@@ -1,7 +1,10 @@
 package bchr.stdb.entity;
 
 import bchr.stdb.misc.Auditable;
-import java.util.Date;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "EMPLOYEE_TABLE")
@@ -10,6 +13,9 @@ public class Employee extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "EMPLOYEE_ID")
+    private Set<Contact> contacts = new HashSet<>();
 
     @Column(name = "FIRST_NAME", nullable = false, length = 30)
     private String firstName;
@@ -26,66 +32,61 @@ public class Employee extends Auditable {
     @Column(name = "EMAIL", length = 30)
     private String email;
 
-    @Column(name = "CREATOR", length = 40)
-    private String creatorID;
+    public Set<Contact> getContacts() {
+        return contacts;
+    }
 
-    @Column(name = "EDITED_BY", length = 40)
-    private String editedByID;
+    public void setContacts(Set<Contact> contacts) {
+        this.contacts = contacts;
+    }
 
     public String getFirstName() {
         return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getAdditive() {
-        return additive;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getCreatorID() {
-        return creatorID;
-    }
-
-    public String getEditedByID() {
-        return editedByID;
     }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getAdditive() {
+        return additive;
     }
 
     public void setAdditive(String additive) {
         this.additive = additive;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setCreatorID(String creatorID) {
-        this.creatorID = creatorID;
+    public Employee() {
+
     }
 
-    public void setEditedByID(String editedByID) {
-        this.editedByID = editedByID;
+    public void addContact(Contact contact) {
+        this.contacts.add(contact);
+        contact.setEmployee(this);
     }
 
     public Employee(String firstName, String lastName) {

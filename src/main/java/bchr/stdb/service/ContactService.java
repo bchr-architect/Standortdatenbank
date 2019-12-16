@@ -2,8 +2,10 @@ package bchr.stdb.service;
 
 import bchr.stdb.dao.AccountDao;
 import bchr.stdb.dao.ContactDao;
+import bchr.stdb.dao.GroupDao;
 import bchr.stdb.entity.Account;
 import bchr.stdb.entity.Contact;
+import bchr.stdb.entity.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +18,7 @@ public class ContactService {
     ContactDao contactDao;
 
     @Autowired
-    AccountDao accountDao;
-
-    Account checkAccount = new Account();
+    GroupDao groupDao;
 
 
     public List getAllContacts() {
@@ -27,18 +27,11 @@ public class ContactService {
     }
 
     public Contact addContact(Contact contact) {
-        if (contact.account!=null) {
-            if (this.accountDao.existsByCompName(contact.account.getCompName())) {
-                contact.setAccount(accountDao.findByCompName(contact.account.getCompName()));
-            }
-        }
-
         return this.contactDao.save(contact);
     }
 
     public List<Contact> getAllContactsWithAccounts() {
-
-        List<Contact> contactList = this.contactDao.findAllContactsWithAccount();
+        List<Contact> contactList = this.contactDao.findAllContactsWithGroup();
         return contactList;
     }
 }
