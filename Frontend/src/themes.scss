@@ -50,7 +50,7 @@ $grey-theme: mat-light-theme($grey-theme-primary, $grey-theme-accent, $grey-them
 
 $foreground: mat-light-theme-foreground(mat-color($grey-theme-primary,700));
 
-$theme-custom: map-merge($grey-theme, (foreground: $foreground));
+$theme-custom: map-merge($red-theme, (foreground: $foreground));
 
 @include angular-material-theme($theme-custom);
 

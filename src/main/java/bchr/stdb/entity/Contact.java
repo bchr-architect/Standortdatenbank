@@ -85,9 +85,6 @@ public class Contact extends Auditable {
     @Column(name = "EDITED_BY", length = 40)
     private String editedByID;
 
-    @Column(name = "GROUP", length = 20)
-    private Integer grpID;
-
     @Column(name = "REPRESENTATIVE", length = 20)
     private Integer representativeID;
 
@@ -273,10 +270,6 @@ public class Contact extends Auditable {
 
     public String getEditedByID() {
         return editedByID;
-    }
-
-    public Integer getGrpID() {
-        return grpID;
     }
 
     public Integer getRepresentativeID() {
@@ -497,10 +490,6 @@ public class Contact extends Auditable {
 
     public void setEditedByID(String editedByID) {
         this.editedByID = editedByID;
-    }
-
-    public void setGrpID(Integer grpID) {
-        this.grpID = grpID;
     }
 
     public void setRepresentativeID(Integer representativeID) {
