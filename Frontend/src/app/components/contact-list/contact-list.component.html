@@ -7,9 +7,10 @@
 </button>
 
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="tableSource" matSort
+  <table mat-table [dataSource]="tableSource"
+    matSort
     matSortActive="lastName"
-    matSortDirection="asc" >
+    matSortDirection="asc">
 
     <!-- LastName Coloumn -->
     <ng-container matColumnDef="lastName">
@@ -55,3 +56,4 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
+<button mat-raised-button color="primary" (click)="exportAsExcel() ">Excel</button>

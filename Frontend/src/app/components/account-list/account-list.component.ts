@@ -8,6 +8,7 @@ import {Account} from "../../modules/account";
 import {ContactFormComponent} from "../contact-form/contact-form.component";
 import {AccountFormComponent} from "../account-form/account-form.component";
 import {MatDialog} from "@angular/material/dialog";
+import * as XLSX from "xlsx";
 
 @Component({
   selector: 'app-account-list',
@@ -78,4 +79,12 @@ export class AccountListComponent implements OnInit {
     });
   }
 
+  exportAsExcel() {
+    const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.accountTableSource.filteredData);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Unternehmen');
+
+    XLSX.writeFile(wb, 'Unternehmen.xlsx');
+
+  }
 }

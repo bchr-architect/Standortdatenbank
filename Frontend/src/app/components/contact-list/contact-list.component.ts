@@ -8,6 +8,7 @@ import {Contact} from "../../modules/contact";
 import {MatDialog} from "@angular/material/dialog";
 import {ContactFormComponent} from "../contact-form/contact-form.component";
 import {Account} from "../../modules/account";
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-contact-list',
@@ -85,6 +86,16 @@ export class ContactListComponent implements OnInit {
     })
     this.tableSource.sort = this.sort;
     this.tableSource.paginator = this.paginator;
+  }
+
+  exportAsExcel() {
+    const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.tableSource.filteredData);//converts a DOM TABLE element to a worksheet
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Kontakte');
+
+    /* save to file */
+    XLSX.writeFile(wb, 'Kontakte.xlsx');
+
   }
 }
 
