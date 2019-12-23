@@ -22,7 +22,6 @@ import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatSelectModule} from "@angular/material/select";
 
-
 @NgModule({
   declarations: [
   AppComponent,
@@ -30,9 +29,8 @@ import {MatSelectModule} from "@angular/material/select";
   ContactFormComponent,
   AccountListComponent,
   AccountFormComponent
-
-
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -49,7 +47,7 @@ import {MatSelectModule} from "@angular/material/select";
     ReactiveFormsModule,
     MatDialogModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   providers: [ContactService],
   bootstrap: [AppComponent]
