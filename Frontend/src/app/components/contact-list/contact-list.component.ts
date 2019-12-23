@@ -36,15 +36,9 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit() {
     this.contactService.findAll().subscribe(data => {
-      this.tableSource.data = data;
-      this.tableSource.data.forEach(entry => {
-        this.checkNullValues(entry);
-      })
-      this.tableSource.sort = this.sort;
-      this.tableSource.paginator = this.paginator;
+      this.updateTable(data);
+
     });
-
-
   }
 
   applyFilter(filterValue: string) {
@@ -55,10 +49,6 @@ export class ContactListComponent implements OnInit {
     }
   }
 
-  goToContactAdd() {
-    this.router.navigate(['addcontact']);
-  }
-
   openAddContactDialog() {
     const dialogRef = this.dialog.open(ContactFormComponent, {
       width: '500px',
@@ -67,18 +57,11 @@ export class ContactListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       this.contact = result;
       this.contactService.findAll().subscribe(data => {
-        this.tableSource.data = data;
-        this.tableSource.data.forEach(entry => {
-
-          this.checkNullValues(entry);
-
-        })
-        this.tableSource.sort = this.sort;
-        this.tableSource.paginator = this.paginator;
+        this.updateTable(data);
       });
+
     });
   }
 
@@ -92,6 +75,16 @@ export class ContactListComponent implements OnInit {
     if (!entry.createdDate) {
       entry.createdDate = Date.UTC(2019, 11, 20, 13, 45, 0);
     }
+  }
+
+  updateTable(data: any) {
+
+    this.tableSource.data = data;
+    this.tableSource.data.forEach(entry => {
+      this.checkNullValues(entry);
+    })
+    this.tableSource.sort = this.sort;
+    this.tableSource.paginator = this.paginator;
   }
 }
 

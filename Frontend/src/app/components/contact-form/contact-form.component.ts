@@ -58,8 +58,8 @@ export class ContactFormComponent implements OnInit{
 
   onSubmit() {
 
-    this.contactService.save(this.contact).subscribe();
-    this.dialogRef.close();
+    this.contactService.save(this.contact).subscribe(()=> this.dialogRef.close());
+
   }
 
   private _filter(name: string): Account[] {
@@ -67,8 +67,4 @@ export class ContactFormComponent implements OnInit{
 
     return this.accounts.filter(option => option.compName.toLowerCase().indexOf(filterValue) === 0);
   }
-  displayFn(account?: Account): string | undefined {
-    return account ? account.compName : undefined;
-  }
-
 }
