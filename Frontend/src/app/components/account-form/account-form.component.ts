@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router'
 import {AccountService} from "../../services/account.service";
 import {Account} from "../../modules/account";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-account-form',
@@ -11,16 +12,19 @@ import {Account} from "../../modules/account";
 export class AccountFormComponent  {
 
   account: Account
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService) {
+    private accountService: AccountService,
+    public dialogRef: MatDialogRef<AccountFormComponent>) {
     this.account= new Account();
+
   }
 
   onSubmit() {
     this.accountService.save(this.account).subscribe();
-    this.goToAccountList();
+    this.dialogRef.close();
   }
 
   goToAccountList() {
