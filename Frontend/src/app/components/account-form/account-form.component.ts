@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router'
 import {AccountService} from "../../services/account.service";
 import {Account} from "../../modules/account";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-account-form',
@@ -14,13 +15,16 @@ export class AccountFormComponent  {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService) {
+    private accountService: AccountService,
+    public dialogRef: MatDialogRef<AccountFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: {active: boolean}) {
     this.account= new Account();
-  }
+    }
 
   onSubmit() {
+    this.account.active = true;
     this.accountService.save(this.account).subscribe();
-    this.goToAccountList();
+    this.dialogRef.close();
   }
 
   goToAccountList() {

@@ -1,6 +1,10 @@
 package bchr.stdb.entity;
 
 import bchr.stdb.misc.Auditable;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Date;
 
 @Entity

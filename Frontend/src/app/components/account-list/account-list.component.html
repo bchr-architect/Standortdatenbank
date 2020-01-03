@@ -1,4 +1,3 @@
-
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
@@ -8,12 +7,20 @@
 </button>
 
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="accountTableSource" matSort>
+  <table mat-table [dataSource]="accountTableSource" matSort
+    matSortActive="ID"
+    matSortDirection="asc">
 
     <!-- ID Column -->
+    <ng-container matColumnDef="ID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let account">{{account.id}}</td>
+    </ng-container>
+
     <ng-container matColumnDef="compName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
-      <td mat-cell *matCellDef="let account"> {{account.compName}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td (click)="openAccountDetailsDialog(account)" *matCellDef="let account" mat-cell>
+        {{account.compName}}</td>
     </ng-container>
 
     <!-- Progress Column -->
@@ -24,12 +31,16 @@
 
     <ng-container matColumnDef="createdDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>erstellt am</th>
-      <td mat-cell *matCellDef="let account"> {{account.createdDate | date: 'd.L.y'}} </td>
+      <td mat-cell *matCellDef="let account">{{account.createdDate | date: 'd.L.y'}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastModifiedDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>zuletzt geändert</th>
+      <td mat-cell *matCellDef="let account">{{account.lastModifiedDate | date: 'd.L.y'}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let account; columns: displayedColumns;">
-    </tr>
+    <tr mat-row *matRowDef="let account; columns: displayedColumns;"></tr>
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

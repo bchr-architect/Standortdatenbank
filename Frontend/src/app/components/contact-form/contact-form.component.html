@@ -1,21 +1,68 @@
 <div class="container">
     <h1>Kontakt hinzufügen</h1>
   <form #contactForm="ngForm">
+
     <div class="form-group">
+      <mat-form-field>
+        <label for="grpID">Gruppe</label>
+        <input matInput type="text" class="form-control" id="grpID"
+               [(ngModel)]="contact.grpID"
+               name="grpID">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-checkbox [(ngModel)]="contact.privatePerson" id="privatePerson" name="privatePerson">Privatperson</mat-checkbox>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <label for="appellation">Anrede</label>
+        <input matInput type="text" class="form-control" id="appellation"
+               [(ngModel)]="contact.appellation"
+               name="appellation">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="letterAppellation">Briefanrede</label>
+        <input matInput type="text" class="form-control" id="letterAppellation"
+               [(ngModel)]="contact.letterAppellation"
+               name="letterAppellation">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="title">Titel</label>
+        <input matInput type="text" class="form-control" id="title"
+               [(ngModel)]="contact.title"
+               name="title">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="postpositiveTitle">Nachgestellter Titel</label>
+        <input matInput type="text" class="form-control" id="postpositiveTitle"
+               [(ngModel)]="contact.postpositiveTitle"
+               name="postpositiveTitle">
+      </mat-form-field>
+
       <mat-form-field>
         <label for="firstname">Vorname</label>
         <input matInput type="text" class="form-control" id="firstname" required
                [(ngModel)]="contact.firstName"
                name="firstname">
       </mat-form-field>
-    </div>
 
-    <div class="form-group">
       <mat-form-field>
         <label for="lastname">Nachname</label>
         <input matInput type="text" class="form-control" id="lastname" required
                [(ngModel)]="contact.lastName"
                name="lastname">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="birthday">Geburtstag</label>
+        <input matInput type="text" class="form-control" id="birthday"
+               [(ngModel)]="contact.birthday"
+               name="birthday">
       </mat-form-field>
     </div>
 
@@ -26,23 +73,312 @@
                [(ngModel)]="contact.email"
                name="email">
       </mat-form-field>
+
+      <mat-form-field>
+        <label for="email">2. Email</label>
+        <input matInput type="text" class="form-control" id="email2"
+               [(ngModel)]="contact.email2"
+               name="email2">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="phone">1. Telefonnummer</label>
+        <input matInput type="text" class="form-control" id="phone"
+               [(ngModel)]="contact.phone"
+               name="phone">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="phone2">2. Telefonnummer</label>
+        <input matInput type="text" class="form-control" id="phone2"
+               [(ngModel)]="contact.phone2"
+               name="phone2">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="phone3">3. Telefonnummer</label>
+        <input matInput type="text" class="form-control" id="phone3"
+               [(ngModel)]="contact.phone3"
+               name="phone3">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="phone4">4. Telefonnummer</label>
+        <input matInput type="text" class="form-control" id="phone4"
+               [(ngModel)]="contact.phone4"
+               name="phone4">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="fax">Fax</label>
+        <input matInput type="text" class="form-control" id="fax"
+               [(ngModel)]="contact.fax"
+               name="fax">
+      </mat-form-field>
     </div>
 
     <div class="form-group">
       <mat-form-field>
         <label>Account</label>
         <mat-select [(value)]="contact.account">
-        <mat-option *ngFor="let account of accounts" [value]="account">
-          {{account.compName}}
-        </mat-option>
+         <!-- <ng-container *ngIf="contact.account.active"> only active accounts should be displayed -->
+          <mat-option *ngFor="let account of accounts" [value]="account">
+            {{account.compName}}
+          </mat-option>
+         <!-- </ng-container> -->
         </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <label for="corporation">Unternehmen</label>
+        <input matInput type="text" class="form-control" id="corporation"
+               [(ngModel)]="contact.corporation"
+               name="corporation">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="function">Funktion</label>
+        <input matInput type="text" class="form-control" id="function"
+               [(ngModel)]="contact.function"
+               name="function">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="department">Abteilung</label>
+        <input matInput type="text" class="form-control" id="department"
+               [(ngModel)]="contact.department"
+               name="department">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="priority">Priorität</label>
+        <input matInput type="text" class="form-control" id="priority"
+               [(ngModel)]="contact.priority"
+               name="priority">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-checkbox [(ngModel)]="contact.freeFlag1" id="freeFlag1" name="freeFlag1">1. Freies Kennzeichen</mat-checkbox>
+      <mat-checkbox [(ngModel)]="contact.freeFlag2" id="freeFlag2" name="freeFlag2">2. Freies Kennzeichen</mat-checkbox>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <label for="foundingDate">Gegründet am</label>
+        <input matInput type="text" class="form-control" id="foundingDate"
+               [(ngModel)]="contact.foundingDate"
+               name="foundingDate">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="representativeID">Vertreter</label>
+        <input matInput type="text" class="form-control" id="representativeID"
+               [(ngModel)]="contact.representativeID"
+               name="representativeID">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="additional">Zusatz</label>
+        <input matInput type="text" class="form-control" id="additional"
+               [(ngModel)]="contact.additional"
+               name="additional">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="additional2">2. Zusatz</label>
+        <input matInput type="text" class="form-control" id="additional2"
+               [(ngModel)]="contact.additional2"
+               name="additional">
+      </mat-form-field>
+    </div>
+
+    <mat-card>Sprache</mat-card>
+
+    <div class="form-group">
+      <mat-checkbox [(ngModel)]="contact.languageID" id="languageIDgerman" name="languageID">Deutsch</mat-checkbox>
+      <mat-checkbox [(ngModel)]="contact.languageID" id="languageIDenglish" name="languageID">Englisch</mat-checkbox>
+      <mat-checkbox [(ngModel)]="contact.languageID" id="languageIDitalian" name="languageID">Italienisch</mat-checkbox>
+      <mat-checkbox [(ngModel)]="contact.languageID" id="languageIDspanish" name="languageID">Spanisch</mat-checkbox>
+    </div>
+
+    <mat-card>Anschrift</mat-card>
+
+    <div class="form-group">
+      <mat-form-field>
+        <label for="street">Straße</label>
+        <input matInput type="text" class="form-control" id="street"
+               [(ngModel)]="contact.street"
+               name="street">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="postCode">PLZ</label>
+        <input matInput type="text" class="form-control" id="postCode"
+               [(ngModel)]="contact.postCode"
+               name="postcode">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="place">Ort</label>
+        <input matInput type="text" class="form-control" id="place"
+               [(ngModel)]="contact.place"
+               name="place">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="country">Land</label>
+        <input matInput type="text" class="form-control" id="country"
+               [(ngModel)]="contact.country"
+               name="country">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="region">Region</label>
+        <input matInput type="text" class="form-control" id="region"
+               [(ngModel)]="contact.region"
+               name="region">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="mailbox">Postfach</label>
+        <input matInput type="text" class="form-control" id="mailbox"
+               [(ngModel)]="contact.mailbox"
+               name="mailbox">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="mailboxPlace">Postfach Ort</label>
+        <input matInput type="text" class="form-control" id="mailboxPlace"
+               [(ngModel)]="contact.mailboxPlace"
+               name="mailboxPlace">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="mailboxPostcode">Postfach PLZ</label>
+        <input matInput type="text" class="form-control" id="mailboxPostcode"
+               [(ngModel)]="contact.mailboxPostcode"
+               name="mailboxPostcode">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="mailboxCountry">Postfach Land</label>
+        <input matInput type="text" class="form-control" id="mailboxCountry"
+               [(ngModel)]="contact.mailboxCountry"
+               name="mailboxCountry">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="shippingAdress">Lieferanschrift</label>
+        <input matInput type="text" class="form-control" id="shippingAdress"
+               [(ngModel)]="contact.shippingAddress"
+               name="shippingAddress">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="refAddress">RefAdresse</label>
+        <input matInput type="text" class="form-control" id="refAddress"
+               [(ngModel)]="contact.refAddress"
+               name="refAddress">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="refAddress2">2. RefAdresse</label>
+        <input matInput type="text" class="form-control" id="refAddress2"
+               [(ngModel)]="contact.refAddress2"
+               name="refAddress2">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <label for="ustID">Steuernummer</label>
+        <input matInput type="text" class="form-control" id="ustID"
+               [(ngModel)]="contact.ustID"
+               name="ustID">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="additional3">3. Zusatz</label>
+        <input matInput type="text" class="form-control" id="additional3"
+               [(ngModel)]="contact.additional3"
+               name="additional3">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="homepage">Homepage</label>
+        <input matInput type="text" class="form-control" id="homepage"
+               [(ngModel)]="contact.homepage"
+               name="homepage">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="status">Status</label>
+        <input matInput type="text" class="form-control" id="status"
+               [(ngModel)]="contact.status"
+               name="status">
+      </mat-form-field>
+    </div>
+
+    <mat-card>Datenschutzverordnung</mat-card>
+
+    <div class="form-group">
+      <mat-checkbox [(ngModel)]="contact.dsvAnonymised" id="dsvAnonymised" name="Anonymised">Anonym</mat-checkbox>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <label for="dsvAnonymisedBy">Anonymisiert von</label>
+        <input matInput type="text" class="form-control" id="dsvAnonymisedBy"
+               [(ngModel)]="contact.dsvAnonymisedBy"
+               name="dsvAnonymisedBy">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="dsvDataCollection">Datenerhebung am</label>
+        <input matInput type="text" class="form-control" id="dsvDataCollection"
+               [(ngModel)]="contact.dsvDataCollection"
+               name="dsvDataCollection">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="dsvSourceOfData">Datenherkunft</label>
+        <input matInput type="text" class="form-control" id="dsvSourceOfData"
+               [(ngModel)]="contact.dsvSourceOfData"
+               name="dsvSourceOfData">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-checkbox [(ngModel)]="contact.dsvDirectAdFlag" id="dsvDirectAdFlag" name="dsvDirectAdFlag">Direkt Werbeverbot</mat-checkbox>
+      <mat-checkbox [(ngModel)]="contact.dsvNotification" id="dsvNotification" name="dsvNotification">Person benachrichtigt</mat-checkbox>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <label for="cessionNote">Zessionvermerk</label>
+        <input matInput type="text" class="form-control" id="cessionNote"
+               [(ngModel)]="contact.cessionNote"
+               name="cessionNote">
+      </mat-form-field>
+
+        <mat-checkbox [(ngModel)]="contact.cession" id="cession" name="cession">Zession</mat-checkbox>
+
+      <mat-form-field>
+        <label for="targetAudience">Zielgruppe</label>
+        <input matInput type="text" class="form-control" id="targetAudience"
+               [(ngModel)]="contact.targetAudience"
+               name="targetAudience">
       </mat-form-field>
     </div>
 
     <div class ="form-group">
     <mat-form-field>
-      <mat-label>Notizen hinzufügen</mat-label>
-      <textarea matInput
+      <label for="notes">Notiz hinzufügen</label>
+      <textarea matInput type="text" class="form-control" id="notes" name="notes"
+                [(ngModel)]="contact.notes"
                 cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize"
                 cdkAutosizeMinRows="1"
@@ -51,7 +387,25 @@
     </mat-form-field>
     </div>
 
-    <button mat-raised-button color="primary" type="submit"  (click)="onSubmit()">Submit</button>
+    <div class="form-group">
+      <mat-form-field>
+        <label for="creatorID">Hinzugefügt von</label>
+        <input matInput type=text class="formm-control" id="creatorID"
+               [(ngModel)]="contact.creatorID"
+               name="creatorID">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label for="editedByID">Geändert von</label>
+        <input matInput type=text class="formm-control" id="editedByID"
+               [(ngModel)]="contact.editedByID"
+               name="editedByID">
+      </mat-form-field>
+    </div>
+
+    <mat-dialog-actions align="center">
+      <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Submit</button>
+    </mat-dialog-actions>
 
   </form>
 </div>

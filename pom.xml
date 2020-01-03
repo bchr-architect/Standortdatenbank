@@ -14,7 +14,7 @@
     <packaging>jar</packaging>
 
     <name>stdb</name>
-    <description>CRM für Gemeine Leonding</description>
+    <description>CRM für Gemeinde Leonding</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

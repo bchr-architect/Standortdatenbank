@@ -1,25 +1,26 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Data, Router} from "@angular/router";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {AccountService} from "../../services/account.service";
 import {Account} from "../../modules/account";
-import {ContactFormComponent} from "../contact-form/contact-form.component";
 import {AccountFormComponent} from "../account-form/account-form.component";
 import {MatDialog} from "@angular/material/dialog";
+import {AccountDetailsComponent} from "../account-details/account-details.component";
 
 @Component({
   selector: 'app-account-list',
   templateUrl: './account-list.component.html',
   styleUrls: ['./account-list.component.scss']
 })
+
 export class AccountListComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   accountTableSource: MatTableDataSource<Account>;
-  displayedColumns: string[] = ['compName', 'email', 'createdDate'];
+  displayedColumns: string[] = ['ID','compName', 'email', 'createdDate','lastModifiedDate'];
   private accounts: Account[];
   private account: Account;
   selectedRowIndex: number = -1;
@@ -28,16 +29,18 @@ export class AccountListComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog) {
-    this.accountTableSource = new MatTableDataSource<Account>(this.accounts)
+              this.accountTableSource = new MatTableDataSource<Account>(this.accounts);
   }
 
   ngOnInit() {
     this.accountService.findAll().subscribe(data => {
       this.accountTableSource.data = data;
-      this.accountTableSource.data.forEach(account => this.checkNullValues(account))
+      this.accountTableSource.data.forEach(account => {
+        this.checkNullValues(account)
+        this.checkInactive(account);
+      });
       this.accountTableSource.sort = this.sort;
       this.accountTableSource.paginator = this.paginator;
-
     })
   }
 
@@ -55,6 +58,31 @@ export class AccountListComponent implements OnInit {
     }
   }
 
+  openAccountDetailsDialog(data: Data) {
+    const dialogRef = this.dialog.open(AccountDetailsComponent, {
+      height: '500px',
+      width: '550px',
+      data: { ...data}
+    });
+
+    dialogRef.afterClosed().subscribe( result => {
+      console.log('The dialog was closed');
+
+      this.accountTableSource.filteredData.filter((value, index) => {
+        if(value.id == result.id){
+          value=result;
+        }
+
+      });
+
+      this.accountService.findAll().subscribe(data => {
+
+        this.accountTableSource.sort = this.sort;
+        this.accountTableSource.paginator = this.paginator;
+      });
+    });
+  }
+
   openAddAccountDialog() {
     const dialogRef = this.dialog.open(AccountFormComponent, {
       width: '700px',
@@ -70,12 +98,20 @@ export class AccountListComponent implements OnInit {
         this.accountTableSource.data.forEach(entry => {
 
           this.checkNullValues(entry);
+          this.checkInactive(entry);
 
         })
         this.accountTableSource.sort = this.sort;
         this.accountTableSource.paginator = this.paginator;
       });
     });
+  }
+
+  checkInactive(entry: any) {
+    if(!entry.active) { //entry.active!=null
+      const index = this.accountTableSource.data.indexOf(entry);
+      this.accountTableSource.data.splice(index,1);
+    }
   }
 
 }

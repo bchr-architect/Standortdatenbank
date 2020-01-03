@@ -74,6 +74,9 @@ public class Contact extends Auditable {
     @Column(name = "HOMEPAGE", length = 70)
     private String homepage;
 
+    @Column(name = "BIRTHDAY", length = 30)
+    private Date birthday;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Account_id")
     @JsonIgnoreProperties("contacts")
@@ -85,7 +88,7 @@ public class Contact extends Auditable {
     @Column(name = "EDITED_BY", length = 40)
     private String editedByID;
 
-    @Column(name = "GROUP", length = 20)
+    @Column(name = "GROUPING", length = 20)
     private Integer grpID;
 
     @Column(name = "REPRESENTATIVE", length = 20)
@@ -105,6 +108,9 @@ public class Contact extends Auditable {
 
     @Column(name = "REF_ADDRESS", length = 20)
     private Integer refAddress;
+
+    @Column(name = "REF_ADDRESS2", length = 20)
+    private Integer refAddress2;
 
     @Column(name = "ADDITIONAL", length = 80)
     private String additional;
@@ -182,7 +188,7 @@ public class Contact extends Auditable {
     private Boolean dsvFlag;
 
     @Column(name = "DSV_SOURCE_OF_DATA")
-    private Boolean dsvSourceOfData;
+    private String dsvSourceOfData;
 
     @Column(name = "DSV_NOTIFICATION")
     private Boolean dsvNotification;
@@ -193,11 +199,20 @@ public class Contact extends Auditable {
     @Column(name = "DSV_ANONYMISED")
     private Boolean dsvAnonymised;
 
+    @Column(name = "DSV_ANONYMISED_BY")
+    private String dsvAnonymisedBy;
+
+    @Column(name = "DSV_DATA_COLLECTION")
+    private Date dsvDataCollection;
+
     @Column(name = "REGION", length = 70)
     private String region;
 
     @Column(name = "TARGET_AUDIENCE", length = 10)
-    private Integer targetAudience;
+    private String targetAudience;
+
+    @Column(name = "NOTES", length = 100)
+    private String notes;
 
     public Integer getId() {
         return id;
@@ -403,7 +418,7 @@ public class Contact extends Auditable {
         return dsvFlag;
     }
 
-    public Boolean getDsvSourceOfData() {
+    public String getDsvSourceOfData() {
         return dsvSourceOfData;
     }
 
@@ -423,9 +438,11 @@ public class Contact extends Auditable {
         return region;
     }
 
-    public Integer getTargetAudience() {
+    public String getTargetAudience() {
         return targetAudience;
     }
+
+    public void setTargetAudience(String targetAudience) { this.targetAudience = targetAudience; }
 
     public void setCorporation(String corporation) {
         this.corporation = corporation;
@@ -627,7 +644,7 @@ public class Contact extends Auditable {
         this.dsvFlag = dsvFlag;
     }
 
-    public void setDsvSourceOfData(Boolean dsvSourceOfData) {
+    public void setDsvSourceOfData(String dsvSourceOfData) {
         this.dsvSourceOfData = dsvSourceOfData;
     }
 
@@ -645,10 +662,6 @@ public class Contact extends Auditable {
 
     public void setRegion(String region) {
         this.region = region;
-    }
-
-    public void setTargetAudience(Integer targetAudience) {
-        this.targetAudience = targetAudience;
     }
 
     public void setLastName(String lastName) {
@@ -681,6 +694,22 @@ public class Contact extends Auditable {
     public void setAccount(Account account) {
         this.account = account;
     }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public Date getBirthday() { return birthday; }
+
+    public Date getDsvDataCollection() { return dsvDataCollection; }
+
+    public Integer getRefAddress2() { return refAddress2; }
+
+    public String getDsvAnonymisedBy() { return dsvAnonymisedBy; }
 
     public Contact() {
     }

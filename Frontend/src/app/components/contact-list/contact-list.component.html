@@ -11,16 +11,16 @@
     matSortActive="lastName"
     matSortDirection="asc" >
 
+    <!-- Firstname Column -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Vorname</th>
+      <td (click)="openContactDetailsDialog(contact)" mat-cell *matCellDef="let contact"> {{contact.firstName}} </td>
+    </ng-container>
+
     <!-- LastName Coloumn -->
     <ng-container matColumnDef="lastName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Nachname</th>
       <td mat-cell *matCellDef="let contact"> {{contact.lastName}} </td>
-    </ng-container>
-
-    <!-- Firstname Column -->
-    <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Vorname</th>
-      <td mat-cell *matCellDef="let contact"> {{contact.firstName}} </td>
     </ng-container>
 
     <!-- Email Column -->
@@ -33,6 +33,72 @@
     <ng-container matColumnDef="account">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Account</th>
       <td mat-cell *matCellDef="let contact"> {{contact.account.compName}} </td>
+    </ng-container>
+
+    <!-- Corporation Column -->
+    <ng-container matColumnDef="corporation">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Unternehmen</th>
+      <td mat-cell *matCellDef="let contact"> {{ contact.corporation }} </td>
+    </ng-container>
+
+    <!-- Street Column -->
+    <ng-container matColumnDef="street">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Straße</th>
+      <td mat-cell *matCellDef="let contact"> {{ contact.street }} </td>
+    </ng-container>
+
+    <!-- Postcode Column -->
+    <ng-container matColumnDef="postCode">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>PLZ</th>
+      <td mat-cell *matCellDef="let contact"> {{ contact.postCode }} </td>
+    </ng-container>
+
+    <!-- Country Column -->
+    <ng-container matColumnDef="country">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Land</th>
+      <td mat-cell *matCellDef="let contact"> {{ contact.country }} </td>
+    </ng-container>
+
+    <!-- Telefonnummer Column -->
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Telefonnummer</th>
+      <td mat-cell *matCellDef="let contact"> {{ contact.phone }} </td>
+    </ng-container>
+
+    <!-- Fax Column -->
+    <ng-container matColumnDef="fax">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fax</th>
+      <td mat-cell *matCellDef="let contact"> {{ contact.fax }} </td>
+    </ng-container>
+
+    <!-- Mailbox Column -->
+    <ng-container matColumnDef="mailbox">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mailbox</th>
+      <td mat-cell *matCellDef="let contact"> {{ contact.mailbox }} </td>
+    </ng-container>
+
+    <!-- Mailbox Place Column -->
+    <ng-container matColumnDef="mailboxPlace">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mailbox Ort</th>
+      <td mat-cell *matCellDef="let contact"> {{ contact.mailboxPlace }} </td>
+    </ng-container>
+
+    <!-- Mailbox Postcode Column -->
+    <ng-container matColumnDef="mailboxPostcode">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mailbox PLZ</th>
+      <td mat-cell *matCellDef="let contact"> {{ contact.mailboxPostCode }} </td>
+    </ng-container>
+
+    <!-- Mailbox Country Column -->
+    <ng-container matColumnDef="mailboxCountry">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mailbox Land</th>
+      <td mat-cell *matCellDef="let contact"> {{ contact.mailboxCountry }} </td>
+    </ng-container>
+
+    <!-- Hompepage Column -->
+    <ng-container matColumnDef="homepage">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Homepage</th>
+      <td mat-cell *matCellDef="let contact"> {{ contact.homepage }} </td>
     </ng-container>
 
     <!-- Create Column -->

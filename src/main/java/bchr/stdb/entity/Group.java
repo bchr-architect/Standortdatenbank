@@ -2,6 +2,10 @@ package bchr.stdb.entity;
 
 import bchr.stdb.misc.Auditable;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "GROUP_TABLE")
 public class Group extends Auditable {

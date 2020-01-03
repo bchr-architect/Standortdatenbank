@@ -21,7 +21,15 @@ import {AccountFormComponent} from "./components/account-form/account-form.compo
 import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatSelectModule} from "@angular/material/select";
-
+import { MatCardModule, MatIconModule } from '@angular/material';
+import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import { AccountDetailsComponent } from './components/account-details/account-details.component';
+import { ContactDetailsComponent } from './components/contact-details/contact-details.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatRippleModule} from "@angular/material/core";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 @NgModule({
   declarations: [
@@ -29,9 +37,9 @@ import {MatSelectModule} from "@angular/material/select";
   ContactListComponent,
   ContactFormComponent,
   AccountListComponent,
-  AccountFormComponent
-
-
+  AccountFormComponent,
+  AccountDetailsComponent,
+  ContactDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,8 +57,17 @@ import {MatSelectModule} from "@angular/material/select";
     ReactiveFormsModule,
     MatDialogModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule,
+    MatIconModule,
+    MatSlideToggleModule,
+    MatCheckboxModule,
+    MatButtonToggleModule,
+    MatRippleModule,
+    FlexModule,
+    MatDatepickerModule
   ],
+  entryComponents: [AccountDetailsComponent, ContactDetailsComponent],
   providers: [ContactService],
   bootstrap: [AppComponent]
 })

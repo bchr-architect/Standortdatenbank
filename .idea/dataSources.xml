@@ -7,5 +7,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/stdb.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="test" uuid="1cb60b74-5c70-4b4a-8fdc-8f8f2d81f51e">
+      <driver-ref>h2.unified</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:~/test</jdbc-url>
+    </data-source>
   </component>
 </project>

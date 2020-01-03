@@ -1,58 +1,173 @@
 @import "~@angular/material/_theming.scss";
 @include mat-core();
 
-/* YELLOW THEME */
+/* ORANGE THEME */
 
-$yellow-theme-primary: mat-palette($mat-amber);
-$yellow-theme-accent: mat-palette($mat-orange);
-$yellow-theme-warn: mat-palette($mat-red);
+$orange-theme-primary: mat-palette($mat-deep-orange, 700);
+$orange-theme-accent: mat-palette($mat-blue-gray, 700);
+$orange-theme-warn: mat-palette($mat-red);
 
-$yellow-theme: mat-light-theme($yellow-theme-primary, $yellow-theme-accent, $yellow-theme-warn);
+$orange-theme: mat-light-theme($orange-theme-primary, $orange-theme-accent, $orange-theme-warn);
 
-/* RED THEME */
+/* FOREGROUND ORANGE & BACKGROUND ORANGE */
 
-$red-theme-primary: mat-palette($mat-red, A700);
-$red-theme-accent: mat-palette($mat-orange);
-$red-theme-warn: mat-palette($mat-amber);
+$orange-background-color: map_get($mat-deep-orange, background);
+$orange-foreground-color: map_get($mat-blue-gray, foreground);
 
-$red-theme: mat-light-theme($red-theme-primary, $red-theme-accent, $red-theme-warn);
+$orange-background: map_get($orange-theme, background);
+$orange-background: map_merge($orange-background, (background: $orange-background-color));
 
-/* GREY THEME */
-
-$grey-theme-primary: mat-palette($mat-grey, A700);
-$grey-theme-accent: mat-palette($mat-orange, A200, A100);
-$grey-theme-warn: mat-palette($mat-red);
-
-$grey-theme: mat-light-theme($grey-theme-primary, $grey-theme-accent, $grey-theme-warn);
-
-/* include theme of choice */
-@include angular-material-theme($grey-theme);
-
-/* FONT THEME */
-
-@function mat-light-theme-foreground($color) {
+@function orange-theme-foreground($mat-orange) {
   @return (
-    base: $color,
-    divider: $black-12-opacity,
-    dividers: $black-12-opacity,
-    disabled: rgb($color, 0.38),
-    disabled-button: rgba($color, 0.38),
-    disabled-text: rgba($color, 0.38),
-    hint-text: rgba($color, 0.38),
-    secondary-text: rgba($color, 0.56),
-    icon: rgba($black-12-opacity, 0.54),
-    icons: rgba($black-12-opacity, 0.54),
-    text: rgba($black-12-opacity, 0.67),
-    slider-off: rgba($color, 0.54),
-    slider-off-active: rgba($color, 0.38),
+    base: $mat-orange,
+    divider: $black-87-opacity,
+    dividers: $black-87-opacity,
+    disabled: rgb($mat-orange, 0.38),
+    disabled-button: rgba($mat-orange, 0.38),
+    disabled-text: rgba($mat-orange, 0.38),
+    hint-text: rgba($black-87-opacity, 0.90),
+    secondary-text: rgba($mat-orange, 0.56),
+    icon: rgba($black-87-opacity, 0.54),
+    icons: rgba($black-87-opacity, 0.54),
+    text: rgba($black-87-opacity, 0.67),
+    slider-off: rgba($mat-orange, 0.54),
+    slider-off-active: rgba($mat-orange, 0.38),
+    hover: rgba($black-12-opacity,0.5)
   );
 };
 
-$foreground: mat-light-theme-foreground(mat-color($grey-theme-primary,700));
+$orange: map_merge($orange-theme, (background: $orange-background));
 
-$theme-custom: map-merge($grey-theme, (foreground: $foreground));
+$orange-foreground: orange-theme-foreground(mat-color($orange-theme-accent));
+$orange-theme-custom: map_merge($orange, (foreground: $orange-foreground));
 
-@include angular-material-theme($theme-custom);
+/* RED THEME */
+
+$red-theme-primary: mat-palette($mat-red, 800);
+$red-theme-accent: mat-palette($mat-orange, 800);
+$red-theme-warn: mat-palette($mat-amber, 800);
+
+$red-theme: mat-light-theme($red-theme-primary, $red-theme-accent, $red-theme-warn);
+
+/* FOREGROUND RED & BACKGROUND RED */
+
+$red-background-color: map-get($mat-orange, background);
+$red-foreground-color: map-get($mat-red, foreground);
+
+$red-background: map_get($red-theme, background);
+$red-background: map_merge($red-background, (background: $red-background-color));
+
+@function red-theme-foreground($mat-orange) {
+  @return (
+    base: $mat-orange,
+    divider: $black-87-opacity,
+    dividers: $black-87-opacity,
+    disabled: rgb($mat-orange, 0.38),
+    disabled-button: rgba($mat-orange, 0.38),
+    disabled-text: rgba($mat-orange, 0.38),
+    hint-text: rgba($black-87-opacity, 0.90),
+    secondary-text: rgba($mat-orange, 0.56),
+    icon: rgba($black-87-opacity, 0.54),
+    icons: rgba($black-87-opacity, 0.54),
+    text: rgba($black-87-opacity, 0.67),
+    slider-off: rgba($mat-orange, 0.54),
+    slider-off-active: rgba($mat-orange, 0.38),
+    hover: rgba($black-12-opacity,0.5)
+  );
+};
+
+$red: map_merge($red-theme, (background: $red-background));
+
+$red-foreground: red-theme-foreground(mat-color($red-theme-accent));
+$red-theme-custom: map-merge($red, (foreground: $red-foreground));
+
+/* GREY THEME */
+
+$grey-theme-primary: mat-palette($mat-grey, 800);
+$grey-theme-accent: mat-palette($mat-deep-orange, A200);
+$grey-theme-warn: mat-palette($mat-red, 500);
+
+$grey-theme: mat-light-theme($grey-theme-primary, $grey-theme-accent, $grey-theme-warn);
+
+/* FOREGROUND GREY & BACKGROUND GREY*/
+
+$grey-background-color: map_get($mat-grey, background);
+$grey-foreground-color: map_get($mat-deep-orange, foreground);
+
+$grey-background: map_get($grey-theme, background);
+$grey-background: map_merge($grey-background, (background: $grey-background-color));
+
+$grey: map-merge($grey-theme, (background: $grey-background));
+
+@function grey-theme-foreground($mat-deep-orange) {
+  @return (
+    base: $mat-deep-orange,
+    divider: $black-87-opacity,
+    dividers: $black-87-opacity,
+    disabled: rgb($mat-deep-orange, 0.38),
+    disabled-button: rgba($mat-deep-orange, 0.38),
+    disabled-text: rgba($mat-deep-orange, 0.38),
+    hint-text: rgba($black-87-opacity, 0.90),
+    secondary-text: rgba($mat-deep-orange, 0.56),
+    icon: rgba($black-87-opacity, 0.54),
+    icons: rgba($black-87-opacity, 0.54),
+    text: rgba($black-87-opacity, 0.67),
+    slider-off: rgba($mat-deep-orange, 0.54),
+    slider-off-active: rgba($mat-deep-orange, 0.38),
+    hover: rgba($black-12-opacity,0.5)
+  );
+};
+
+$grey-foreground: grey-theme-foreground(mat-color($grey-theme-accent));
+$grey-theme-custom: map_merge($grey,(foreground: $grey-foreground));
+
+/* DARK THEME */
+
+$dark-primary: mat-palette($mat-grey, 800);
+$dark-accent: mat-palette($mat-yellow, A200);
+$dark-warn: mat-palette($mat-red, 900);
+
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+$dark-background-color: map_get($mat-grey, 50);
+
+$dark-background: map-get($dark-theme, background);
+$background: map_merge($dark-background, (background: $dark-background-color));
+$theme: map_merge($dark-theme, (background: $background));
+
+/* FOREGROUND DARK & BACKGROUND DARK */
+
+@function mat-dark-theme-foreground($mat-orange) {
+  @return (
+    base: $mat-orange,
+    divider: $black-87-opacity,
+    dividers: $black-87-opacity,
+    disabled: rgb($mat-orange, 0.38),
+    disabled-button: rgba($mat-orange, 0.38),
+    disabled-text: rgba($mat-orange, 0.38),
+    hint-text: rgba($white-87-opacity, 0.90),
+    secondary-text: rgba($mat-orange, 0.56),
+    icon: rgba($white-87-opacity, 0.54),
+    icons: rgba($white-87-opacity, 0.54),
+    text: rgba($white-87-opacity, 0.67),
+    slider-off: rgba($mat-orange, 0.54),
+    slider-off-active: rgba($mat-orange, 0.38),
+    hover: rgba($black-12-opacity,0.5)
+  );
+};
+
+$foreground: mat-dark-theme-foreground(mat-color($dark-accent,700));
+$dark-theme-custom: map-merge($theme, (foreground: $foreground));
+
+/*
+existing themes
+--- $orange-theme-custom
+--- $red-theme-custom
+--- $grey-theme-custom
+--- $dark-theme-custom
+*/
+
+@include angular-material-theme($dark-theme-custom);
 
 $custom-typography: mat-typography-config(
   $font-family: 'Roboto, Helvetica Neue, sans-serif'

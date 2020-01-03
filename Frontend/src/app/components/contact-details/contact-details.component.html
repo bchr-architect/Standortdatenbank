@@ -1,0 +1,275 @@
+<div class="container">
+  <h1>Contact Details</h1>
+
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="ID" [(ngModel)]="data.id" readonly>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+        <mat-form-field>
+          <input matInput placeholder="Gruppe" [(ngModel)]="data.grpID" readonly>
+        </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-checkbox [(ngModel)]="data.privatePerson" [disabled]="isReadOnly">Privatperson</mat-checkbox>
+    </div>
+
+  <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="Anrede" [(ngModel)]="data.appellation" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Briefanrede" [(ngModel)]="data.letterAppellation" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Titel" [(ngModel)]="data.title" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Nachgestellter Titel" [(ngModel)]="data.postpositiveTitle" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Vorname" [(ngModel)]="data.firstName" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Nachname" [(ngModel)]="data.lastName" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Geburtstag" [(ngModel)]="data.birthday" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="data.email" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="2. Email" [(ngModel)]="data.email2" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="1. Telefonummer" [(ngModel)]="data.phone" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="2. Telefonummer" [(ngModel)]="data.phone2" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="3. Telefonummer" [(ngModel)]="data.phone3" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="4. Telefonummer" [(ngModel)]="data.phone4" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Fax" [(ngModel)]="data.fax" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Account" [(ngModel)]="data.account.compName" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Unternehmen" [(ngModel)]="data.corporation" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Funktion" [(ngModel)]="data.function" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Abteilung" [(ngModel)]="data.department" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Priorität" [(ngModel)]="data.priority" [readonly]="isReadOnly">
+      </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-checkbox [(ngModel)]="data.freeFlag1" [disabled]="isReadOnly">1. Freies Kennzeichen</mat-checkbox>
+    <mat-checkbox [(ngModel)]="data.freeFlag2" [disabled]="isReadOnly">2. Freies Kennzeichen</mat-checkbox>
+  </div>
+
+  <div class="form-control">
+    <mat-form-field>
+      <input matInput placeholder="Gegründet am" [(ngModel)]="data.foundingDate" [readonly]="isReadOnly">
+    </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Vertreter" [(ngModel)]="data.representativeID" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="1. Zusatz" [(ngModel)]="data.additional" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="2. Zusatz" [(ngModel)]="data.additional2" [readonly]="isReadOnly">
+      </mat-form-field>
+  </div>
+
+    <mat-card>Sprache</mat-card>
+
+    <div class="form-group">
+      <mat-checkbox id="languageIDgerman" name="languageID" [disabled]="isReadOnly">Deutsch</mat-checkbox>
+      <mat-checkbox id="languageIDenglish" name="languageID" [disabled]="isReadOnly">Englisch</mat-checkbox>
+      <mat-checkbox id="languageIDitalian" name="languageID" [disabled]="isReadOnly">Italienisch</mat-checkbox>
+      <mat-checkbox id="languageIDspanish" name="languageID" [disabled]="isReadOnly">Spanisch</mat-checkbox>
+    </div>
+
+    <mat-card>Anschrift</mat-card>
+
+  <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="Straße" [(ngModel)]="data.street" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="PLZ" [(ngModel)]="data.postCode" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Ort" [(ngModel)]="data.place" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Land" [(ngModel)]="data.country" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Region" [(ngModel)]="data.region" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Postfach" [(ngModel)]="data.mailbox" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Postfach Ort" [(ngModel)]="data.mailboxPlace" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Postfach PLZ" [(ngModel)]="data.mailboxPostcode" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Postfach Land" [(ngModel)]="data.mailboxCountry" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Lieferanschrift" [(ngModel)]="data.shippingAddress" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="1. RefAdresse" [(ngModel)]="data.refAddress" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="2. RefAdresse" [(ngModel)]="data.refAddress2" [readonly]="isReadOnly">
+      </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Steuernummer" [(ngModel)]="data.ustID" [readonly]="isReadOnly">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="3. Zusatz" [(ngModel)]="data.additional3" [readonly]="isReadOnly">
+    </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Homepage" [(ngModel)]="data.homepage" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Status" [(ngModel)]="data.status" [readonly]="isReadOnly">
+      </mat-form-field>
+    </div>
+
+  <mat-card>Datenschutzverordnung</mat-card>
+
+  <div class="form-group">
+    <mat-checkbox [(ngModel)]="data.dsvAnonymised" [disabled]="isReadOnly">Anonym</mat-checkbox>
+  </div>
+
+  <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="Anonymisiert von" [(ngModel)]="data.dsvAnonymisedBy" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Datenerhebung am" [(ngModel)]="data.dsvDataCollection" [readonly]="isReadOnly">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Datenherkunft" [(ngModel)]="data.dsvSourceOfData" [readonly]="isReadOnly">
+      </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-checkbox [(ngModel)]="data.dsvDirectAdFlag" [disabled]="isReadOnly">Direkt Werbeverbot</mat-checkbox>
+    <mat-checkbox [(ngModel)]="data.dsvNotification" [disabled]="isReadOnly">Person benachrichtigt</mat-checkbox>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Zessionvermerk" [(ngModel)]="data.cessionNote" [readonly]="isReadOnly">
+    </mat-form-field>
+
+    <mat-checkbox [(ngModel)]="data.cession" [disabled]="isReadOnly">Zession</mat-checkbox>
+
+      <mat-form-field>
+        <input matInput placeholder="Zielgruppe" [(ngModel)]="data.targetAudience" [readonly]="isReadOnly">
+      </mat-form-field>
+  </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <label>Notizen</label>
+        <textarea [(ngModel)]="data.notes" [readonly]="isReadOnly"
+          matInput cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="1"
+                  cdkAutosizeMaxRows="5">
+        </textarea>
+      </mat-form-field>
+    </div>
+
+  <mat-card>Verwaltung</mat-card>
+
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="Hinzugefügt von" [(ngModel)]="data.creatorID" readonly>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Hinzugefügt am" [(ngModel)]="data.createdDate" readonly>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Geändert von" [(ngModel)]="data.editedByID" readonly>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Zuletzt geändert" [(ngModel)]="data.lastModifiedDate" readonly>
+      </mat-form-field>
+    </div>
+
+      <mat-dialog-actions align="center">
+        <button mat-raised-button type="button" class="changeBtn" color="primary" (click)="onEdit()">Bearbeiten</button>
+        <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onSubmit()">Speichern</button>
+        <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onDelete()">Kontakt löschen</button>
+      </mat-dialog-actions>
+
+</div>
