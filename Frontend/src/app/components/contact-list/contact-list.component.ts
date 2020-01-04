@@ -130,7 +130,7 @@ export class ContactListComponent implements OnInit {
   checkInactive(entry: any){
     if(entry.inactive) {
       const index = this.tableSource.data.indexOf(entry);
-      this.tableSource.data.splice(index,1);
+      //this.tableSource.data.splice(index,1);
     }
 
     //this.tableSource._updateChangeSubscription();
