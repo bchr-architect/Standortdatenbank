@@ -1,12 +1,21 @@
+.header {
+  font-weight: lighter;
+  margin: 20px;
+  letter-spacing: 2px;
+}
+
+.filler {
+  flex: 1 1 auto;
+}
+
 .toolbar {
   flex: 1 1 auto;
   display: flex;
 }
 
 img {
-  top: 6px;
+  margin-top: 6px;
   height: 60px;
-  position: relative;
 }
 
 .mat-tab-link {
