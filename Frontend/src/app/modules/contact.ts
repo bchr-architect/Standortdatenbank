@@ -25,13 +25,13 @@ export class Contact {
   creatorID: string;
   editedByID: string;
   grpID: number;
-  representativeID: number;
-  languageID: number;
+  representativeID: string;
+  languageID: string;
   ustID: string;
   contactID: number;
-  shippingAddress: number;
-  refAddress: number;
-  refAddress2: number;
+  shippingAddress: string;
+  refAddress: string;
+  refAddress2: string;
   additional: string;
   additional2: string;
   additional3: string;

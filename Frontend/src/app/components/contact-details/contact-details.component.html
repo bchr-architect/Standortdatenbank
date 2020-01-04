@@ -43,7 +43,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Geburtstag" [(ngModel)]="data.birthday" [readonly]="isReadOnly">
+        <input matInput type="date" placeholder="Geburtstag" [(ngModel)]="data.birthday" [readonly]="isReadOnly">
       </mat-form-field>
 
       <mat-form-field>
@@ -91,7 +91,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Priorität" [(ngModel)]="data.priority" [readonly]="isReadOnly">
+        <input matInput type="number" placeholder="Priorität" [(ngModel)]="data.priority" [readonly]="isReadOnly">
       </mat-form-field>
   </div>
 
@@ -102,7 +102,7 @@
 
   <div class="form-control">
     <mat-form-field>
-      <input matInput placeholder="Gegründet am" [(ngModel)]="data.foundingDate" [readonly]="isReadOnly">
+      <input matInput type="datetime-local" placeholder="Gegründet am" [(ngModel)]="data.foundingDate" [readonly]="isReadOnly">
     </mat-form-field>
 
       <mat-form-field>
@@ -193,7 +193,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Status" [(ngModel)]="data.status" [readonly]="isReadOnly">
+        <input matInput type="number" placeholder="Status" [(ngModel)]="data.status" [readonly]="isReadOnly">
       </mat-form-field>
     </div>
 
@@ -209,7 +209,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Datenerhebung am" [(ngModel)]="data.dsvDataCollection" [readonly]="isReadOnly">
+        <input matInput type="date" placeholder="Datenerhebung am" [(ngModel)]="data.dsvDataCollection" [readonly]="isReadOnly">
       </mat-form-field>
 
       <mat-form-field>
@@ -250,7 +250,7 @@
 
     <div class="form-group">
       <mat-form-field>
-        <input matInput placeholder="Hinzugefügt von" [(ngModel)]="data.creatorID" readonly>
+        <input matInput placeholder="Hinzugefügt von" [(ngModel)]="data.creatorID" [readonly]="isReadOnly">
       </mat-form-field>
 
       <mat-form-field>
@@ -258,7 +258,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Geändert von" [(ngModel)]="data.editedByID" readonly>
+        <input matInput placeholder="Geändert von" [(ngModel)]="data.editedByID" [readonly]="isReadOnly">
       </mat-form-field>
 
       <mat-form-field>

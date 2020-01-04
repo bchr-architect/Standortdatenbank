@@ -62,24 +62,22 @@ export class ContactListComponent implements OnInit {
 
   openContactDetailsDialog(data: Data){
     const dialogRef = this.dialog.open(ContactDetailsComponent, {
-      height: '500px',
+      height: '600px',
       width: '850px',
       data: { ...data}
     });
 
     dialogRef.afterClosed().subscribe( result => {
-      console.log('The dialog was closed', this.tableSource.data);
+      console.log('The dialog was closed');
 
       if(!isUndefined(result)) {
         this.tableSource.filteredData.filter((value, index) => {
           if(value.id==result.id) {
             value=result;
-            console.log(value.notes, this.tableSource.data);
           }
 
         });
       }
-
 
       this.contactService.findAll().subscribe(data => {
 
@@ -91,8 +89,8 @@ export class ContactListComponent implements OnInit {
 
   openAddContactDialog() {
     const dialogRef = this.dialog.open(ContactFormComponent, {
-      width: '900px',
-      height: '350px',
+      width: '850px',
+      height: '600px',
       data: {contact: this.contact}
     });
 
@@ -118,6 +116,7 @@ export class ContactListComponent implements OnInit {
       entry.account.id = "";
       entry.account.compName = "";
       entry.account.email = "";
+      entry.account.active = "";
       entry.account.createdDate="";
       entry.account.lastModifiedDate="";
     }

@@ -92,10 +92,10 @@ public class Contact extends Auditable {
     private Integer grpID;
 
     @Column(name = "REPRESENTATIVE", length = 20)
-    private Integer representativeID;
+    private String representativeID;
 
     @Column(name = "LANGUAGE", length = 20)
-    private Integer languageID;
+    private String languageID;
 
     @Column(name = "UST_ID", length = 40)
     private String ustID;
@@ -104,13 +104,13 @@ public class Contact extends Auditable {
     private Integer contactID;
 
     @Column(name = "SHIPPING_ADDRESS", length = 20)
-    private Integer shippingAddress;
+    private String shippingAddress;
 
     @Column(name = "REF_ADDRESS", length = 20)
-    private Integer refAddress;
+    private String refAddress;
 
     @Column(name = "REF_ADDRESS2", length = 20)
-    private Integer refAddress2;
+    private String refAddress2;
 
     @Column(name = "ADDITIONAL", length = 80)
     private String additional;
@@ -294,11 +294,11 @@ public class Contact extends Auditable {
         return grpID;
     }
 
-    public Integer getRepresentativeID() {
+    public String getRepresentativeID() {
         return representativeID;
     }
 
-    public Integer getLanguageID() {
+    public String getLanguageID() {
         return languageID;
     }
 
@@ -310,11 +310,11 @@ public class Contact extends Auditable {
         return contactID;
     }
 
-    public Integer getShippingAddress() {
+    public String getShippingAddress() {
         return shippingAddress;
     }
 
-    public Integer getRefAddress() {
+    public String getRefAddress() {
         return refAddress;
     }
 
@@ -520,11 +520,11 @@ public class Contact extends Auditable {
         this.grpID = grpID;
     }
 
-    public void setRepresentativeID(Integer representativeID) {
+    public void setRepresentativeID(String representativeID) {
         this.representativeID = representativeID;
     }
 
-    public void setLanguageID(Integer languageID) {
+    public void setLanguageID(String languageID) {
         this.languageID = languageID;
     }
 
@@ -536,11 +536,11 @@ public class Contact extends Auditable {
         this.contactID = contactID;
     }
 
-    public void setShippingAddress(Integer shippingAddress) {
+    public void setShippingAddress(String shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
 
-    public void setRefAddress(Integer refAddress) {
+    public void setRefAddress(String refAddress) {
         this.refAddress = refAddress;
     }
 
@@ -707,7 +707,7 @@ public class Contact extends Auditable {
 
     public Date getDsvDataCollection() { return dsvDataCollection; }
 
-    public Integer getRefAddress2() { return refAddress2; }
+    public String getRefAddress2() { return refAddress2; }
 
     public String getDsvAnonymisedBy() { return dsvAnonymisedBy; }
 

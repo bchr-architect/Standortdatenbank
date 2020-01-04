@@ -26,9 +26,9 @@ export class ContactDetailsComponent {
       street: string, postCode: string, country: string, phone: string, phone2: string,
       phone3: string, phone4: string, fax: string, mailbox: string, mailboxPlace: string,
       mailboxPostcode: string, mailboxCountry: string, homepage: string, account: Account,
-      creatorID: string, editedByID: string, grpID: number, representativeID: number,
-      languageID: number, ustID: string, contactID: number, shippingAddress: number,
-      refAddress: number, refAddress2: number, additional: string, additional2: string,
+      creatorID: string, editedByID: string, grpID: number, representativeID: string,
+      languageID: string, ustID: string, contactID: number, shippingAddress: string,
+      refAddress: string, refAddress2: string, additional: string, additional2: string,
       additional3: string, inactive: boolean, privatePerson: boolean, cession: boolean,
       cessionNote: string, appellation: string, letterAppellation: string, title: string,
       postpositiveTitle: string, memo: number, department: string, function: string,
@@ -44,8 +44,8 @@ export class ContactDetailsComponent {
     }
 
     onSubmit() {
-     this.contact = this.data;
-     this.contactService.save(this.contact).subscribe();
+      this.contact = this.data;
+      this.contactService.save(this.contact).subscribe();
     }
 
     onDelete() {

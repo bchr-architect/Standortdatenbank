@@ -60,7 +60,7 @@
 
       <mat-form-field>
         <label for="birthday">Geburtstag</label>
-        <input matInput type="text" class="form-control" id="birthday"
+        <input matInput type="date" class="form-control" id="birthday"
                [(ngModel)]="contact.birthday"
                name="birthday">
       </mat-form-field>
@@ -154,7 +154,7 @@
 
       <mat-form-field>
         <label for="priority">Priorität</label>
-        <input matInput type="text" class="form-control" id="priority"
+        <input matInput type="number" class="form-control" id="priority"
                [(ngModel)]="contact.priority"
                name="priority">
       </mat-form-field>
@@ -168,7 +168,7 @@
     <div class="form-group">
       <mat-form-field>
         <label for="foundingDate">Gegründet am</label>
-        <input matInput type="text" class="form-control" id="foundingDate"
+        <input matInput type="date" class="form-control" id="foundingDate"
                [(ngModel)]="contact.foundingDate"
                name="foundingDate">
       </mat-form-field>
@@ -316,7 +316,7 @@
 
       <mat-form-field>
         <label for="status">Status</label>
-        <input matInput type="text" class="form-control" id="status"
+        <input matInput type="number" class="form-control" id="status"
                [(ngModel)]="contact.status"
                name="status">
       </mat-form-field>
@@ -338,7 +338,7 @@
 
       <mat-form-field>
         <label for="dsvDataCollection">Datenerhebung am</label>
-        <input matInput type="text" class="form-control" id="dsvDataCollection"
+        <input matInput type="date" class="form-control" id="dsvDataCollection"
                [(ngModel)]="contact.dsvDataCollection"
                name="dsvDataCollection">
       </mat-form-field>
