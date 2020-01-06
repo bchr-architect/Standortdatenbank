@@ -7,3 +7,5 @@ INSERT INTO CONTACT_TABLE (id,first_Name,last_Name,email,account_id) VALUES
     (1000,'Marlon','Boler','boler.marlong@jku.at',99),
     (1001   ,'Natascha','Ayanfo', 'Ayanfo.Natascha@jku.at',99);
 
+
+

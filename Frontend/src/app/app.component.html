@@ -1,11 +1,12 @@
+<div>
+<div class = "mat-app-background">
 <mat-toolbar color="primary">
   <span></span>
 
   <!-- This fills the remaining space of the current row -->
 
   <div class="toolbar">
-    <a>
-      <img src="assets/img/SDBGrey.png"></a>
+    <span class ="header">Standortagentur Leonding</span>
 
     <a      routerLink="/contacts"
             class="mat-tab-link"
@@ -14,9 +15,19 @@
     <a      routerLink="/accounts"
             class="mat-tab-link"
             >Accounts</a>
+
+    <a      routerLink="/groups"
+            class="mat-tab-link"
+            >Gruppen</a>
+
+    <span class= "filler"></span>
+
+    <a>
+      <img src="assets/img/SDBGreyNoC.png"></a>
+
   </div>
 
-  <div> Change needs to be deleted</div>
-
 </mat-toolbar>
+</div>
+</div>
 <router-outlet></router-outlet>

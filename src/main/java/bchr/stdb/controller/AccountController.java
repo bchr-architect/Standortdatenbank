@@ -22,7 +22,6 @@ public class AccountController {
 
     @PostMapping(path = {"/add"})
     public Account addNewAccount(@RequestBody Account account) {
-        Account newAccount= account;
         return this.accountService.addAccount(account);
     }
 }
