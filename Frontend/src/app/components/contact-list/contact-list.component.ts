@@ -10,7 +10,7 @@ import {ContactFormComponent} from "../contact-form/contact-form.component";
 import {Account} from "../../modules/account";
 import {ContactDetailsComponent} from "../contact-details/contact-details.component";
 import {isUndefined} from "util";
-//import * as XLSX from 'xlsx';
+import * as XLSX from 'xlsx';
 import {Group} from "../../modules/group";
 
 @Component({
@@ -139,12 +139,12 @@ export class ContactListComponent implements OnInit {
       //this.tableSource.data.splice(index,1);
     }
   }
-/*
+
   exportAsExcel() {
     const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.tableSource.filteredData);//converts a DOM TABLE element to a worksheet
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Kontakte');
 
     XLSX.writeFile(wb, 'Kontakte.xlsx');
-  } */
+  }
 }

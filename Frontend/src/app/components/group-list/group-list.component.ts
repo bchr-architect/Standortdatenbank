@@ -5,12 +5,9 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {GroupService} from "../../services/group.service";
 import {Group} from "../../modules/group";
-import {ContactFormComponent} from "../contact-form/contact-form.component";
 import {GroupFormComponent} from "../group-form/group-form.component";
 import {MatDialog} from "@angular/material/dialog";
-//import * as XLSX from "xlsx";
-import {Account} from "../../modules/account";
-import {AccountDetailsComponent} from "../account-details/account-details.component";
+import * as XLSX from "xlsx";
 import {GroupDetailsComponent} from "../group-details/group-details.component";
 
 @Component({
@@ -114,7 +111,7 @@ export class GroupListComponent implements OnInit {
     });
   }
 
-/*
+
   exportAsExcel() {
     const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.groupTableSource.filteredData);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
@@ -122,5 +119,5 @@ export class GroupListComponent implements OnInit {
 
     XLSX.writeFile(wb, 'Gruppen.xlsx');
 
-  }*/
+  }
 }

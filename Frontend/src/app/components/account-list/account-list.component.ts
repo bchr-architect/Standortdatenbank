@@ -118,7 +118,7 @@ export class AccountListComponent implements OnInit {
       this.accountTableSource.data.splice(index,1);
     }
   }
-/*
+
   exportAsExcel() {
     const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.accountTableSource.filteredData);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
@@ -126,5 +126,5 @@ export class AccountListComponent implements OnInit {
 
     XLSX.writeFile(wb, 'Unternehmen.xlsx');
 
-  }*/
+  }
 }
