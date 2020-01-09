@@ -2,6 +2,7 @@ package bchr.stdb.entity;
 
 import bchr.stdb.misc.Auditable;
 import com.fasterxml.jackson.annotation.*;
+import org.hibernate.annotations.Cascade;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
@@ -77,10 +78,17 @@ public class Contact extends Auditable {
     @Column(name = "BIRTHDAY", length = 30)
     private Date birthday;
 
+    // x Contacts -> 1 Account
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Account_id")
     @JsonIgnoreProperties("contacts")
     public Account account;
+
+    // x Contacts -> 1 Group
+    @ManyToOne(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
+    @JoinColumn(name = "Group_id")
+    @JsonIgnoreProperties("groups")
+    public Group group;
 
     @Column(name = "CREATOR", length = 40)
     private String creatorID;
@@ -712,6 +720,14 @@ public class Contact extends Auditable {
     public String getDsvAnonymisedBy() { return dsvAnonymisedBy; }
 
     public Contact() {
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     public Contact(String lastName, String firstName, String email) {

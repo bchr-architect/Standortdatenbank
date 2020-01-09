@@ -7,96 +7,92 @@
       </mat-form-field>
     </div>
 
-    <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="Gruppe" [(ngModel)]="data.grpID" readonly>
-        </mat-form-field>
-    </div>
-
-    <div class="form-group">
-      <mat-checkbox [(ngModel)]="data.privatePerson" [disabled]="isReadOnly">Privatperson</mat-checkbox>
-    </div>
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Gruppe" [(ngModel)]="data.grpID" readonly>
+    </mat-form-field>
+  </div>
 
   <div class="form-group">
-      <mat-form-field>
-        <input matInput placeholder="Anrede" [(ngModel)]="data.appellation" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-checkbox [(ngModel)]="data.privatePerson" [disabled]="isReadOnly">Privatperson</mat-checkbox>
+  </div>
 
-      <mat-form-field>
-        <input matInput placeholder="Briefanrede" [(ngModel)]="data.letterAppellation" [readonly]="isReadOnly">
-      </mat-form-field>
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Anrede" [(ngModel)]="data.appellation" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Titel" [(ngModel)]="data.title" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Briefanrede" [(ngModel)]="data.letterAppellation" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Nachgestellter Titel" [(ngModel)]="data.postpositiveTitle" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Titel" [(ngModel)]="data.title" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Vorname" [(ngModel)]="data.firstName" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Nachgestellter Titel" [(ngModel)]="data.postpositiveTitle" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Nachname" [(ngModel)]="data.lastName" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Vorname" [(ngModel)]="data.firstName" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput type="date" placeholder="Geburtstag" [ngModel]="data.birthday | date:'yyyy-MM-dd'" (ngModelChange)="data.birthday=$event" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Nachname" [(ngModel)]="data.lastName" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Email" [(ngModel)]="data.email" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput type="date" placeholder="Geburtstag" [(ngModel)]="data.birthday" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="2. Email" [(ngModel)]="data.email2" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email" [(ngModel)]="data.email" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="1. Telefonummer" [(ngModel)]="data.phone" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="2. Email" [(ngModel)]="data.email2" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="2. Telefonummer" [(ngModel)]="data.phone2" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="1. Telefonummer" [(ngModel)]="data.phone" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="3. Telefonummer" [(ngModel)]="data.phone3" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="2. Telefonummer" [(ngModel)]="data.phone2" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="4. Telefonummer" [(ngModel)]="data.phone4" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="3. Telefonummer" [(ngModel)]="data.phone3" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Fax" [(ngModel)]="data.fax" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="4. Telefonummer" [(ngModel)]="data.phone4" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <mat-select placeholder="Account" [(value)]="data.account" [compareWith]="compareById" [disabled]="isReadOnly">
-          <mat-option *ngFor="let account of accounts" [value]="account">
-            {{account.compName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Fax" [(ngModel)]="data.fax" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Unternehmen" [(ngModel)]="data.corporation" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Account" [(ngModel)]="data.account.compName" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Funktion" [(ngModel)]="data.function" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Unternehmen" [(ngModel)]="data.corporation" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Abteilung" [(ngModel)]="data.department" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Funktion" [(ngModel)]="data.function" [readonly]="isReadOnly">
+    </mat-form-field>
 
-      <mat-form-field>
-        <input matInput type="number" placeholder="Priorität" [(ngModel)]="data.priority" [readonly]="isReadOnly">
-      </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Abteilung" [(ngModel)]="data.department" [readonly]="isReadOnly">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="number" placeholder="Priorität" [(ngModel)]="data.priority" [readonly]="isReadOnly">
+    </mat-form-field>
   </div>
 
   <div class="form-group">

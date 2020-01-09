@@ -8,6 +8,7 @@ import {Account} from "../../modules/account";
 import {AccountFormComponent} from "../account-form/account-form.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AccountDetailsComponent} from "../account-details/account-details.component";
+import * as XLSX from "xlsx";
 import {isUndefined} from "util";
 
 @Component({
@@ -15,7 +16,6 @@ import {isUndefined} from "util";
   templateUrl: './account-list.component.html',
   styleUrls: ['./account-list.component.scss']
 })
-
 export class AccountListComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -111,10 +111,18 @@ export class AccountListComponent implements OnInit {
   }
 
   checkInactive(entry: any) {
-    if(!entry.active) {
+    if(!entry.active) { //entry.active!=null
       const index = this.accountTableSource.data.indexOf(entry);
       this.accountTableSource.data.splice(index,1);
     }
   }
 
+  exportAsExcel() {
+    const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.accountTableSource.filteredData);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Unternehmen');
+
+    XLSX.writeFile(wb, 'Unternehmen.xlsx');
+
+  }
 }

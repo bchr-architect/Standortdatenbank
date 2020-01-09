@@ -26,6 +26,7 @@ public class Account extends Auditable {
     @Column(name = "ACTIVE")
     private Boolean active;
 
+    // 1 Account -> x Contacts
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
     @JsonIgnoreProperties("account")
     private Set<Contact> contacts = new HashSet<>();

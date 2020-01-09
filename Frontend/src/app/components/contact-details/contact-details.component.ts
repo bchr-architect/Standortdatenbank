@@ -6,18 +6,20 @@ import {ContactService} from "../../services/contact.service";
 import {Account} from "../../modules/account";
 import {AccountService} from "../../services/account.service";
 import {DatePipe} from "@angular/common";
+import {Group} from "../../modules/group";
+
 
 @Component({
   selector: 'app-contact-details',
   templateUrl: './contact-details.component.html',
   styleUrls: ['./contact-details.component.scss']
 })
-export class ContactDetailsComponent implements OnInit{
+export class ContactDetailsComponent implements OnInit {
 
   contact: Contact;
   isReadOnly: boolean;
   accounts: Account[];
-  s : string;
+  s: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -49,42 +51,40 @@ export class ContactDetailsComponent implements OnInit{
     this.accounts = new Array<Account>();
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.accountService.findAll().subscribe(sourceAccounts =>
-      sourceAccounts.forEach(entry=> {
-        if(entry.active) {
+      sourceAccounts.forEach(entry => {
+        if (entry.active) {
           this.accounts.push(entry)
         }
       })
     )
   }
 
-    onSubmit() {
-      this.contact = this.data;
-      this.contactService.save(this.contact).subscribe();
-    }
+  onSubmit() {
+    this.contact = this.data;
+    this.contactService.save(this.contact).subscribe();
+  }
 
-    onDelete() {
-      this.contact = this.data;
-      this.contact.inactive = true;
-      this.contactService.save(this.contact).subscribe();
-      this.dialogRef.close();
-    }
+  onDelete() {
+    this.contact = this.data;
+    this.contact.inactive = true;
+    this.contactService.save(this.contact).subscribe();
+    this.dialogRef.close();
+  }
 
-    onEdit() {
-      this.isReadOnly = false;
-    }
+  onEdit() {
+    this.isReadOnly = false;
+  }
 
-    goToContactList() {
-      this.router.navigate(['contacts']);
-    }
+  goToContactList() {
+    this.router.navigate(['contacts']);
+  }
 
   compareById(i1: Account, i2: Account): boolean {
     return i1 && i2 ? i1.id == i2.id : i1 == i2;
   }
 
-  convertDate(){
-    
+  convertDate() {
   }
-
 }

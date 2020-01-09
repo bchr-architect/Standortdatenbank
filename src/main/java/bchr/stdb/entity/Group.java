@@ -1,6 +1,10 @@
 package bchr.stdb.entity;
 
 import bchr.stdb.misc.Auditable;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.*;
+import javax.persistence.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,10 +13,13 @@ import java.util.Set;
 @Entity
 @Table(name = "GROUP_TABLE")
 public class Group extends Auditable {
-    @Column(name = "ID")
     @Id
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Column(name = "ACTIVE")
+    private Boolean active;
 
     @Column(name = "NAME", nullable = false, length = 30)
     private String name;
@@ -20,67 +27,80 @@ public class Group extends Auditable {
     @Column(name = "ADDITIVE", length = 30)
     private String additive;
 
-    @Column(name = "MOTHER_ID", length = 10)
-    private Integer motherID;
+    // x Children -> 1 Mother
+    @ManyToOne(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
+    @JoinColumn(name="MOTHER")
+    public Group mother;
 
-   @Column(name = "CREATOR", length = 40)
-    private String creatorID;
+    // 1 Mother -> x Children
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy="mother")
+    @JsonIgnoreProperties("mother")
+    public Set<Group> children = new HashSet<>();
 
-    @Column(name = "EDITED_BY", length = 40)
-    private String editedByID;
+    // 1 Group -> x Contacts
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "group")
+    @JsonIgnoreProperties("group")
+    private Set<Contact> contacts = new HashSet<>();
+
+    public Set<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(Set<Contact> contacts) {
+        this.contacts = contacts;
+    }
 
     public String getName() {
         return name;
-    }
-
-    public String getAdditive() {
-        return additive;
-    }
-
-    public Integer getMotherID() {
-        return motherID;
-    }
-
-    public String getCreatorID() {
-        return creatorID;
-    }
-
-    public String getEditedByID() {
-        return editedByID;
-    }
-
-    public Group(String name) {
-        this.name=name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getAdditive() {
+        return additive;
+    }
+
     public void setAdditive(String additive) {
         this.additive = additive;
     }
 
-    public void setMotherID(Integer motherID) {
-        this.motherID = motherID;
+    public Group getMother() {
+        return mother;
     }
 
-    public void setCreatorID(String creatorID) {
-        this.creatorID = creatorID;
+    public void setMother(Group mother) {
+        this.mother = mother;
     }
 
-    public void setEditedByID(String editedByID) {
-        this.editedByID = editedByID;
+    public Set<Group> getChildren() {
+        return children;
     }
 
-    public Group(String name, String addtive) {
+    public void setChildren(Set<Group> children) {
+        this.children = children;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Group() {
+    }
+
+    public Group(String name, String additive) {
         this.name=name;
-        this.additive = addtive;
+        this.additive = additive;
     }
 
-    public Group(String name, String addtive, Integer motherID) {
+    public Group(String name, String additive, Group mother, Group[] children) {
         this.name=name;
-        this.additive = addtive;
-        this.motherID = motherID;
+        this.additive = additive;
+        this.mother = mother;
     }
 }
