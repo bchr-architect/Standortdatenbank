@@ -10,6 +10,7 @@ import {ContactFormComponent} from "../contact-form/contact-form.component";
 import {Account} from "../../modules/account";
 import {ContactDetailsComponent} from "../contact-details/contact-details.component";
 import {isUndefined} from "util";
+import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-contact-list',
@@ -25,9 +26,11 @@ export class ContactListComponent implements OnInit {
   displayedColumns: string[] = ['firstName', 'lastName', 'corporation', 'email', 'account'];
   private contacts: Contact[];
   private contact: Contact;
+
   selectedRowIndex: number = -1;
 
   constructor(private contactService: ContactService,
+              private accountService: AccountService,
               private route: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog) {
@@ -68,7 +71,7 @@ export class ContactListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe( result => {
-      console.log('The dialog was closed');
+      console.log('The dialog was closed', this.tableSource.data);
 
       if(!isUndefined(result)) {
         this.tableSource.filteredData.filter((value, index) => {
@@ -95,13 +98,14 @@ export class ContactListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('The dialog was closed', this.tableSource.data);
       this.contact = result;
       this.contactService.findAll().subscribe(data => {
         this.tableSource.data = data;
         this.tableSource.data.forEach(entry => {
 
           this.checkNullValues(entry);
+          this.checkInactive(entry);
 
         });
         this.tableSource.sort = this.sort;
@@ -116,9 +120,6 @@ export class ContactListComponent implements OnInit {
       entry.account.id = "";
       entry.account.compName = "";
       entry.account.email = "";
-      entry.account.active = "";
-      entry.account.createdDate="";
-      entry.account.lastModifiedDate="";
     }
 
     if (!entry.createdDate) {
@@ -130,6 +131,7 @@ export class ContactListComponent implements OnInit {
     if(entry.inactive) {
       const index = this.tableSource.data.indexOf(entry);
       //this.tableSource.data.splice(index,1);
+      console.log(entry.inactive, this.tableSource.data);
     }
 
     //this.tableSource._updateChangeSubscription();

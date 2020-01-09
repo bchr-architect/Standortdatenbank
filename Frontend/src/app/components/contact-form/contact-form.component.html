@@ -120,12 +120,10 @@
     <div class="form-group">
       <mat-form-field>
         <label>Account</label>
-        <mat-select [(value)]="contact.account">
-         <!-- <ng-container *ngIf="contact.account.active"> only active accounts should be displayed -->
+        <mat-select [(value)]="contact.account" [compareWith]="compareById">
           <mat-option *ngFor="let account of accounts" [value]="account">
             {{account.compName}}
           </mat-option>
-         <!-- </ng-container> -->
         </mat-select>
       </mat-form-field>
     </div>

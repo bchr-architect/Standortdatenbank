@@ -4,22 +4,27 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ContactService} from "../../services/contact.service";
 import {Account} from "../../modules/account";
+import {AccountService} from "../../services/account.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-contact-details',
   templateUrl: './contact-details.component.html',
   styleUrls: ['./contact-details.component.scss']
 })
-export class ContactDetailsComponent {
+export class ContactDetailsComponent implements OnInit{
 
   contact: Contact;
   isReadOnly: boolean;
+  accounts: Account[];
+  s : string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private contactService: ContactService,
     public dialogRef: MatDialogRef<ContactDetailsComponent>,
+    private accountService: AccountService,
     @Inject(MAT_DIALOG_DATA) public data: {
       id: number, lastName: string, firstName: string, email: string, email2: string,
       createdDate: number, lastModifiedDate: number, corporation: string, place: string,
@@ -41,7 +46,18 @@ export class ContactDetailsComponent {
     }) {
     this.contact = new Contact();
     this.isReadOnly = true;
-    }
+    this.accounts = new Array<Account>();
+  }
+
+  ngOnInit(){
+    this.accountService.findAll().subscribe(sourceAccounts =>
+      sourceAccounts.forEach(entry=> {
+        if(entry.active) {
+          this.accounts.push(entry)
+        }
+      })
+    )
+  }
 
     onSubmit() {
       this.contact = this.data;
@@ -62,5 +78,13 @@ export class ContactDetailsComponent {
     goToContactList() {
       this.router.navigate(['contacts']);
     }
+
+  compareById(i1: Account, i2: Account): boolean {
+    return i1 && i2 ? i1.id == i2.id : i1 == i2;
+  }
+
+  convertDate(){
+    
+  }
 
 }
