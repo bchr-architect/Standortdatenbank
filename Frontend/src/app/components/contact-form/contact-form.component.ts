@@ -8,6 +8,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {AccountService} from "../../services/account.service";
 import {Observable} from "rxjs";
 import {map, startWith} from "rxjs/operators";
+import {Group} from "../../modules/group";
+import {GroupService} from "../../services/group.service";
 
 @Component({
   selector: 'app-contact-form',
@@ -20,7 +22,10 @@ export class ContactFormComponent implements OnInit{
   contact: Contact = new Contact();
   contactForm: FormGroup;
   accounts: Account[];
+  groups: Group[];
+ // groups: Group[];
   filteredAccounts: Observable<Account[]>;
+  //filteredGroups: Observable<Group[]>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,8 +33,11 @@ export class ContactFormComponent implements OnInit{
     private router: Router,
     private contactService: ContactService,
     private accountService: AccountService,
+    private groupService: GroupService,
     public dialogRef: MatDialogRef<ContactFormComponent>) {
     this.accounts=new Array<Account>();
+    this.groups=new Array<Group>();
+   // this.groups=new Array<Group>();
   }
 
 
@@ -40,12 +48,29 @@ export class ContactFormComponent implements OnInit{
         'lastName': [this.contact.lastName],
         'email': [this.contact.email, [Validators.email]],
         'account': [this.contact.account],
-        'notes': [this.contact.notes]
+        'group':[this.contact.group],
+        'corporation': [this.contact.corporation],
+        'street': [this.contact.street],
+        'notes': [this.contact.notes],
+        'postCode':[this.contact.postCode],
+        'country':[this.contact.country],
+        'phone':[this.contact.phone],
+        'fax':[this.contact.fax],
+        'mailbox':[this.contact.mailbox],
+        'mailboxPlace':[this.contact.mailboxPlace],
+        'mailboxPostcode':[this.contact.mailboxPostcode],
+        'mailboxCountry':[this.contact.mailboxCountry],
+        'homepage':[this.contact.homepage],
+        'inactive': [this.contact.inactive]
       }
     )
 
     this.accountService.findAll().subscribe(sourceAccounts =>
       sourceAccounts.forEach(entry=> this.accounts.push(entry) )
+    )
+
+    this.groupService.findAll().subscribe(sourceGroups =>
+      sourceGroups.forEach(entry=> this.groups.push(entry) )
     )
 
 
@@ -57,9 +82,9 @@ export class ContactFormComponent implements OnInit{
   }
 
   onSubmit() {
-
-    this.contactService.save(this.contact).subscribe(()=> this.dialogRef.close());
-
+    this.contact.inactive=false;
+    this.contactService.save(this.contact).subscribe();
+    this.dialogRef.close();
   }
 
   private _filter(name: string): Account[] {
@@ -67,4 +92,8 @@ export class ContactFormComponent implements OnInit{
 
     return this.accounts.filter(option => option.compName.toLowerCase().indexOf(filterValue) === 0);
   }
+  displayFn(account?: Account): string | undefined {
+    return account ? account.compName : undefined;
+  }
+
 }

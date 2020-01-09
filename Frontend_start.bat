@@ -1,2 +1,2 @@
-cd C:\Projekte\Standortdatenbank\Frontend
+cd G:\javaProjects\STDB_neu\Standortdatenbank\Frontend
 npm start
