@@ -65,7 +65,11 @@ export class ContactFormComponent implements OnInit{
     )
 
     this.accountService.findAll().subscribe(sourceAccounts =>
-      sourceAccounts.forEach(entry=> this.accounts.push(entry) )
+      sourceAccounts.forEach(entry=> {
+        if(entry.active) {
+          this.accounts.push(entry)
+        }
+      })
     )
 
     this.groupService.findAll().subscribe(sourceGroups =>
@@ -81,7 +85,7 @@ export class ContactFormComponent implements OnInit{
   }
 
   onSubmit() {
-    this.contact.inactive=false;
+    this.contact.inactive = false;
     this.contactService.save(this.contact).subscribe();
     this.dialogRef.close();
   }
@@ -91,4 +95,13 @@ export class ContactFormComponent implements OnInit{
 
     return this.accounts.filter(option => option.compName.toLowerCase().indexOf(filterValue) === 0);
   }
+  displayFn(account?: Account): string | undefined {
+    return account ? account.compName : undefined;
+  }
+
+  compareById(i1: Account, i2: Account): boolean {
+    return i1 && i2 ? i1.id == i2.id : i1 == i2;
+  }
+
+
 }

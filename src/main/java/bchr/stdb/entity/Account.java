@@ -23,7 +23,7 @@ public class Account extends Auditable {
     @Column(name = "EMAIL", length = 70)
     private String email;
 
-    @Column(name = "ACTIVE", nullable = false, length = 70)
+    @Column(name = "ACTIVE")
     private Boolean active;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")

@@ -42,9 +42,9 @@
       <input matInput placeholder="Nachname" [(ngModel)]="data.lastName" [readonly]="isReadOnly">
     </mat-form-field>
 
-    <mat-form-field>
-      <input matInput type="date" placeholder="Geburtstag" [(ngModel)]="data.birthday" [readonly]="isReadOnly">
-    </mat-form-field>
+      <mat-form-field>
+        <input matInput type="date" placeholder="Geburtstag" [ngModel]="data.birthday | date:'yyyy-MM-dd'" (ngModelChange)="data.birthday=$event" [readonly]="isReadOnly">
+      </mat-form-field>
 
     <mat-form-field>
       <input matInput placeholder="Email" [(ngModel)]="data.email" [readonly]="isReadOnly">
@@ -74,9 +74,13 @@
       <input matInput placeholder="Fax" [(ngModel)]="data.fax" [readonly]="isReadOnly">
     </mat-form-field>
 
-    <mat-form-field>
-      <input matInput placeholder="Account" [(ngModel)]="data.account.compName" [readonly]="isReadOnly">
-    </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Account" [(value)]="data.account" [compareWith]="compareById" [disabled]="isReadOnly">
+          <mat-option *ngFor="let account of accounts" [value]="account">
+            {{account.compName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
     <mat-form-field>
       <input matInput placeholder="Unternehmen" [(ngModel)]="data.corporation" [readonly]="isReadOnly">
@@ -102,7 +106,7 @@
 
   <div class="form-control">
     <mat-form-field>
-      <input matInput type="datetime-local" placeholder="Gegründet am" [(ngModel)]="data.foundingDate" [readonly]="isReadOnly">
+      <input matInput [ngModel]="data.foundingDate | date:'yyyy-MM-dd'" (ngModelChange)="data.foundingDate=$event" type="date" placeholder="Gegründet am" [readonly]="isReadOnly">
     </mat-form-field>
 
     <mat-form-field>
@@ -208,9 +212,9 @@
       <input matInput placeholder="Anonymisiert von" [(ngModel)]="data.dsvAnonymisedBy" [readonly]="isReadOnly">
     </mat-form-field>
 
-    <mat-form-field>
-      <input matInput type="date" placeholder="Datenerhebung am" [(ngModel)]="data.dsvDataCollection" [readonly]="isReadOnly">
-    </mat-form-field>
+      <mat-form-field>
+        <input matInput type="date" placeholder="Datenerhebung am" [ngModel]="data.dsvDataCollection | date:'yyyy-MM-dd'" (ngModelChange)="data.dsvDataCollection=$event" [readonly]="isReadOnly">
+      </mat-form-field>
 
     <mat-form-field>
       <input matInput placeholder="Datenherkunft" [(ngModel)]="data.dsvSourceOfData" [readonly]="isReadOnly">
@@ -253,18 +257,22 @@
       <input matInput placeholder="Hinzugefügt von" [(ngModel)]="data.creatorID" [readonly]="isReadOnly">
     </mat-form-field>
 
-    <mat-form-field>
-      <input matInput placeholder="Hinzugefügt am" [(ngModel)]="data.createdDate" readonly>
-    </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Hinzugefügt am" [ngModel]="data.createdDate | date:'dd/MM/yyyy'"
+               (ngModelChange)="data.createdDate"
+               readonly>
+      </mat-form-field>
 
     <mat-form-field>
       <input matInput placeholder="Geändert von" [(ngModel)]="data.editedByID" [readonly]="isReadOnly">
     </mat-form-field>
 
-    <mat-form-field>
-      <input matInput placeholder="Zuletzt geändert" [(ngModel)]="data.lastModifiedDate" readonly>
-    </mat-form-field>
-  </div>
+      <mat-form-field>
+        <input matInput placeholder="Zuletzt geändert" [ngModel]="data.lastModifiedDate | date:'dd/MM/yyyy'"
+               (ngModelChange)="data.lastModifiedDate"
+               readonly>
+      </mat-form-field>
+    </div>
 
   <mat-dialog-actions align="center">
     <button mat-raised-button type="button" class="changeBtn" color="primary" (click)="onEdit()">Bearbeiten</button>

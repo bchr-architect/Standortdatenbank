@@ -4,6 +4,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ContactService} from "../../services/contact.service";
 import {Account} from "../../modules/account";
+import {AccountService} from "../../services/account.service";
+import {DatePipe} from "@angular/common";
 import {Group} from "../../modules/group";
 
 @Component({
@@ -11,16 +13,19 @@ import {Group} from "../../modules/group";
   templateUrl: './contact-details.component.html',
   styleUrls: ['./contact-details.component.scss']
 })
-export class ContactDetailsComponent {
+export class ContactDetailsComponent implements OnInit{
 
   contact: Contact;
   isReadOnly: boolean;
+  accounts: Account[];
+  s : string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private contactService: ContactService,
     public dialogRef: MatDialogRef<ContactDetailsComponent>,
+    private accountService: AccountService,
     @Inject(MAT_DIALOG_DATA) public data: {
       id: number, lastName: string, firstName: string, email: string, email2: string,
       createdDate: number, lastModifiedDate: number, corporation: string, place: string,
@@ -42,26 +47,45 @@ export class ContactDetailsComponent {
     }) {
     this.contact = new Contact();
     this.isReadOnly = true;
+    this.accounts = new Array<Account>();
   }
 
-  onSubmit() {
-    this.contact = this.data;
-    this.contactService.save(this.contact).subscribe();
+  ngOnInit(){
+    this.accountService.findAll().subscribe(sourceAccounts =>
+      sourceAccounts.forEach(entry=> {
+        if(entry.active) {
+          this.accounts.push(entry)
+        }
+      })
+    )
   }
 
-  onDelete() {
-    this.contact = this.data;
-    this.contact.inactive = true;
-    this.contactService.save(this.contact).subscribe();
-    this.dialogRef.close();
+    onSubmit() {
+      this.contact = this.data;
+      this.contactService.save(this.contact).subscribe();
+    }
+
+    onDelete() {
+      this.contact = this.data;
+      this.contact.inactive = true;
+      this.contactService.save(this.contact).subscribe();
+      this.dialogRef.close();
+    }
+
+    onEdit() {
+      this.isReadOnly = false;
+    }
+
+    goToContactList() {
+      this.router.navigate(['contacts']);
+    }
+
+  compareById(i1: Account, i2: Account): boolean {
+    return i1 && i2 ? i1.id == i2.id : i1 == i2;
   }
 
-  onEdit() {
-    this.isReadOnly = false;
-  }
+  convertDate(){
 
-  goToContactList() {
-    this.router.navigate(['contacts']);
   }
 
 }

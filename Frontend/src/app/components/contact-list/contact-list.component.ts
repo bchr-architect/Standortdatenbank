@@ -12,6 +12,7 @@ import {ContactDetailsComponent} from "../contact-details/contact-details.compon
 import {isUndefined} from "util";
 import * as XLSX from 'xlsx';
 import {Group} from "../../modules/group";
+import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-contact-list',
@@ -27,9 +28,11 @@ export class ContactListComponent implements OnInit {
   displayedColumns: string[] = ['firstName', 'lastName', 'email', 'account', 'group', 'createdDate', 'notes'];
   private contacts: Contact[];
   private contact: Contact;
+
   selectedRowIndex: number = -1;
 
   constructor(private contactService: ContactService,
+              private accountService: AccountService,
               private route: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog) {
@@ -51,28 +54,6 @@ export class ContactListComponent implements OnInit {
     }
   }
 
-  openAddContactDialog() {
-    const dialogRef = this.dialog.open(ContactFormComponent, {
-      width: '850px',
-      height: '600px',
-      data: {contact: this.contact}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.contact = result;
-      this.contactService.findAll().subscribe(data => {
-        this.updateTable(data);
-        if(!isUndefined(result)) {
-          this.tableSource.filteredData.filter((value, index) => {
-            if(value.id==result.id) {
-              value=result;
-            }
-
-          });
-        }
-      });
-    });
-  }
   openContactDetailsDialog(data: Data){
     const dialogRef = this.dialog.open(ContactDetailsComponent, {
       height: '600px',
@@ -94,6 +75,38 @@ export class ContactListComponent implements OnInit {
 
       this.contactService.findAll().subscribe(data => {
 
+        this.tableSource.sort = this.sort;
+        this.tableSource.paginator = this.paginator;
+      });
+    });
+  }
+
+  openAddContactDialog() {
+    const dialogRef = this.dialog.open(ContactFormComponent, {
+      width: '850px',
+      height: '600px',
+      data: {contact: this.contact}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', this.tableSource.data);
+      if(!isUndefined(result)) {
+        this.tableSource.filteredData.filter((value, index) => {
+          if(value.id==result.id) {
+            value=result;
+          }
+
+        });
+      }
+      this.contact = result;
+      this.contactService.findAll().subscribe(data => {
+        this.tableSource.data = data;
+        this.tableSource.data.forEach(entry => {
+
+          this.checkNullValues(entry);
+          this.checkInactive(entry);
+
+        });
         this.tableSource.sort = this.sort;
         this.tableSource.paginator = this.paginator;
       });

@@ -2,32 +2,36 @@
   <h1>Account Details</h1>
     <div class="form-group">
 
-    <mat-form-field>
-      <input matInput placeholder="ID" [(ngModel)]="data.id" readonly>
-    </mat-form-field>
-  </div>
+      <mat-form-field>
+        <input matInput placeholder="ID" [(ngModel)]="data.id" readonly>
+      </mat-form-field>
+    </div>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Firmenname" [(ngModel)]="data.compName" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput placeholder="Firmenname" [(ngModel)]="data.compName" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Email" [(ngModel)]="data.email" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput placeholder="Email" [(ngModel)]="data.email" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Erstellt am" [(ngModel)]="data.createdDate" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput placeholder="Erstellt am" [ngModel]="data.createdDate | date:'dd/MM/yyyy'"
+                 (ngModelChange)="data.createdDate"
+                 readonly>
+        </mat-form-field>
+      </div>
 
       <div class="form-group">
         <mat-form-field >
-          <input matInput placeholder="Zuletzt geändert am" [(ngModel)]="data.lastModifiedDate" readonly>
+          <input matInput placeholder="Zuletzt geändert am" [ngModel]="data.lastModifiedDate | date:'dd/MM/yyyy'"
+                 (ngModelChange)="data.lastModifiedDate"
+                 readonly>
         </mat-form-field>
       </div>
 
