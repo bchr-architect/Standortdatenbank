@@ -68,6 +68,7 @@ public class Contact extends Auditable {
     @Column(name = "EMAIL", length = 70)
     private String email;
 
+<<<<<<< Updated upstream
     @Column(name = "EMAIL2", length = 70)
     private String email2;
 
@@ -76,6 +77,10 @@ public class Contact extends Auditable {
 
     @Column(name = "BIRTHDAY", length = 30)
     private Date birthday;
+=======
+    @Column(name = "NOTES", length = 100)
+    private String notes;
+>>>>>>> Stashed changes
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Account_id")
@@ -695,6 +700,7 @@ public class Contact extends Auditable {
         this.account = account;
     }
 
+<<<<<<< Updated upstream
     public String getNotes() {
         return notes;
     }
@@ -710,6 +716,11 @@ public class Contact extends Auditable {
     public String getRefAddress2() { return refAddress2; }
 
     public String getDsvAnonymisedBy() { return dsvAnonymisedBy; }
+=======
+    public String getNotes () { return notes; }
+
+    public void  setNotes (String notes) { this.notes = notes; }
+>>>>>>> Stashed changes
 
     public Contact() {
     }
@@ -724,5 +735,13 @@ public class Contact extends Auditable {
         this.firstName=firstName;
         this.email=email;
         this.account=account;
+    }
+
+    public Contact(String lastName, String firstName, String email, Account account, String notes) {
+        this.lastName=lastName;
+        this.firstName=firstName;
+        this.email=email;
+        this.account=account;
+        this.notes=notes;
     }
 }

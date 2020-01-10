@@ -8,6 +8,7 @@
   flex: 1 1 auto;
 }
 
+<<<<<<< Updated upstream
 .toolbar {
   flex: 1 1 auto;
   display: flex;
@@ -15,14 +16,23 @@
 
 img {
   margin-top: 6px;
+=======
+img {
+  top: 6px;
+>>>>>>> Stashed changes
   height: 60px;
+  position: relative;
 }
 
 .mat-tab-link {
   margin: 20px;
   text-decoration-line: none;
   font-weight: lighter;
+<<<<<<< Updated upstream
   font-size: 13pt;
+=======
+  font-size: 12pt;
+>>>>>>> Stashed changes
   color: white;
 }
 

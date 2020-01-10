@@ -1,6 +1,7 @@
 @import "~@angular/material/_theming.scss";
 @include mat-core();
 
+<<<<<<< Updated upstream
 /* ORANGE THEME */
 
 $orange-theme-primary: mat-palette($mat-deep-orange, 700);
@@ -168,6 +169,60 @@ existing themes
 */
 
 @include angular-material-theme($dark-theme-custom);
+=======
+/* YELLOW THEME */
+
+$yellow-theme-primary: mat-palette($mat-amber);
+$yellow-theme-accent: mat-palette($mat-orange);
+$yellow-theme-warn: mat-palette($mat-red);
+
+$yellow-theme: mat-light-theme($yellow-theme-primary, $yellow-theme-accent, $yellow-theme-warn);
+
+/* RED THEME */
+
+$red-theme-primary: mat-palette($mat-red, A700);
+$red-theme-accent: mat-palette($mat-orange);
+$red-theme-warn: mat-palette($mat-amber);
+
+$red-theme: mat-light-theme($red-theme-primary, $red-theme-accent, $red-theme-warn);
+
+/* GREY THEME */
+
+$grey-theme-primary: mat-palette($mat-grey, A700);
+$grey-theme-accent: mat-palette($mat-orange, A200, A100);
+$grey-theme-warn: mat-palette($mat-red);
+
+$grey-theme: mat-light-theme($grey-theme-primary, $grey-theme-accent, $grey-theme-warn);
+
+/* include theme of choice */
+@include angular-material-theme($grey-theme);
+
+/* FONT THEME */
+
+@function mat-light-theme-foreground($color) {
+  @return (
+    base: $color,
+    divider: $black-12-opacity,
+    dividers: $black-12-opacity,
+    disabled: rgb($color, 0.38),
+    disabled-button: rgba($color, 0.38),
+    disabled-text: rgba($color, 0.38),
+    hint-text: rgba($color, 0.38),
+    secondary-text: rgba($color, 0.56),
+    icon: rgba($black-12-opacity, 0.54),
+    icons: rgba($black-12-opacity, 0.54),
+    text: rgba($black-12-opacity, 0.67),
+    slider-off: rgba($color, 0.54),
+    slider-off-active: rgba($color, 0.38),
+  );
+};
+
+$foreground: mat-light-theme-foreground(mat-color($grey-theme-primary,700));
+
+$theme-custom: map-merge($grey-theme, (foreground: $foreground));
+
+@include angular-material-theme($theme-custom);
+>>>>>>> Stashed changes
 
 $custom-typography: mat-typography-config(
   $font-family: 'Roboto, Helvetica Neue, sans-serif'

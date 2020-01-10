@@ -23,6 +23,15 @@
       <td mat-cell *matCellDef="let contact"> {{contact.lastName}} </td>
     </ng-container>
 
+<<<<<<< Updated upstream
+=======
+    <!-- Firstname Column -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Vorname</th>
+      <td mat-cell *matCellDef="let contact"> {{contact.firstName}} </td>
+    </ng-container>
+
+>>>>>>> Stashed changes
     <!-- Email Column -->
     <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
@@ -35,6 +44,7 @@
       <td mat-cell *matCellDef="let contact"> {{contact.account.compName}} </td>
     </ng-container>
 
+<<<<<<< Updated upstream
     <!-- Corporation Column -->
     <ng-container matColumnDef="corporation">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Unternehmen</th>
@@ -101,6 +111,8 @@
       <td mat-cell *matCellDef="let contact"> {{ contact.homepage }} </td>
     </ng-container>
 
+=======
+>>>>>>> Stashed changes
     <!-- Create Column -->
     <ng-container matColumnDef="createdDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>erstellt am</th>

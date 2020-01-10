@@ -39,6 +39,7 @@ export class ContactFormComponent implements OnInit{
         'lastName': [this.contact.lastName],
         'email': [this.contact.email, [Validators.email]],
         'account': [this.contact.account],
+<<<<<<< Updated upstream
         'corporation': [this.contact.corporation],
         'street': [this.contact.street],
         'notes': [this.contact.notes],
@@ -52,6 +53,9 @@ export class ContactFormComponent implements OnInit{
         'mailboxCountry':[this.contact.mailboxCountry],
         'homepage':[this.contact.homepage],
         'inactive': [this.contact.inactive]
+=======
+        'notes': [this.contact.notes]
+>>>>>>> Stashed changes
       }
     )
 

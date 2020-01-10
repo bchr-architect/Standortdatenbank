@@ -23,7 +23,11 @@ export class ContactListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   tableSource: MatTableDataSource<Contact>;
+<<<<<<< Updated upstream
   displayedColumns: string[] = ['firstName', 'lastName', 'corporation', 'email', 'account'];
+=======
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'account', 'createdDate', 'notes'];
+>>>>>>> Stashed changes
   private contacts: Contact[];
   private contact: Contact;
 
