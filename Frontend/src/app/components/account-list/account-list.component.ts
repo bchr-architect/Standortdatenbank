@@ -69,7 +69,6 @@ export class AccountListComponent implements OnInit {
       width: '550px',
       data: { ...data}
     });
-
     dialogRef.afterClosed().subscribe( result => {
       console.log('The dialog was closed');
 
@@ -77,36 +76,8 @@ export class AccountListComponent implements OnInit {
         if(value.id == result.id){
           value=result;
         }
-
       });
-
       this.accountService.findAll().subscribe(data => {
-
-        this.accountTableSource.sort = this.sort;
-        this.accountTableSource.paginator = this.paginator;
-      });
-    });
-  }
-
-  openAccountDetailsDialog(data: Data) {
-    const dialogRef = this.dialog.open(AccountDetailsComponent, {
-      height: '500px',
-      width: '550px',
-      data: { ...data}
-    });
-
-    dialogRef.afterClosed().subscribe( result => {
-      console.log('The dialog was closed');
-
-      this.accountTableSource.filteredData.filter((value, index) => {
-        if(value.id == result.id){
-          value=result;
-        }
-
-      });
-
-      this.accountService.findAll().subscribe(data => {
-
         this.accountTableSource.sort = this.sort;
         this.accountTableSource.paginator = this.paginator;
       });
