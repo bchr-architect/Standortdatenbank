@@ -78,7 +78,6 @@ public class Contact extends Auditable {
     @Column(name = "BIRTHDAY", length = 30)
     private Date birthday;
 
-    // x Contacts -> 1 Account
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Account_id")
     @JsonIgnoreProperties("contacts")

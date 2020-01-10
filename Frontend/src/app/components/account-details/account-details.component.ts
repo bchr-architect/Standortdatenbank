@@ -34,7 +34,6 @@ export class AccountDetailsComponent {
   onDelete() {
     this.account = this.data;
     this.account.active = false;
-    console.log('deleting', this.account.active, this.account.id);
     this.accountService.save(this.account).subscribe();
     this.dialogRef.close();
   }

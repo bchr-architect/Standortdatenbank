@@ -12,6 +12,7 @@ import {ContactDetailsComponent} from "../contact-details/contact-details.compon
 import {isUndefined} from "util";
 import * as XLSX from 'xlsx';
 import {Group} from "../../modules/group";
+import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-contact-list',
@@ -27,9 +28,11 @@ export class ContactListComponent implements OnInit {
   displayedColumns: string[] = ['firstName', 'lastName', 'email', 'account', 'group', 'createdDate', 'notes'];
   private contacts: Contact[];
   private contact: Contact;
+
   selectedRowIndex: number = -1;
 
   constructor(private contactService: ContactService,
+              private accountService: AccountService,
               private route: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog) {
@@ -38,15 +41,8 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit() {
     this.contactService.findAll().subscribe(data => {
-      this.tableSource.data = data;
-      this.tableSource.data.forEach(entry => {
+      this.updateTable(data);
 
-        this.checkNullValues(entry);
-        this.checkInactive(entry);
-
-      })
-      this.tableSource.sort = this.sort;
-      this.tableSource.paginator = this.paginator;
     });
   }
 
@@ -56,10 +52,6 @@ export class ContactListComponent implements OnInit {
     if (this.tableSource.paginator) {
       this.tableSource.paginator.firstPage();
     }
-  }
-
-  goToContactAdd() {
-    this.router.navigate(['addcontact']);
   }
 
   openContactDetailsDialog(data: Data){
@@ -97,13 +89,22 @@ export class ContactListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('The dialog was closed', this.tableSource.data);
+      if(!isUndefined(result)) {
+        this.tableSource.filteredData.filter((value, index) => {
+          if(value.id==result.id) {
+            value=result;
+          }
+
+        });
+      }
       this.contact = result;
       this.contactService.findAll().subscribe(data => {
         this.tableSource.data = data;
         this.tableSource.data.forEach(entry => {
 
           this.checkNullValues(entry);
+          this.checkInactive(entry);
 
         });
         this.tableSource.sort = this.sort;
@@ -133,18 +134,29 @@ export class ContactListComponent implements OnInit {
     }
   }
 
+  updateTable(data: any) {
+
+    this.tableSource.data = data;
+    this.tableSource.data.forEach(entry => {
+      this.checkNullValues(entry);
+      this.checkInactive(entry);
+    })
+    this.tableSource.sort = this.sort;
+    this.tableSource.paginator = this.paginator;
+  }
+
+  exportAsExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.tableSource.filteredData);//converts a DOM TABLE element to a worksheet
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Kontakte');
+
+    XLSX.writeFile(wb, 'Kontakte.xlsx');
+  }
+
   checkInactive(entry: any) {
     if (entry.inactive) {
       const index = this.tableSource.data.indexOf(entry);
       //this.tableSource.data.splice(index,1);
     }
-  }
-
-  exportAsExcel() {
-    const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.tableSource.filteredData);//converts a DOM TABLE element to a worksheet
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Kontakte');
-
-    XLSX.writeFile(wb, 'Kontakte.xlsx');
   }
 }

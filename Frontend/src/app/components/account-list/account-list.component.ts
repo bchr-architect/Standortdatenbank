@@ -8,6 +8,7 @@ import {Account} from "../../modules/account";
 import {AccountFormComponent} from "../account-form/account-form.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AccountDetailsComponent} from "../account-details/account-details.component";
+import {isUndefined} from "util";
 import * as XLSX from "xlsx";
 
 @Component({
@@ -69,19 +70,19 @@ export class AccountListComponent implements OnInit {
       width: '550px',
       data: { ...data}
     });
-
     dialogRef.afterClosed().subscribe( result => {
       console.log('The dialog was closed');
 
-      this.accountTableSource.filteredData.filter((value, index) => {
-        if(value.id == result.id){
-          value=result;
-        }
+      if(!isUndefined(result)){
+        this.accountTableSource.filteredData.filter((value, index) => {
+          if(value.id == result.id){
+            value=result;
+          }
 
-      });
+        });
+      }
 
       this.accountService.findAll().subscribe(data => {
-
         this.accountTableSource.sort = this.sort;
         this.accountTableSource.paginator = this.paginator;
       });
@@ -113,7 +114,7 @@ export class AccountListComponent implements OnInit {
   }
 
   checkInactive(entry: any) {
-    if(!entry.active) { //entry.active!=null
+    if(!entry.active) {
       const index = this.accountTableSource.data.indexOf(entry);
       this.accountTableSource.data.splice(index,1);
     }

@@ -47,7 +47,6 @@ import {GroupDetailsComponent} from "./components/group-details/group-details.co
   ContactDetailsComponent,
   GroupDetailsComponent
   ],
-
   imports: [
     BrowserModule,
     AppRoutingModule,
