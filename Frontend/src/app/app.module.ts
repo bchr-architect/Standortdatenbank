@@ -30,6 +30,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatRippleModule} from "@angular/material/core";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {GroupListComponent} from "./components/group-list/group-list.component";
+import {GroupFormComponent} from "./components/group-form/group-form.component";
+import {GroupDetailsComponent} from "./components/group-details/group-details.component";
 
 @NgModule({
   declarations: [
@@ -38,8 +41,11 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
   ContactFormComponent,
   AccountListComponent,
   AccountFormComponent,
+  GroupListComponent,
+  GroupFormComponent,
   AccountDetailsComponent,
-  ContactDetailsComponent
+  ContactDetailsComponent,
+  GroupDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +73,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     FlexModule,
     MatDatepickerModule
   ],
-  entryComponents: [AccountDetailsComponent, ContactDetailsComponent],
+  entryComponents: [AccountDetailsComponent, ContactDetailsComponent, GroupDetailsComponent],
   providers: [ContactService],
   bootstrap: [AppComponent]
 })

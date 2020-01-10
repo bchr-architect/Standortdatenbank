@@ -1,6 +1,6 @@
 <div class="container">
-  <h1>Account Details</h1>
-    <div class="form-group">
+  <h1>Group Details</h1>
+  <div class="form-group">
 
     <mat-form-field>
       <input matInput placeholder="ID" [(ngModel)]="data.id" readonly>
@@ -9,13 +9,19 @@
 
   <div class="form-group">
     <mat-form-field>
-      <input matInput placeholder="Firmenname" [(ngModel)]="data.compName" [readonly]="isReadOnly">
+      <input matInput placeholder="Name" [(ngModel)]="data.name" [readonly]="isReadOnly">
     </mat-form-field>
   </div>
 
   <div class="form-group">
     <mat-form-field>
-      <input matInput placeholder="Email" [(ngModel)]="data.email" [readonly]="isReadOnly">
+      <input matInput placeholder="Zusatz" [(ngModel)]="data.additive" [readonly]="isReadOnly">
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Übergeordnet" [(ngModel)]= "data.mother.name" [readonly]="isReadOnly">
     </mat-form-field>
   </div>
 
@@ -25,17 +31,16 @@
     </mat-form-field>
   </div>
 
-      <div class="form-group">
-        <mat-form-field >
-          <input matInput placeholder="Zuletzt geändert am" [(ngModel)]="data.lastModifiedDate" readonly>
-        </mat-form-field>
-      </div>
+  <div class="form-group">
+    <mat-form-field >
+      <input matInput placeholder="Zuletzt geändert am" [(ngModel)]="data.lastModifiedDate" readonly>
+    </mat-form-field>
+  </div>
 
   <mat-dialog-actions align="center">
     <button mat-raised-button type="button" class="changeBtn" color="primary" (click)="onEdit()">Bearbeiten</button>
     <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onSubmit()">Speichern</button>
-    <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onDelete()">Account löschen</button>
+    <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onDelete()">Gruppe löschen</button>
   </mat-dialog-actions>
 
 </div>
-

@@ -2,6 +2,7 @@ package bchr.stdb.service;
 
 import bchr.stdb.dao.AccountDao;
 import bchr.stdb.dao.ContactDao;
+import bchr.stdb.dao.GroupDao;
 import bchr.stdb.entity.Account;
 import bchr.stdb.entity.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class ContactService {
     @Autowired
     AccountDao accountDao;
 
+    @Autowired
+    GroupDao groupDao;
+
     Account checkAccount = new Account();
 
 
@@ -30,6 +34,16 @@ public class ContactService {
         if (contact.account!=null) {
             if (this.accountDao.existsByCompName(contact.account.getCompName())) {
                 contact.setAccount(accountDao.findByCompName(contact.account.getCompName()));
+            }
+        }
+
+        return this.contactDao.save(contact);
+    }
+
+    public Contact addContactToGroup(Contact contact) {
+        if (contact.group!=null) {
+            if (this.groupDao.existsByName(contact.group.getName())) {
+                contact.setGroup(groupDao.findByName(contact.group.getName()));
             }
         }
 

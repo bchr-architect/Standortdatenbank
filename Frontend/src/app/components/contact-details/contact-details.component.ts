@@ -4,6 +4,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ContactService} from "../../services/contact.service";
 import {Account} from "../../modules/account";
+import {Group} from "../../modules/group";
 
 @Component({
   selector: 'app-contact-details',
@@ -37,30 +38,30 @@ export class ContactDetailsComponent {
       status: number, contactType: number, dsvFlag: boolean, dsvSourceOfData: string,
       dsvNotification: boolean, dsvDirectAdFlag: boolean, dsvAnonymisedBy: string,
       dsvDataCollection: number, dsvAnonymised: boolean, region: string, targetAudience: string,
-      notes: string; birthday: number;
+      notes: string; birthday: number; group: Group;
     }) {
     this.contact = new Contact();
     this.isReadOnly = true;
-    }
+  }
 
-    onSubmit() {
-      this.contact = this.data;
-      this.contactService.save(this.contact).subscribe();
-    }
+  onSubmit() {
+    this.contact = this.data;
+    this.contactService.save(this.contact).subscribe();
+  }
 
-    onDelete() {
-      this.contact = this.data;
-      this.contact.inactive = true;
-      this.contactService.save(this.contact).subscribe();
-      this.dialogRef.close();
-    }
+  onDelete() {
+    this.contact = this.data;
+    this.contact.inactive = true;
+    this.contactService.save(this.contact).subscribe();
+    this.dialogRef.close();
+  }
 
-    onEdit() {
-      this.isReadOnly = false;
-    }
+  onEdit() {
+    this.isReadOnly = false;
+  }
 
-    goToContactList() {
-      this.router.navigate(['contacts']);
-    }
+  goToContactList() {
+    this.router.navigate(['contacts']);
+  }
 
 }

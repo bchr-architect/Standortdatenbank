@@ -8,9 +8,10 @@ import {Contact} from "../../modules/contact";
 import {MatDialog} from "@angular/material/dialog";
 import {ContactFormComponent} from "../contact-form/contact-form.component";
 import {Account} from "../../modules/account";
-import * as XLSX from 'xlsx';
 import {ContactDetailsComponent} from "../contact-details/contact-details.component";
 import {isUndefined} from "util";
+import * as XLSX from 'xlsx';
+import {Group} from "../../modules/group";
 
 @Component({
   selector: 'app-contact-list',
@@ -23,7 +24,7 @@ export class ContactListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   tableSource: MatTableDataSource<Contact>;
-  displayedColumns: string[] = ['firstName', 'lastName', 'corporation', 'email', 'account'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'account', 'group', 'createdDate', 'notes'];
   private contacts: Contact[];
   private contact: Contact;
   selectedRowIndex: number = -1;
@@ -100,6 +101,11 @@ export class ContactListComponent implements OnInit {
   }
 
   checkNullValues(entry: any) {
+    if (!entry.group) {
+      entry.group = new Group();
+      entry.group.name = "";
+      entry.group.additive = "";
+    }
     if (!entry.account) {
       entry.account = new Account();
       entry.account.id = "";
@@ -131,9 +137,7 @@ export class ContactListComponent implements OnInit {
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Kontakte');
 
-    /* save to file */
     XLSX.writeFile(wb, 'Kontakte.xlsx');
-
   }
 
   checkInactive(entry: any) {

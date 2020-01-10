@@ -1,0 +1,37 @@
+div {
+  top: 10em;
+  left: 2em;
+  line-height: 1em;
+}
+
+h1 {
+  width: 300px;
+  position: relative;
+  left: 100px;
+  font-weight: lighter;
+  float: top;
+}
+
+.mat-form-field {
+  position: relative;
+  top: 30px;
+  left: 120px;
+  margin-right: 40px;
+}
+
+.mat-raised-button {
+  font-weight: lighter;
+}
+
+button {
+  position: relative;
+  top: 60px;
+  left: 230px;
+}
+
+label {
+  float: left;
+  width: 10em;
+  margin-right: 1em;
+}
+
