@@ -2,6 +2,7 @@ package bchr.stdb.entity;
 
 import bchr.stdb.misc.Auditable;
 import com.fasterxml.jackson.annotation.*;
+import org.hibernate.annotations.Cascade;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
@@ -87,14 +88,17 @@ public class Contact extends Auditable {
     @JsonIgnoreProperties("contacts")
     public Account account;
 
+    // x Contacts -> 1 Group
+    @ManyToOne(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
+    @JoinColumn(name = "Group_id")
+    @JsonIgnoreProperties("groups")
+    public Group group;
+
     @Column(name = "CREATOR", length = 40)
     private String creatorID;
 
     @Column(name = "EDITED_BY", length = 40)
     private String editedByID;
-
-    @Column(name = "GROUPING", length = 20)
-    private Integer grpID;
 
     @Column(name = "REPRESENTATIVE", length = 20)
     private String representativeID;
@@ -293,10 +297,6 @@ public class Contact extends Auditable {
 
     public String getEditedByID() {
         return editedByID;
-    }
-
-    public Integer getGrpID() {
-        return grpID;
     }
 
     public String getRepresentativeID() {
@@ -521,10 +521,6 @@ public class Contact extends Auditable {
         this.editedByID = editedByID;
     }
 
-    public void setGrpID(Integer grpID) {
-        this.grpID = grpID;
-    }
-
     public void setRepresentativeID(String representativeID) {
         this.representativeID = representativeID;
     }
@@ -723,6 +719,14 @@ public class Contact extends Auditable {
 >>>>>>> Stashed changes
 
     public Contact() {
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     public Contact(String lastName, String firstName, String email) {

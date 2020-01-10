@@ -9,6 +9,7 @@ import {AccountFormComponent} from "../account-form/account-form.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AccountDetailsComponent} from "../account-details/account-details.component";
 import {isUndefined} from "util";
+import * as XLSX from "xlsx";
 
 @Component({
   selector: 'app-account-list',
@@ -57,6 +58,10 @@ export class AccountListComponent implements OnInit {
     if (!entry.createdDate) {
       entry.createdDate = Date.UTC(2019, 11, 20, 13, 45, 0);
     }
+
+    if(entry.active == null){
+      entry.active=false;
+    }
   }
 
   openAccountDetailsDialog(data: Data) {
@@ -65,7 +70,6 @@ export class AccountListComponent implements OnInit {
       width: '550px',
       data: { ...data}
     });
-
     dialogRef.afterClosed().subscribe( result => {
       console.log('The dialog was closed');
 
@@ -79,7 +83,6 @@ export class AccountListComponent implements OnInit {
       }
 
       this.accountService.findAll().subscribe(data => {
-
         this.accountTableSource.sort = this.sort;
         this.accountTableSource.paginator = this.paginator;
       });
@@ -117,4 +120,12 @@ export class AccountListComponent implements OnInit {
     }
   }
 
+  exportAsExcel() {
+    const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.accountTableSource.filteredData);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Unternehmen');
+
+    XLSX.writeFile(wb, 'Unternehmen.xlsx');
+
+  }
 }

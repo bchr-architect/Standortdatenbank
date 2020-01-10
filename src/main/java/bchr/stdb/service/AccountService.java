@@ -15,7 +15,8 @@ public class AccountService {
     AccountDao accountDao;
 
     public List<Account> getAllAccounts() {
-        return this.accountDao.findAll();
+        List accountList = this.accountDao.findAll();
+        return accountList;
     }
 
     public Account addAccount(Account account) {

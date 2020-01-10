@@ -6,6 +6,7 @@ import {ContactService} from "../../services/contact.service";
 import {Account} from "../../modules/account";
 import {AccountService} from "../../services/account.service";
 import {DatePipe} from "@angular/common";
+import {Group} from "../../modules/group";
 
 @Component({
   selector: 'app-contact-details',
@@ -42,7 +43,7 @@ export class ContactDetailsComponent implements OnInit{
       status: number, contactType: number, dsvFlag: boolean, dsvSourceOfData: string,
       dsvNotification: boolean, dsvDirectAdFlag: boolean, dsvAnonymisedBy: string,
       dsvDataCollection: number, dsvAnonymised: boolean, region: string, targetAudience: string,
-      notes: string; birthday: number;
+      notes: string; birthday: number; group: Group;
     }) {
     this.contact = new Contact();
     this.isReadOnly = true;
@@ -84,7 +85,7 @@ export class ContactDetailsComponent implements OnInit{
   }
 
   convertDate(){
-    
+
   }
 
 }

@@ -10,6 +10,8 @@ import {ContactFormComponent} from "../contact-form/contact-form.component";
 import {Account} from "../../modules/account";
 import {ContactDetailsComponent} from "../contact-details/contact-details.component";
 import {isUndefined} from "util";
+import * as XLSX from 'xlsx';
+import {Group} from "../../modules/group";
 import {AccountService} from "../../services/account.service";
 
 @Component({
@@ -23,11 +25,7 @@ export class ContactListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   tableSource: MatTableDataSource<Contact>;
-<<<<<<< Updated upstream
-  displayedColumns: string[] = ['firstName', 'lastName', 'corporation', 'email', 'account'];
-=======
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'account', 'createdDate', 'notes'];
->>>>>>> Stashed changes
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'account', 'group', 'createdDate', 'notes'];
   private contacts: Contact[];
   private contact: Contact;
 
@@ -43,15 +41,8 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit() {
     this.contactService.findAll().subscribe(data => {
-      this.tableSource.data = data;
-      this.tableSource.data.forEach(entry => {
+      this.updateTable(data);
 
-        this.checkNullValues(entry);
-        this.checkInactive(entry);
-
-      })
-      this.tableSource.sort = this.sort;
-      this.tableSource.paginator = this.paginator;
     });
   }
 
@@ -63,10 +54,6 @@ export class ContactListComponent implements OnInit {
     }
   }
 
-  goToContactAdd() {
-    this.router.navigate(['addcontact']);
-  }
-
   openContactDetailsDialog(data: Data){
     const dialogRef = this.dialog.open(ContactDetailsComponent, {
       height: '600px',
@@ -75,7 +62,7 @@ export class ContactListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe( result => {
-      console.log('The dialog was closed', this.tableSource.data);
+      console.log('The dialog was closed');
 
       if(!isUndefined(result)) {
         this.tableSource.filteredData.filter((value, index) => {
@@ -103,6 +90,14 @@ export class ContactListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', this.tableSource.data);
+      if(!isUndefined(result)) {
+        this.tableSource.filteredData.filter((value, index) => {
+          if(value.id==result.id) {
+            value=result;
+          }
+
+        });
+      }
       this.contact = result;
       this.contactService.findAll().subscribe(data => {
         this.tableSource.data = data;
@@ -119,11 +114,19 @@ export class ContactListComponent implements OnInit {
   }
 
   checkNullValues(entry: any) {
+    if (!entry.group) {
+      entry.group = new Group();
+      entry.group.name = "";
+      entry.group.additive = "";
+    }
     if (!entry.account) {
       entry.account = new Account();
       entry.account.id = "";
       entry.account.compName = "";
       entry.account.email = "";
+      entry.account.active = "";
+      entry.account.createdDate="";
+      entry.account.lastModifiedDate="";
     }
 
     if (!entry.createdDate) {
@@ -131,13 +134,29 @@ export class ContactListComponent implements OnInit {
     }
   }
 
-  checkInactive(entry: any){
-    if(entry.inactive) {
+  updateTable(data: any) {
+
+    this.tableSource.data = data;
+    this.tableSource.data.forEach(entry => {
+      this.checkNullValues(entry);
+      this.checkInactive(entry);
+    })
+    this.tableSource.sort = this.sort;
+    this.tableSource.paginator = this.paginator;
+  }
+
+  exportAsExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.tableSource.filteredData);//converts a DOM TABLE element to a worksheet
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Kontakte');
+
+    XLSX.writeFile(wb, 'Kontakte.xlsx');
+  }
+
+  checkInactive(entry: any) {
+    if (entry.inactive) {
       const index = this.tableSource.data.indexOf(entry);
       //this.tableSource.data.splice(index,1);
-      console.log(entry.inactive, this.tableSource.data);
     }
-
-    //this.tableSource._updateChangeSubscription();
   }
 }

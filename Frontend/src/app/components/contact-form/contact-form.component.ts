@@ -8,6 +8,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {AccountService} from "../../services/account.service";
 import {Observable} from "rxjs";
 import {map, startWith} from "rxjs/operators";
+import {Group} from "../../modules/group";
+import {GroupService} from "../../services/group.service";
 
 @Component({
   selector: 'app-contact-form',
@@ -20,7 +22,10 @@ export class ContactFormComponent implements OnInit{
   contact: Contact = new Contact();
   contactForm: FormGroup;
   accounts: Account[];
+  groups: Group[];
+ // groups: Group[];
   filteredAccounts: Observable<Account[]>;
+  //filteredGroups: Observable<Group[]>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,8 +33,11 @@ export class ContactFormComponent implements OnInit{
     private router: Router,
     private contactService: ContactService,
     private accountService: AccountService,
+    private groupService: GroupService,
     public dialogRef: MatDialogRef<ContactFormComponent>) {
     this.accounts=new Array<Account>();
+    this.groups=new Array<Group>();
+   // this.groups=new Array<Group>();
   }
 
   ngOnInit(): void {
@@ -39,7 +47,7 @@ export class ContactFormComponent implements OnInit{
         'lastName': [this.contact.lastName],
         'email': [this.contact.email, [Validators.email]],
         'account': [this.contact.account],
-<<<<<<< Updated upstream
+        'group':[this.contact.group],
         'corporation': [this.contact.corporation],
         'street': [this.contact.street],
         'notes': [this.contact.notes],
@@ -53,9 +61,6 @@ export class ContactFormComponent implements OnInit{
         'mailboxCountry':[this.contact.mailboxCountry],
         'homepage':[this.contact.homepage],
         'inactive': [this.contact.inactive]
-=======
-        'notes': [this.contact.notes]
->>>>>>> Stashed changes
       }
     )
 
@@ -66,6 +71,11 @@ export class ContactFormComponent implements OnInit{
         }
       })
     )
+
+    this.groupService.findAll().subscribe(sourceGroups =>
+      sourceGroups.forEach(entry=> this.groups.push(entry) )
+    )
+
 
     this.filteredAccounts = this.accountControl.valueChanges.pipe(
       startWith(''),

@@ -4,10 +4,12 @@
 
     <div class="form-group">
       <mat-form-field>
-        <label for="grpID">Gruppe</label>
-        <input matInput type="text" class="form-control" id="grpID"
-               [(ngModel)]="contact.grpID"
-               name="grpID">
+        <label>Gruppe</label>
+        <mat-select [(value)]="contact.group">
+          <mat-option *ngFor="let group of groups" [value]="group">
+            {{group.name}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 
