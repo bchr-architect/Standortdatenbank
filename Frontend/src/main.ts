@@ -4,11 +4,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-<<<<<<< Updated upstream
 import { hammerjs } from 'node_modules/hammerjs';
-=======
-import {hammerjs} from 'node_modules/hammerjs';
->>>>>>> Stashed changes
 
 if (environment.production) {
   enableProdMode();

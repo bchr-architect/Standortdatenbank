@@ -1,8 +1,6 @@
 import { Account} from "./account";
-import {Group} from "./group";
 
 export class Contact {
-<<<<<<< Updated upstream
   id: number;
   lastName: string;
   firstName: string;
@@ -71,17 +69,5 @@ export class Contact {
   lastModifiedDate: number;
   birthday: number;
   group: any;
-<<<<<<< HEAD
-=======
-  email: string
-  firstName: string
-  lastName: string
-  account: Account
-  createdDate: number
-  modifiedDate: number
-  notes: string;
->>>>>>> Stashed changes
-=======
-  group: Group;
->>>>>>> ec3357545f818fde1bc4d2394c88aeabd0c79bab
+  modifiedDate: number;
 }

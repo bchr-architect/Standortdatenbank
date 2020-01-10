@@ -1,7 +1,6 @@
 @import "~@angular/material/_theming.scss";
 @include mat-core();
 
-<<<<<<< Updated upstream
 /* ORANGE THEME */
 
 $orange-theme-primary: mat-palette($mat-deep-orange, 700);
@@ -169,7 +168,7 @@ existing themes
 */
 
 @include angular-material-theme($dark-theme-custom);
-=======
+
 /* YELLOW THEME */
 
 $yellow-theme-primary: mat-palette($mat-amber);
@@ -222,7 +221,6 @@ $foreground: mat-light-theme-foreground(mat-color($grey-theme-primary,700));
 $theme-custom: map-merge($grey-theme, (foreground: $foreground));
 
 @include angular-material-theme($theme-custom);
->>>>>>> Stashed changes
 
 $custom-typography: mat-typography-config(
   $font-family: 'Roboto, Helvetica Neue, sans-serif'
