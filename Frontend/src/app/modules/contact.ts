@@ -69,5 +69,4 @@ export class Contact {
   lastModifiedDate: number;
   birthday: number;
   group: any;
-  modifiedDate: number;
 }

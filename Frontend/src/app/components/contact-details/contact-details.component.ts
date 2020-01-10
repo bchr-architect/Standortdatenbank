@@ -32,7 +32,7 @@ export class ContactDetailsComponent implements OnInit{
       street: string, postCode: string, country: string, phone: string, phone2: string,
       phone3: string, phone4: string, fax: string, mailbox: string, mailboxPlace: string,
       mailboxPostcode: string, mailboxCountry: string, homepage: string, account: Account,
-      creatorID: string, editedByID: string, grpID: number, representativeID: string,
+      creatorID: string, editedByID: string, representativeID: string,
       languageID: string, ustID: string, contactID: number, shippingAddress: string,
       refAddress: string, refAddress2: string, additional: string, additional2: string,
       additional3: string, inactive: boolean, privatePerson: boolean, cession: boolean,
@@ -43,7 +43,7 @@ export class ContactDetailsComponent implements OnInit{
       status: number, contactType: number, dsvFlag: boolean, dsvSourceOfData: string,
       dsvNotification: boolean, dsvDirectAdFlag: boolean, dsvAnonymisedBy: string,
       dsvDataCollection: number, dsvAnonymised: boolean, region: string, targetAudience: string,
-      notes: string; birthday: number; group: Group;
+      notes: string; birthday: number; group: any;
     }) {
     this.contact = new Contact();
     this.isReadOnly = true;
