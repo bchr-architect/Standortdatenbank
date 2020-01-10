@@ -3,12 +3,14 @@ import {ContactService} from "../../services/contact.service";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Data, Router} from "@angular/router";
 import {Contact} from "../../modules/contact";
 import {MatDialog} from "@angular/material/dialog";
 import {ContactFormComponent} from "../contact-form/contact-form.component";
 import {Account} from "../../modules/account";
 import * as XLSX from 'xlsx';
+import {ContactDetailsComponent} from "../contact-details/contact-details.component";
+import {isUndefined} from "util";
 
 @Component({
   selector: 'app-contact-list',
@@ -21,7 +23,7 @@ export class ContactListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   tableSource: MatTableDataSource<Contact>;
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'account', 'createdDate', 'notes'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'corporation', 'email', 'account'];
   private contacts: Contact[];
   private contact: Contact;
   selectedRowIndex: number = -1;
@@ -31,8 +33,6 @@ export class ContactListComponent implements OnInit {
               private router: Router,
               public dialog: MatDialog) {
     this.tableSource = new MatTableDataSource<Contact>(this.contacts)
-
-
   }
 
   ngOnInit() {
@@ -52,8 +52,8 @@ export class ContactListComponent implements OnInit {
 
   openAddContactDialog() {
     const dialogRef = this.dialog.open(ContactFormComponent, {
-      width: '500px',
-      height: '550px',
+      width: '850px',
+      height: '600px',
       data: {contact: this.contact}
     });
 
@@ -61,16 +61,53 @@ export class ContactListComponent implements OnInit {
       this.contact = result;
       this.contactService.findAll().subscribe(data => {
         this.updateTable(data);
-      });
+        if(!isUndefined(result)) {
+          this.tableSource.filteredData.filter((value, index) => {
+            if(value.id==result.id) {
+              value=result;
+            }
 
+          });
+        }
+      });
+    });
+  }
+  openContactDetailsDialog(data: Data){
+    const dialogRef = this.dialog.open(ContactDetailsComponent, {
+      height: '600px',
+      width: '850px',
+      data: { ...data}
+    });
+
+    dialogRef.afterClosed().subscribe( result => {
+      console.log('The dialog was closed');
+
+      if(!isUndefined(result)) {
+        this.tableSource.filteredData.filter((value, index) => {
+          if(value.id==result.id) {
+            value=result;
+          }
+
+        });
+      }
+
+      this.contactService.findAll().subscribe(data => {
+
+        this.tableSource.sort = this.sort;
+        this.tableSource.paginator = this.paginator;
+      });
     });
   }
 
   checkNullValues(entry: any) {
     if (!entry.account) {
       entry.account = new Account();
+      entry.account.id = "";
       entry.account.compName = "";
       entry.account.email = "";
+      entry.account.active = "";
+      entry.account.createdDate="";
+      entry.account.lastModifiedDate="";
     }
 
     if (!entry.createdDate) {
@@ -83,13 +120,14 @@ export class ContactListComponent implements OnInit {
     this.tableSource.data = data;
     this.tableSource.data.forEach(entry => {
       this.checkNullValues(entry);
+      this.checkInactive(entry);
     })
     this.tableSource.sort = this.sort;
     this.tableSource.paginator = this.paginator;
   }
 
   exportAsExcel() {
-    const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.tableSource.filteredData);//converts a DOM TABLE element to a worksheet
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.tableSource.filteredData);//converts a DOM TABLE element to a worksheet
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Kontakte');
 
@@ -97,6 +135,11 @@ export class ContactListComponent implements OnInit {
     XLSX.writeFile(wb, 'Kontakte.xlsx');
 
   }
+
+  checkInactive(entry: any) {
+    if (entry.inactive) {
+      const index = this.tableSource.data.indexOf(entry);
+      //this.tableSource.data.splice(index,1);
+    }
+  }
 }
-
-

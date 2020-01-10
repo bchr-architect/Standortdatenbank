@@ -15,11 +15,11 @@ export class AccountService {
   }
 
   public findAll(): Observable<Account[]> {
-
     return this.http.get<Account[]>(this.accountUrl+ '/all');
   }
 
   public save(account: Account):Observable<Account> {
     return this.http.post<Account>(this.accountUrl+'/add', account);
   }
+
 }

@@ -1,25 +1,22 @@
-div {
-  top: 10em;
-  left: 2em;
-  line-height: 1em;
-}
-
 h1 {
   width: 300px;
   position: relative;
-  left: 250px;
+  left: 150px;
   font-weight: lighter;
-  float: top;
 }
 
 mat-form-field {
   width: 50%;
 }
 
+mat-button-toggle-group {
+  margin-top: 15px;
+  margin-right: 50%;
+}
+
 mat-card {
   width: 50%;
   margin-bottom: 10px;
-  margin-top: 10px;
 }
 
 mat-checkbox {
@@ -31,8 +28,3 @@ mat-checkbox {
   font-weight: lighter;
 }
 
-label {
-  float: left;
-  width: 10em;
-  margin-right: 1em;
-}

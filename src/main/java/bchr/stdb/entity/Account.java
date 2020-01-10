@@ -20,9 +20,11 @@ public class Account extends Auditable {
     @Column(name = "COMP_NAME", nullable = false, length = 30)
     private String compName;
 
-
     @Column(name = "EMAIL", length = 70)
     private String email;
+
+    @Column(name = "ACTIVE", nullable = false, length = 70)
+    private Boolean active;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
     @JsonIgnoreProperties("account")
@@ -30,6 +32,14 @@ public class Account extends Auditable {
 
     public Account() {
 
+    }
+
+    public Integer getID() {
+        return id;
+    }
+
+    public void setID(Integer ID) {
+        this.id = ID;
     }
 
     public Account(String name) {
@@ -48,12 +58,20 @@ public class Account extends Auditable {
         this.compName = compName;
     }
 
-    public String getEmail() {
+   public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public Set<Contact> getContacts() {
