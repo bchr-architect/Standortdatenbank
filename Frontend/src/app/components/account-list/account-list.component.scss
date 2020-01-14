@@ -19,7 +19,12 @@ table {
 mat-form-field {
   margin-left: 20px;
 }
-
+td.mat-cell {
+  border-bottom-width: thin;
+}
+.mat-row {
+  cursor: pointer;
+}
 /*https://stackoverflow.com/questions/49740143/angular-material-to-highlight-a-table-row-on-mouse-over?rq=1*/
 .mat-row:hover {
   background-color: #ab8d38;
