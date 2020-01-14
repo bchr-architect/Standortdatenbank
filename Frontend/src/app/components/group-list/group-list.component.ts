@@ -9,6 +9,7 @@ import {GroupFormComponent} from "../group-form/group-form.component";
 import {MatDialog} from "@angular/material/dialog";
 import * as XLSX from "xlsx";
 import {GroupDetailsComponent} from "../group-details/group-details.component";
+import {isUndefined} from "util";
 
 @Component({
   selector: 'app-group-list',
@@ -72,13 +73,16 @@ export class GroupListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe( result => {
       console.log('The dialog was closed');
+      console.log(this.groupTableSource.data);
 
-      this.groupTableSource.filteredData.filter((value, index) => {
-        if(value.id == result.id){
-          value=result;
-        }
+      if(!isUndefined()) {
+        this.groupTableSource.filteredData.filter((value, index) => {
+          if(value.id == result.id){
+            value=result;
+          }
 
-      });
+        });
+      }
 
       this.groupService.findAll().subscribe(data => {
 
@@ -110,7 +114,6 @@ export class GroupListComponent implements OnInit {
       });
     });
   }
-
 
   exportAsExcel() {
     const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.groupTableSource.filteredData);

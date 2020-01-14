@@ -7,11 +7,13 @@
     </mat-form-field>
   </div>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Gruppe" [(ngModel)]="data.grpID" readonly>
-    </mat-form-field>
-  </div>
+  <mat-form-field>
+    <mat-select placeholder="Groups" [(value)]="data.group" [compareWith]="compareByGroupId" [disabled]="isReadOnly">
+      <mat-option *ngFor="let group of groups" [value]="group">
+        {{group.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <div class="form-group">
     <mat-checkbox [(ngModel)]="data.privatePerson" [disabled]="isReadOnly">Privatperson</mat-checkbox>
@@ -75,7 +77,7 @@
     </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Account" [(value)]="data.account" [compareWith]="compareById" [disabled]="isReadOnly">
+        <mat-select placeholder="Account" multiple [(value)]="data.account" [compareWith]="compareById" [disabled]="isReadOnly">
           <mat-option *ngFor="let account of accounts" [value]="account">
             {{account.compName}}
           </mat-option>

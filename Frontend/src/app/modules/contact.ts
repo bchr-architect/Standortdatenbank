@@ -1,4 +1,5 @@
 import { Account} from "./account";
+import {Group} from "./group";
 
 export class Contact {
   id: number;
@@ -68,5 +69,5 @@ export class Contact {
   createdDate: number;
   lastModifiedDate: number;
   birthday: number;
-  group: any;
+  group: Group;
 }

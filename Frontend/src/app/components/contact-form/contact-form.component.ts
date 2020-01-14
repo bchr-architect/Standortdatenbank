@@ -23,9 +23,7 @@ export class ContactFormComponent implements OnInit{
   contactForm: FormGroup;
   accounts: Account[];
   groups: Group[];
- // groups: Group[];
   filteredAccounts: Observable<Account[]>;
-  //filteredGroups: Observable<Group[]>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,7 +35,6 @@ export class ContactFormComponent implements OnInit{
     public dialogRef: MatDialogRef<ContactFormComponent>) {
     this.accounts=new Array<Account>();
     this.groups=new Array<Group>();
-   // this.groups=new Array<Group>();
   }
 
   ngOnInit(): void {
@@ -73,15 +70,19 @@ export class ContactFormComponent implements OnInit{
     )
 
     this.groupService.findAll().subscribe(sourceGroups =>
-      sourceGroups.forEach(entry=> this.groups.push(entry) )
+      sourceGroups.forEach(entry=> {
+        if(entry.active) {
+          this.groups.push(entry)
+        }
+      })
     )
-
 
     this.filteredAccounts = this.accountControl.valueChanges.pipe(
       startWith(''),
       map(value => typeof value === 'string' ? value : value.compName),
       map(name => name ? this._filter(name) : this.accounts .slice())
     )
+
   }
 
   onSubmit() {
@@ -95,6 +96,7 @@ export class ContactFormComponent implements OnInit{
 
     return this.accounts.filter(option => option.compName.toLowerCase().indexOf(filterValue) === 0);
   }
+
   displayFn(account?: Account): string | undefined {
     return account ? account.compName : undefined;
   }
@@ -103,5 +105,8 @@ export class ContactFormComponent implements OnInit{
     return i1 && i2 ? i1.id == i2.id : i1 == i2;
   }
 
+  compareByGroupId(i1: Group, i2: Group): boolean {
+    return i1 && i2 ? i1.id == i2.id : i1 == i2;
+  }
 
 }

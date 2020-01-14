@@ -5,7 +5,7 @@
     <div class="form-group">
       <mat-form-field>
         <label>Gruppe</label>
-        <mat-select [(value)]="contact.group">
+        <mat-select [(value)]="contact.group" [compareWith]="compareByGroupId">
           <mat-option *ngFor="let group of groups" [value]="group">
             {{group.name}}
           </mat-option>
@@ -130,7 +130,6 @@
       </mat-form-field>
     </div>
 
-<<<<<<< Updated upstream
     <div class="form-group">
       <mat-form-field>
         <label for="corporation">Unternehmen</label>
@@ -377,15 +376,8 @@
 
     <div class ="form-group">
     <mat-form-field>
-      <label for="notes">Notiz hinzufügen</label>
-      <textarea matInput type="text" class="form-control" id="notes" name="notes"
-                [(ngModel)]="contact.notes"
-=======
-    <div class ="form-group">
-    <mat-form-field>
       <mat-label>Notizen hinzufügen</mat-label>
       <textarea matInput
->>>>>>> Stashed changes
                 cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize"
                 cdkAutosizeMinRows="1"
@@ -393,7 +385,6 @@
       </textarea>
     </mat-form-field>
     </div>
-<<<<<<< Updated upstream
 
     <div class="form-group">
       <mat-form-field>
@@ -410,8 +401,6 @@
                name="editedByID">
       </mat-form-field>
     </div>
-=======
->>>>>>> Stashed changes
 
     <mat-dialog-actions align="center">
       <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Submit</button>
