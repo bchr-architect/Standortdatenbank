@@ -77,7 +77,7 @@
     </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Account" multiple [(value)]="data.account" [compareWith]="compareById" [disabled]="isReadOnly">
+        <mat-select placeholder="Account" [(value)]="data.account" [compareWith]="compareById" [disabled]="isReadOnly">
           <mat-option *ngFor="let account of accounts" [value]="account">
             {{account.compName}}
           </mat-option>
