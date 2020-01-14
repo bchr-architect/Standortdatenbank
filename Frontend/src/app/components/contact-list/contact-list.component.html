@@ -32,7 +32,14 @@
     <!-- Account Column -->
     <ng-container matColumnDef="account">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Account</th>
-      <td mat-cell *matCellDef="let contact"> {{contact.account.compName}} </td>
+      <td mat-cell *matCellDef="let contact">
+        <ng-container *ngIf="contact.account !== null ; else defaultValueA">
+         {{contact.account.compName}}
+        </ng-container>
+      </td>
+        <ng-template #defaultValueA>
+
+        </ng-template>
     </ng-container>
 
     <!-- Corporation Column -->
@@ -113,9 +120,17 @@
       <td mat-cell *matCellDef="let contact"> {{contact.notes}} </td>
     </ng-container>
 
+    <!-- Group Column // defaultValue bc null can't be displayed -->
     <ng-container matColumnDef="group">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Gruppe</th>
-      <td mat-cell *matCellDef="let contact"> {{contact.group.name}} </td>
+      <td mat-cell *matCellDef="let contact">
+        <ng-container *ngIf="contact.group !== null; else defaultValueG">
+        {{contact.group.name}}
+        </ng-container>
+      </td>
+      <ng-template #defaultValueG>
+
+      </ng-template>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

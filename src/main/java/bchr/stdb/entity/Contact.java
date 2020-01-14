@@ -729,4 +729,12 @@ public class Contact extends Auditable {
         this.email=email;
         this.account=account;
     }
+
+    public Contact(String lastName, String firstName, String email, Account account, String notes) {
+        this.lastName=lastName;
+        this.firstName=firstName;
+        this.email=email;
+        this.account=account;
+        this.notes=notes;
+    }
 }

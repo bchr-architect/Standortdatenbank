@@ -32,6 +32,7 @@ export class GroupFormComponent  {
   }
 
   onSubmit() {
+    this.group.active = true;
     this.groupService.save(this.group).subscribe(()=>this.dialogRef.close());
   }
 
