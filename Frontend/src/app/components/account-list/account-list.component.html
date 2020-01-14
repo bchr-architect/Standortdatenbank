@@ -19,7 +19,7 @@
 
     <ng-container matColumnDef="compName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td (click)="openAccountDetailsDialog(account)" *matCellDef="let account" mat-cell>
+      <td  *matCellDef="let account" mat-cell>
         {{account.compName}}</td>
     </ng-container>
 
@@ -40,9 +40,9 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let account; columns: displayedColumns;"></tr>
+    <tr (click)="openAccountDetailsDialog(account)" mat-row *matRowDef="let account; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[50, 10, 25, 100]"></mat-paginator>
 </div>
 <button mat-raised-button color="primary" (click)="exportAsExcel() ">Excel</button>

@@ -13,7 +13,7 @@
     <!-- ID Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
-      <td (click)="openGroupDetailsDialog(group)" *matCellDef="let group" mat-cell> {{group.name}}</td>
+      <td  *matCellDef="let group" mat-cell> {{group.name}}</td>
     </ng-container>
 
     <!-- Progress Column -->
@@ -33,10 +33,10 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let group; columns: displayedColumns;">
+    <tr (click)="openGroupDetailsDialog(group)" mat-row *matRowDef="let group; columns: displayedColumns;">
     </tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[50, 10, 25, 100]"></mat-paginator>
 </div>
 <button mat-raised-button color="primary" (click)="exportAsExcel() ">Excel</button>

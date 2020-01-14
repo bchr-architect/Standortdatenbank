@@ -7,6 +7,12 @@ table {
   width:100%;
 }
 
+td.mat-cell {
+  border-bottom-width: thin;
+}
+.mat-row {
+  cursor: pointer;
+}
 .mat-raised-button {
   text-decoration-line: none;
   margin-bottom: 10px;
