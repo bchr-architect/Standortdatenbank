@@ -122,15 +122,10 @@
     <mat-form-field>
       <input matInput placeholder="2. Zusatz" [(ngModel)]="data.additional2" [readonly]="isReadOnly">
     </mat-form-field>
-  </div>
 
-  <mat-card>Sprache</mat-card>
-
-  <div class="form-group">
-    <mat-checkbox id="languageIDgerman" name="languageID" [disabled]="isReadOnly">Deutsch</mat-checkbox>
-    <mat-checkbox id="languageIDenglish" name="languageID" [disabled]="isReadOnly">Englisch</mat-checkbox>
-    <mat-checkbox id="languageIDitalian" name="languageID" [disabled]="isReadOnly">Italienisch</mat-checkbox>
-    <mat-checkbox id="languageIDspanish" name="languageID" [disabled]="isReadOnly">Spanisch</mat-checkbox>
+    <mat-form-fiel>
+      <input matInput placeholder="Sprache" [(ngModel)]="data.languageID" [readonly]="isReadOnly">
+    </mat-form-fiel>
   </div>
 
   <mat-card>Anschrift</mat-card>

@@ -193,15 +193,10 @@
                [(ngModel)]="contact.additional2"
                name="additional">
       </mat-form-field>
-    </div>
 
-    <mat-card>Sprache</mat-card>
-
-    <div class="form-group">
-      <mat-checkbox [(ngModel)]="contact.languageID" id="languageIDgerman" name="languageID">Deutsch</mat-checkbox>
-      <mat-checkbox [(ngModel)]="contact.languageID" id="languageIDenglish" name="languageID">Englisch</mat-checkbox>
-      <mat-checkbox [(ngModel)]="contact.languageID" id="languageIDitalian" name="languageID">Italienisch</mat-checkbox>
-      <mat-checkbox [(ngModel)]="contact.languageID" id="languageIDspanish" name="languageID">Spanisch</mat-checkbox>
+      <mat-form-fiel>
+        <input matInput placeholder="Sprache" [(ngModel)]="contact.languageID">
+      </mat-form-fiel>
     </div>
 
     <mat-card>Anschrift</mat-card>
