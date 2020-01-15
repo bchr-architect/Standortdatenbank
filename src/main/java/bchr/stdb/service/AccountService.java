@@ -15,11 +15,12 @@ public class AccountService {
     AccountDao accountDao;
 
     public List<Account> getAllAccounts() {
-        List accountList = this.accountDao.findAll();
+        List accountList = this.accountDao.findAccountByActive(true);
         return accountList;
     }
 
     public Account addAccount(Account account) {
+
         return this.accountDao.save(account);
     }
 }

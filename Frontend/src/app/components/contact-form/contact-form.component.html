@@ -13,9 +13,15 @@
       </mat-form-field>
     </div>
 
+<<<<<<< HEAD
     <div class="form-group">
       <mat-checkbox [hidden]="true" [(ngModel)]="contact.privatePerson" id="privatePerson" name="privatePerson">Privatperson</mat-checkbox>
     </div>
+=======
+    <!--<div class="form-group">
+      <mat-checkbox [(ngModel)]="contact.privatePerson" id="privatePerson" name="privatePerson">Privatperson</mat-checkbox>
+    </div> -->
+>>>>>>> 1ac803a81b7a9a751f1e83b90e555d74e0001b9a
 
     <div class="form-group">
       <mat-form-field>
@@ -174,7 +180,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <label for="representativeID">Vertreter</label>
+        <label for="representativeID">Ansprechperson Standortagentur</label>
         <input matInput type="text" class="form-control" id="representativeID"
                [(ngModel)]="contact.representativeID"
                name="representativeID">
@@ -195,7 +201,10 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="text" class="form-control" id="languageID" placeholder="Sprache" [(ngModel)]="contact.languageID">
+        <label for="languageID">Sprache</label>
+        <input matInput type="text" class="form-control" id="languageID"
+               [(ngModel)]="contact.languageID"
+               name="languageID">
       </mat-form-field>
     </div>
 

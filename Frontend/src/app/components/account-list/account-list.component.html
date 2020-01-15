@@ -3,7 +3,7 @@
 </mat-form-field>
 
 <button mat-raised-button color="primary"
-        (click)="openAddAccountDialog()">Account hinzufügen
+        (click)="openAddAccountDialog()">Organisation hinzufügen
 </button>
 
 <div class="mat-elevation-z8">
@@ -11,16 +11,15 @@
     matSortActive="ID"
     matSortDirection="asc">
 
-    <!-- ID Column -->
-    <ng-container matColumnDef="ID">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-      <td mat-cell *matCellDef="let account">{{account.id}}</td>
-    </ng-container>
-
     <ng-container matColumnDef="compName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td (click)="openAccountDetailsDialog(account)" *matCellDef="let account" mat-cell>
+      <td  *matCellDef="let account" mat-cell>
         {{account.compName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="companyType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Branche</th>
+      <td mat-cell *matCellDef="let account"> {{account.companyType}} </td>
     </ng-container>
 
     <!-- Progress Column -->
@@ -29,20 +28,33 @@
       <td mat-cell *matCellDef="let account"> {{account.email}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="createdDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>erstellt am</th>
-      <td mat-cell *matCellDef="let account">{{account.createdDate | date: 'd.L.y'}}</td>
+    <ng-container matColumnDef="street">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Strasse</th>
+      <td mat-cell *matCellDef="let account"> {{account.street}} </td>
+    </ng-container>
+    <ng-container matColumnDef="place">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ort</th>
+      <td mat-cell *matCellDef="let account"> {{account.place}} </td>
+    </ng-container>
+    <ng-container matColumnDef="postCode">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>PLZ</th>
+      <td mat-cell *matCellDef="let account"> {{account.postCode}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="lastModifiedDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>zuletzt geändert</th>
-      <td mat-cell *matCellDef="let account">{{account.lastModifiedDate | date: 'd.L.y'}}</td>
+    <ng-container matColumnDef="nrOfEmployees">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mitarbeiteranzahl</th>
+      <td mat-cell *matCellDef="let account">{{account.nrOfEmployees}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ustID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Steuernummer</th>
+      <td mat-cell *matCellDef="let account">{{account.ustID}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let account; columns: displayedColumns;"></tr>
+    <tr (click)="openAccountDetailsDialog(account)" mat-row *matRowDef="let account; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[50, 10, 25, 100]"></mat-paginator>
 </div>
 <button mat-raised-button color="primary" (click)="exportAsExcel() ">Excel</button>

@@ -19,7 +19,7 @@ export class AccountService {
   }
 
   public save(account: Account):Observable<Account> {
-    return this.http.post<Account>(this.accountUrl+'/add', account);
+    return this.http.put<Account>(this.accountUrl+'/add', account);
   }
 
 }

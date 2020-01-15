@@ -32,5 +32,7 @@ export class AccountFormComponent  {
   }
 
 
-
+  onCancel() {
+    this.dialogRef.close();
+  }
 }
