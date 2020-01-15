@@ -1,6 +1,7 @@
 package bchr.stdb.entity;
 
 import bchr.stdb.misc.Auditable;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.*;
@@ -24,18 +25,18 @@ public class Group extends Auditable {
     private String additive;
 
     // x Children -> 1 Mother
-    @ManyToOne(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
-    @JoinColumn(name="MOTHER")
+    @ManyToOne(cascade= CascadeType.MERGE)
+    @JoinColumn(name="mother_id")
     public Group mother;
 
     // 1 Mother -> x Children
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy="mother")
-    @JsonIgnoreProperties("mother")
-    public Set<Group> children = new HashSet<>();
+    @OneToMany(mappedBy="mother")
+    @JsonBackReference
+    public Set<Group> children = new HashSet<Group>();
 
     // 1 Group -> x Contacts
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "group")
-    @JsonIgnoreProperties("group")
+    @JsonIgnoreProperties
     private Set<Contact> contacts = new HashSet<>();
 
     public Set<Contact> getContacts() {
@@ -68,6 +69,10 @@ public class Group extends Auditable {
 
     public void setMother(Group mother) {
         this.mother = mother;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public Set<Group> getChildren() {

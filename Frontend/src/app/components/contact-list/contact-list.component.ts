@@ -74,7 +74,7 @@ export class ContactListComponent implements OnInit {
       }
 
       this.contactService.findAll().subscribe(data => {
-
+        this.updateTable(data);
         this.tableSource.sort = this.sort;
         this.tableSource.paginator = this.paginator;
       });

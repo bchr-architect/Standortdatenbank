@@ -101,17 +101,10 @@ export class AccountListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+
       this.account = result;
       this.accountService.findAll().subscribe(data => {
-        this.accountTableSource.data = data;
-        this.accountTableSource.data.forEach(entry => {
-          this.checkNullValues(entry);
-
-
-        })
-        this.accountTableSource.sort = this.sort;
-        this.accountTableSource.paginator = this.paginator;
+       this.updateTable(data);
       });
     });
   }
@@ -124,4 +117,15 @@ export class AccountListComponent implements OnInit {
     XLSX.writeFile(wb, 'Unternehmen.xlsx');
 
   }
+
+  updateTable(data: any) {
+
+    this.accountTableSource.data = data;
+    this.accountTableSource.data.forEach(entry => {
+      this.checkNullValues(entry);
+    })
+    this.accountTableSource.sort = this.sort;
+    this.accountTableSource.paginator = this.paginator;
+  }
+
 }

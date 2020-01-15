@@ -23,8 +23,7 @@ export class AccountFormComponent  {
 
   onSubmit() {
     this.account.active = true;
-    this.accountService.save(this.account).subscribe();
-    this.dialogRef.close();
+    this.accountService.save(this.account).subscribe(()=>this.dialogRef.close());
   }
 
   goToAccountList() {
