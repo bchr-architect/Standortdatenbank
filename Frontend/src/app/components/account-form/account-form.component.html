@@ -20,7 +20,7 @@
     </div>
     <div class="form-group">
       <mat-form-field>
-        <label for="companyType">Firmengenre</label>
+        <label for="companyType">Branche</label>
         <input matInput type="text" class="form-control" id="companyType"
                [(ngModel)]="account.companyType"
                name="postpositiveTitle">
@@ -88,8 +88,9 @@
     <div class="form-group">
       <mat-form-field>
         <label for="nrOfEmployees">Mitarbeiteranzahl</label>
-        <input matInput type="text" class="form-control" id="nrOfEmployees"
+        <input matInput type="number" class="form-control" id="nrOfEmployees"
                [(ngModel)]="account.nrOfEmployees"
+               value="0"
                name="nrOfEmployees">
       </mat-form-field>
     </div>

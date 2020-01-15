@@ -15,6 +15,7 @@ export class AccountDetailsComponent {
 
   account: Account;
   isReadOnly: boolean;
+  changeActive: boolean
 
   constructor(
     private route: ActivatedRoute,
@@ -27,10 +28,12 @@ export class AccountDetailsComponent {
     }) {
     this.account = new Account();
     this.isReadOnly = true;
+    this.changeActive = false;
   }
 
   onSubmit() {
     this.account = this.data;
+    this.changeActive = false;
     this.accountService.save(this.account).subscribe();
   }
 
@@ -43,6 +46,8 @@ export class AccountDetailsComponent {
 
   onEdit() {
     this.isReadOnly = false;
+    this.changeActive = true;
+
   }
 
   goToAccountList() {

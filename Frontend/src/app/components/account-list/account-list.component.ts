@@ -38,8 +38,8 @@ export class AccountListComponent implements OnInit {
     this.accountService.findAll().subscribe(data => {
       this.accountTableSource.data = data;
       this.accountTableSource.data.forEach(account => {
-        this.checkNullValues(account)
-        this.checkInactive(account);
+        this.checkNullValues(account);
+
       });
       this.accountTableSource.sort = this.sort;
       this.accountTableSource.paginator = this.paginator;
@@ -82,7 +82,12 @@ export class AccountListComponent implements OnInit {
         });
       }
 
+
       this.accountService.findAll().subscribe(data => {
+        this.accountTableSource.data=data;
+        this.accountTableSource.data.forEach( entry => {
+          this.checkNullValues(entry);
+        })
         this.accountTableSource.sort = this.sort;
         this.accountTableSource.paginator = this.paginator;
       });
@@ -102,22 +107,14 @@ export class AccountListComponent implements OnInit {
       this.accountService.findAll().subscribe(data => {
         this.accountTableSource.data = data;
         this.accountTableSource.data.forEach(entry => {
-
           this.checkNullValues(entry);
-          this.checkInactive(entry);
+
 
         })
         this.accountTableSource.sort = this.sort;
         this.accountTableSource.paginator = this.paginator;
       });
     });
-  }
-
-  checkInactive(entry: any) {
-    if(!entry.active) {
-      const index = this.accountTableSource.data.indexOf(entry);
-      this.accountTableSource.data.splice(index,1);
-    }
   }
 
   exportAsExcel() {

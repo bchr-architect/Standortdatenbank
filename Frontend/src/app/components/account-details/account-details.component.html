@@ -1,26 +1,41 @@
 <div class="container">
-  <h1>Account Details</h1>
-    <div class="form-group">
-
-      <mat-form-field>
-        <input matInput placeholder="ID" [(ngModel)]="data.id" readonly>
-      </mat-form-field>
+  <div>
+    <h1>Account Details</h1>
+    <div class="editButtons">
+      <div>
+        <button mat-raised-button type="button" class="changeBtn"
+                color="primary"
+                (click)="onEdit()"
+                [disabled]=this.changeActive>Bearbeiten
+        </button>
+      </div>
+      <div>
+        <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data"
+                (click)="onDelete()">Account löschen
+        </button>
+      </div>
     </div>
-
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="Firmenname" [(ngModel)]="data.compName" [readonly]="isReadOnly">
-        </mat-form-field>
-      </div>
-
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="Email" [(ngModel)]="data.email" [readonly]="isReadOnly">
-        </mat-form-field>
-      </div>
+  </div>
   <div class="form-group">
     <mat-form-field>
-      <input matInput placeholder="Firmengenre" [(ngModel)]="data.companyType" [readonly]="isReadOnly">
+      <input matInput placeholder="ID" [(ngModel)]="data.id" readonly>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Firmenname" autofocus [(ngModel)]="data.compName" [readonly]="isReadOnly">
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Email" [(ngModel)]="data.email" [readonly]="isReadOnly">
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Branche" [(ngModel)]="data.companyType" [readonly]="isReadOnly">
     </mat-form-field>
   </div>
 
@@ -71,26 +86,26 @@
   </div>
 
 
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="Erstellt am" [ngModel]="data.createdDate | date:'dd/MM/yyyy'"
-                 (ngModelChange)="data.createdDate"
-                 readonly>
-        </mat-form-field>
-      </div>
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Erstellt am" [ngModel]="data.createdDate | date:'dd/MM/yyyy'"
+             (ngModelChange)="data.createdDate"
+             readonly>
+    </mat-form-field>
+  </div>
 
-      <div class="form-group">
-        <mat-form-field >
-          <input matInput placeholder="Zuletzt geändert am" [ngModel]="data.lastModifiedDate | date:'dd/MM/yyyy'"
-                 (ngModelChange)="data.lastModifiedDate"
-                 readonly>
-        </mat-form-field>
-      </div>
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput placeholder="Zuletzt geändert am" [ngModel]="data.lastModifiedDate | date:'dd/MM/yyyy'"
+             (ngModelChange)="data.lastModifiedDate"
+             readonly>
+    </mat-form-field>
+  </div>
 
-  <mat-dialog-actions align="center">
-    <button mat-raised-button type="button" class="changeBtn" color="primary" (click)="onEdit()">Bearbeiten</button>
-    <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onSubmit()">Speichern</button>
-    <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onDelete()">Account löschen</button>
+  <mat-dialog-actions float="right">
+    <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data"
+            (click)="onSubmit()">Speichern
+    </button>
   </mat-dialog-actions>
 
 </div>

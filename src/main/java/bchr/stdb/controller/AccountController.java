@@ -20,7 +20,7 @@ public class AccountController {
         return accountService.getAllAccounts();
     }
 
-    @PostMapping(path = {"/add"})
+    @PutMapping(path = {"/add"})
     public Account addNewAccount(@RequestBody Account account) {
         return this.accountService.addAccount(account);
     }
