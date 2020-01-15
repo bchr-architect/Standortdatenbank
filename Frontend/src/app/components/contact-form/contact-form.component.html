@@ -14,7 +14,7 @@
     </div>
 
     <div class="form-group">
-      <mat-checkbox [(ngModel)]="contact.privatePerson" id="privatePerson" name="privatePerson">Privatperson</mat-checkbox>
+      <mat-checkbox [hidden]="true" [(ngModel)]="contact.privatePerson" id="privatePerson" name="privatePerson">Privatperson</mat-checkbox>
     </div>
 
     <div class="form-group">
@@ -190,13 +190,13 @@
       <mat-form-field>
         <label for="additional2">2. Zusatz</label>
         <input matInput type="text" class="form-control" id="additional2"
-               [(ngModel)]="contact.additional2"
-               name="additional">
+                [(ngModel)]="contact.additional2"
+               name="additional2">
       </mat-form-field>
 
-      <mat-form-fiel>
-        <input matInput placeholder="Sprache" [(ngModel)]="contact.languageID">
-      </mat-form-fiel>
+      <mat-form-field>
+        <input matInput type="text" class="form-control" id="languageID" placeholder="Sprache" [(ngModel)]="contact.languageID">
+      </mat-form-field>
     </div>
 
     <mat-card>Anschrift</mat-card>
