@@ -689,6 +689,7 @@ public class Contact extends Auditable {
 
     public void setAccount(Account account) {
         this.account = account;
+        account.getContacts().add(this);
     }
 
     public String getNotes() {

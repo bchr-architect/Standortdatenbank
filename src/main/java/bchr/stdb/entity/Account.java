@@ -59,10 +59,10 @@ public class Account extends Auditable {
     @Column(name = "ACTIVE")
     private Boolean active;
 
-    @Column()
+    @Column(name= "CONTACTS")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
     @JsonIgnoreProperties("account")
-    private Set<Contact> contacts = new HashSet<>();
+    private Set<Contact> contacts = new HashSet<Contact>();
 
     public Account() {
 

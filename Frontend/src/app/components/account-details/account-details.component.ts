@@ -1,9 +1,15 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router'
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Data, Router} from '@angular/router'
 import {AccountService} from "../../services/account.service";
 
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Account} from "../../modules/account";
+import {Contact} from "../../modules/contact";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
+import {ContactDetailsComponent} from "../contact-details/contact-details.component";
+import {isUndefined} from "util";
 
 @Component({
   selector: 'app-account-details',
@@ -11,11 +17,13 @@ import {Account} from "../../modules/account";
   styleUrls: ['./account-details.component.scss']
 })
 
-export class AccountDetailsComponent {
+export class AccountDetailsComponent{
 
   account: Account;
   isReadOnly: boolean;
   changeActive: boolean
+  tableSource: MatTableDataSource<Contact>;
+  displayedColumns: string[] = ['firstName', 'lastName', 'email'];
 
   constructor(
     private route: ActivatedRoute,
@@ -24,12 +32,13 @@ export class AccountDetailsComponent {
     public dialogRef: MatDialogRef<AccountDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {
       id: number, compName: string, email: string,
-      createdDate: number, lastModifiedDate: number, active: boolean, phone: string, phone2: string, street: string, place: string, postCode: string, country: string, ustID: string, companyType: string, homepage: string, nrOfEmployees: number;
+      createdDate: number, lastModifiedDate: number, active: boolean, phone: string, phone2: string, street: string, place: string, postCode: string, country: string, ustID: string, companyType: string, homepage: string, nrOfEmployees: number, contacts: Array<Contact>;
     }) {
     this.account = new Account();
     this.isReadOnly = true;
     this.changeActive = false;
   }
+
 
   onSubmit() {
     this.account = this.data;
@@ -48,9 +57,12 @@ export class AccountDetailsComponent {
     this.isReadOnly = false;
     this.changeActive = true;
 
+
   }
 
   goToAccountList() {
     this.router.navigate(['accounts']);
   }
+
+
 }
