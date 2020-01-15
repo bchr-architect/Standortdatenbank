@@ -25,13 +25,13 @@
 
     <!-- Email Column -->
     <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>E-Mail</th>
       <td mat-cell *matCellDef="let contact"> {{contact.email}} </td>
     </ng-container>
 
     <!-- Account Column -->
     <ng-container matColumnDef="account">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Account</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Organisation</th>
       <td mat-cell *matCellDef="let contact">
         <ng-container *ngIf="contact.account !== null ; else defaultValueA">
          {{contact.account.compName}}

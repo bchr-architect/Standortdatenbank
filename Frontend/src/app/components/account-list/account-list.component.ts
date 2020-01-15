@@ -22,7 +22,7 @@ export class AccountListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   accountTableSource: MatTableDataSource<Account>;
-  displayedColumns: string[] = ['ID','compName', 'email', 'createdDate','lastModifiedDate'];
+  displayedColumns: string[] = ['compName', 'email','companyType','street', 'place', 'postCode', 'nrOfEmployees','ustID'];
   private accounts: Account[];
   private account: Account;
   selectedRowIndex: number = -1;
@@ -66,8 +66,8 @@ export class AccountListComponent implements OnInit {
 
   openAccountDetailsDialog(data: Data) {
     const dialogRef = this.dialog.open(AccountDetailsComponent, {
-      height: '500px',
-      width: '550px',
+      height: '1200px',
+      width: '800px',
       data: { ...data}
     });
     dialogRef.afterClosed().subscribe( result => {
@@ -91,8 +91,8 @@ export class AccountListComponent implements OnInit {
 
   openAddAccountDialog() {
     const dialogRef = this.dialog.open(AccountFormComponent, {
-      width: '700px',
-      height: '300px',
+      height: '1200px',
+      width: '800px',
       data: {account: this.account}
     });
 
