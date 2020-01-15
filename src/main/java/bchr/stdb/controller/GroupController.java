@@ -23,7 +23,7 @@ public class GroupController {
         return groupService.getAllGroups();
     }
 
-    @PostMapping(path = {"/add"})
+    @PutMapping(path = {"/add"})
     public Group addNewGroup(@RequestBody Group group) {
         return this.groupService.addGroup(group);
     }

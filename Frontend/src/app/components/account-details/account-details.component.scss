@@ -5,10 +5,24 @@ h1 {
   font-weight: lighter;
 }
 
-.editButtons {
-  float: right;
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
+.address {
+  display: block;
+  width: min-content;
+  flex-wrap: wrap;
+  .street {
+
+    width: 700px;
+  }
+
+}
+
+
 mat-form-field {
-  width: 100%;
+  width: 50%;
 }

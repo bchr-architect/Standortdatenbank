@@ -12,6 +12,7 @@ public interface GroupDao extends JpaRepository<Group, Integer> {
     boolean existsByName(String compName);
 
     Group findByName(String Name);
+    List<Group> findGroupByActive(boolean active);
 
     //Group updateGroup(String name);
 

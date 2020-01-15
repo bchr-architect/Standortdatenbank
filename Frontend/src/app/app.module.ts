@@ -33,6 +33,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {GroupListComponent} from "./components/group-list/group-list.component";
 import {GroupFormComponent} from "./components/group-form/group-form.component";
 import {GroupDetailsComponent} from "./components/group-details/group-details.component";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import {GroupDetailsComponent} from "./components/group-details/group-details.co
     MatButtonToggleModule,
     MatRippleModule,
     FlexModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatListModule
   ],
   entryComponents: [AccountDetailsComponent, ContactDetailsComponent, GroupDetailsComponent],
   providers: [ContactService],

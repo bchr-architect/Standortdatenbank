@@ -16,6 +16,7 @@
       </div>
     </div>
   </div>
+  <br>
   <div class="form-group">
     <mat-form-field>
       <input matInput placeholder="ID" [(ngModel)]="data.id" readonly>
@@ -49,25 +50,27 @@
       <input matInput placeholder="Telefon 2" [(ngModel)]="data.phone2" [readonly]="isReadOnly">
     </mat-form-field>
   </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Strasse" [(ngModel)]="data.street" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="PLZ" [(ngModel)]="data.postCode" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Ort" [(ngModel)]="data.place" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Land" [(ngModel)]="data.country" [readonly]="isReadOnly">
-    </mat-form-field>
+  <div class="address">
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput class="street" placeholder="Strasse" [(ngModel)]="data.street" [readonly]="isReadOnly">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="PLZ" [(ngModel)]="data.postCode" [readonly]="isReadOnly">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="Ort" [(ngModel)]="data.place" [readonly]="isReadOnly">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="Land" [(ngModel)]="data.country" [readonly]="isReadOnly">
+      </mat-form-field>
+    </div>
   </div>
   <div class="form-group">
     <mat-form-field>
@@ -100,13 +103,14 @@
              (ngModelChange)="data.lastModifiedDate"
              readonly>
     </mat-form-field>
+
+
+    <mat-dialog-actions float="right">
+      <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data"
+              (click)="onSubmit()">Speichern
+      </button>
+    </mat-dialog-actions>
+
   </div>
 
-  <mat-dialog-actions float="right">
-    <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data"
-            (click)="onSubmit()">Speichern
-    </button>
-  </mat-dialog-actions>
-
 </div>
-

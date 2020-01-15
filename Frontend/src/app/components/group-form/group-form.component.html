@@ -12,7 +12,7 @@
 
     <div class="form-group">
       <mat-form-field>
-        <label for="additive">Zusatz</label>
+        <label for="additive">Beschreibung</label>
         <input matInput type="text" class="form-control" id="additive" required
                [(ngModel)]="group.additive"
                name="additive">
@@ -21,7 +21,7 @@
 
     <div class="form-group">
       <mat-form-field>
-        <label>UnterordnungTest</label>
+        <label>Teil von</label>
         <mat-select [(value)]="group.mother">
           <mat-option *ngFor="let mother of groups" [value]="mother">
             {{mother.name}}
@@ -30,7 +30,7 @@
       </mat-form-field>
     </div>
 
-    <button mat-raised-button color="primary" type="submit"  (click)="onSubmit()">Submit</button>
+    <button mat-raised-button color="primary" type="submit"  (click)="onSubmit()">Hinzufügen</button>
 
   </form>
 </div>
