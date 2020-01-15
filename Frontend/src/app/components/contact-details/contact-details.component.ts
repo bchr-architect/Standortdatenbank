@@ -5,8 +5,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ContactService} from "../../services/contact.service";
 import {Account} from "../../modules/account";
 import {AccountService} from "../../services/account.service";
-import {DatePipe} from "@angular/common";
+import {GroupService} from "../../services/group.service";
 import {Group} from "../../modules/group";
+import {isUndefined} from "util";
 
 @Component({
   selector: 'app-contact-details',
@@ -18,12 +19,14 @@ export class ContactDetailsComponent implements OnInit{
   contact: Contact;
   isReadOnly: boolean;
   accounts: Account[];
+  groups: Group[];
   s : string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private contactService: ContactService,
+    private groupService: GroupService,
     public dialogRef: MatDialogRef<ContactDetailsComponent>,
     private accountService: AccountService,
     @Inject(MAT_DIALOG_DATA) public data: {
@@ -32,7 +35,7 @@ export class ContactDetailsComponent implements OnInit{
       street: string, postCode: string, country: string, phone: string, phone2: string,
       phone3: string, phone4: string, fax: string, mailbox: string, mailboxPlace: string,
       mailboxPostcode: string, mailboxCountry: string, homepage: string, account: Account,
-      creatorID: string, editedByID: string, grpID: number, representativeID: string,
+      creatorID: string, editedByID: string, representativeID: string,
       languageID: string, ustID: string, contactID: number, shippingAddress: string,
       refAddress: string, refAddress2: string, additional: string, additional2: string,
       additional3: string, inactive: boolean, privatePerson: boolean, cession: boolean,
@@ -48,6 +51,7 @@ export class ContactDetailsComponent implements OnInit{
     this.contact = new Contact();
     this.isReadOnly = true;
     this.accounts = new Array<Account>();
+    this.groups = new Array<Group>();
   }
 
   ngOnInit(){
@@ -58,15 +62,23 @@ export class ContactDetailsComponent implements OnInit{
         }
       })
     )
+
+    this.groupService.findAll().subscribe(sourceGroups =>
+      sourceGroups.forEach(entry => {
+        if(entry.active) {
+          this.groups.push(entry)
+        }
+      })
+    )
   }
 
     onSubmit() {
-      this.contact = this.data;
+      this.checkNullValues();
       this.contactService.save(this.contact).subscribe();
     }
 
     onDelete() {
-      this.contact = this.data;
+      this.checkNullValues();
       this.contact.inactive = true;
       this.contactService.save(this.contact).subscribe();
       this.dialogRef.close();
@@ -80,12 +92,27 @@ export class ContactDetailsComponent implements OnInit{
       this.router.navigate(['contacts']);
     }
 
-  compareById(i1: Account, i2: Account): boolean {
-    return i1 && i2 ? i1.id == i2.id : i1 == i2;
-  }
+    compareById(i1: Account, i2: Account): boolean {
+      return i1 && i2 ? i1.id == i2.id : i1 == i2;
+    }
 
-  convertDate(){
+    compareByGroupId(i1: Group, i2: Group): boolean {
+      return i1 && i2 ? i1.id == i2.id : i1 == i2;
+    }
 
-  }
+    checkNullValues() { //saving "" not possible, saving null is
+      if(this.data.account == null || isUndefined(this.data.account.compName) || this.data.account.compName == "") {
+        this.data.account = null;
+        this.contact = this.data;
+      } else {
+        this.contact = this.data;
+      }
 
+      if(this.data.group == null || isUndefined(this.data.group.name) || this.data.group.name == "") {
+        this.data.group = null;
+        this.contact = this.data;
+      } else {
+        this.contact = this.data;
+      }
+    }
 }

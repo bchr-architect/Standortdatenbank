@@ -27,13 +27,13 @@
 
   <div class="form-group">
     <mat-form-field>
-      <input matInput placeholder="Erstellt am" [(ngModel)]="data.createdDate" [readonly]="isReadOnly">
+      <input matInput placeholder="Erstellt am" [ngModel]="data.createdDate | date:'dd/MM/yyyy'" readonly>
     </mat-form-field>
   </div>
 
   <div class="form-group">
     <mat-form-field >
-      <input matInput placeholder="Zuletzt geändert am" [(ngModel)]="data.lastModifiedDate" readonly>
+      <input matInput placeholder="Zuletzt geändert am" [ngModel]="data.lastModifiedDate | date:'dd/MM/yyyy'" readonly>
     </mat-form-field>
   </div>
 

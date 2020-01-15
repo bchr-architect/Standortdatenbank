@@ -22,7 +22,7 @@ export class AccountListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   accountTableSource: MatTableDataSource<Account>;
-  displayedColumns: string[] = ['ID','compName', 'email', 'createdDate','lastModifiedDate'];
+  displayedColumns: string[] = ['compName', 'email','companyType','street', 'place', 'postCode', 'nrOfEmployees','ustID'];
   private accounts: Account[];
   private account: Account;
   selectedRowIndex: number = -1;
@@ -38,8 +38,8 @@ export class AccountListComponent implements OnInit {
     this.accountService.findAll().subscribe(data => {
       this.accountTableSource.data = data;
       this.accountTableSource.data.forEach(account => {
-        this.checkNullValues(account)
-        this.checkInactive(account);
+        this.checkNullValues(account);
+
       });
       this.accountTableSource.sort = this.sort;
       this.accountTableSource.paginator = this.paginator;
@@ -66,8 +66,8 @@ export class AccountListComponent implements OnInit {
 
   openAccountDetailsDialog(data: Data) {
     const dialogRef = this.dialog.open(AccountDetailsComponent, {
-      height: '500px',
-      width: '550px',
+      height: '1200px',
+      width: '800px',
       data: { ...data}
     });
     dialogRef.afterClosed().subscribe( result => {
@@ -82,7 +82,12 @@ export class AccountListComponent implements OnInit {
         });
       }
 
+
       this.accountService.findAll().subscribe(data => {
+        this.accountTableSource.data=data;
+        this.accountTableSource.data.forEach( entry => {
+          this.checkNullValues(entry);
+        })
         this.accountTableSource.sort = this.sort;
         this.accountTableSource.paginator = this.paginator;
       });
@@ -91,8 +96,8 @@ export class AccountListComponent implements OnInit {
 
   openAddAccountDialog() {
     const dialogRef = this.dialog.open(AccountFormComponent, {
-      width: '700px',
-      height: '300px',
+      height: '1200px',
+      width: '800px',
       data: {account: this.account}
     });
 
@@ -102,22 +107,14 @@ export class AccountListComponent implements OnInit {
       this.accountService.findAll().subscribe(data => {
         this.accountTableSource.data = data;
         this.accountTableSource.data.forEach(entry => {
-
           this.checkNullValues(entry);
-          this.checkInactive(entry);
+
 
         })
         this.accountTableSource.sort = this.sort;
         this.accountTableSource.paginator = this.paginator;
       });
     });
-  }
-
-  checkInactive(entry: any) {
-    if(!entry.active) {
-      const index = this.accountTableSource.data.indexOf(entry);
-      this.accountTableSource.data.splice(index,1);
-    }
   }
 
   exportAsExcel() {

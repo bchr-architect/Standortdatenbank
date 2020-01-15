@@ -62,7 +62,7 @@ export class ContactListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe( result => {
-      console.log('The dialog was closed');
+      console.log('The dialog was closed', this.tableSource.data);
 
       if(!isUndefined(result)) {
         this.tableSource.filteredData.filter((value, index) => {
@@ -156,7 +156,7 @@ export class ContactListComponent implements OnInit {
   checkInactive(entry: any) {
     if (entry.inactive) {
       const index = this.tableSource.data.indexOf(entry);
-      //this.tableSource.data.splice(index,1);
+      this.tableSource.data.splice(index,1);
     }
   }
 }
