@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="ACCOUNT_TABLE")
+@Table(name = "ACCOUNT_TABLE")
 public class Account extends Auditable {
 
 
@@ -46,6 +46,67 @@ public class Account extends Auditable {
 
     @Column(name = "CONTACT_PERSON", length = 20)
     private Integer contactID;
+
+    @Column(name = "COMP_TYPE", length = 40)
+    private String companyType;
+
+    @Column(name = "HOMEPAGE", length = 70)
+    private String homepage;
+
+    @Column(name = "NR_OF_EMPLOYEES", length = 10)
+    private int nrOfEmployees;
+
+    @Column(name = "ACTIVE")
+    private Boolean active;
+
+    @Column()
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
+    @JsonIgnoreProperties("account")
+    private Set<Contact> contacts = new HashSet<>();
+
+    public Account() {
+
+    }
+
+    public Integer getID() {
+        return id;
+    }
+
+    public void setID(Integer ID) {
+        this.id = ID;
+    }
+
+    public Account(String name) {
+        this.compName = name;
+    }
+
+    public Account(String name, Contact[] contacts) {
+        this.compName = name;
+    }
+
+    public String getCompName() {
+        return compName;
+    }
+
+    public void setCompName(String compName) {
+        this.compName = compName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 
     public String getPhone() {
         return phone;
@@ -111,73 +172,29 @@ public class Account extends Auditable {
         this.homepage = homepage;
     }
 
-    public void setContacts(Set<bchr.stdb.entity.Contact> contacts) {
+    public void setContacts(Set<Contact> contacts) {
         this.contacts = contacts;
-    }
-
-    @Column(name = "HOMEPAGE", length = 70)
-    private String homepage;
-
-
-    @Column(name = "ACTIVE")
-    private Boolean active;
-
-    @Column()
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
-    @JsonIgnoreProperties("account")
-    private Set<Contact> contacts = new HashSet<>();
-
-    public Account() {
-
-    }
-
-    public Integer getID() {
-        return id;
-    }
-
-    public void setID(Integer ID) {
-        this.id = ID;
-    }
-
-    public Account(String name) {
-        this.compName=name;
-    }
-
-    public Account(String name, Contact[] contacts) {
-        this.compName=name;
-    }
-
-    public String getCompName() {
-        return compName;
-    }
-
-    public void setCompName(String compName) {
-        this.compName = compName;
-    }
-
-   public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
     }
 
     public Set<Contact> getContacts() {
         return contacts;
     }
 
-    public void setContacts(Set<Contact> contacts) {
-        this.contacts = contacts;
+    public String getCompanyType() {
+        return companyType;
+    }
+
+    public void setCompanyType(String companyType) {
+        this.companyType = companyType;
+    }
+
+    public int getNrOfEmployees() {
+        return nrOfEmployees;
+    }
+
+    public void setNrOfEmployees(int nrOfEmployees) {
+
+        this.nrOfEmployees = nrOfEmployees;
     }
 
     public void addContact(Contact contact) {

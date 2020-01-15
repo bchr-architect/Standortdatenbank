@@ -7,11 +7,13 @@
     </mat-form-field>
   </div>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Gruppe" [(ngModel)]="data.grpID" readonly>
-    </mat-form-field>
-  </div>
+  <mat-form-field>
+    <mat-select placeholder="Groups" [(value)]="data.group" [compareWith]="compareByGroupId" [disabled]="isReadOnly">
+      <mat-option *ngFor="let group of groups" [value]="group">
+        {{group.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <div class="form-group">
     <mat-checkbox [(ngModel)]="data.privatePerson" [disabled]="isReadOnly">Privatperson</mat-checkbox>
@@ -120,15 +122,10 @@
     <mat-form-field>
       <input matInput placeholder="2. Zusatz" [(ngModel)]="data.additional2" [readonly]="isReadOnly">
     </mat-form-field>
-  </div>
 
-  <mat-card>Sprache</mat-card>
-
-  <div class="form-group">
-    <mat-checkbox id="languageIDgerman" name="languageID" [disabled]="isReadOnly">Deutsch</mat-checkbox>
-    <mat-checkbox id="languageIDenglish" name="languageID" [disabled]="isReadOnly">Englisch</mat-checkbox>
-    <mat-checkbox id="languageIDitalian" name="languageID" [disabled]="isReadOnly">Italienisch</mat-checkbox>
-    <mat-checkbox id="languageIDspanish" name="languageID" [disabled]="isReadOnly">Spanisch</mat-checkbox>
+    <mat-form-field>
+      <input matInput placeholder="Sprache" [(ngModel)]="data.languageID" [readonly]="isReadOnly">
+    </mat-form-field>
   </div>
 
   <mat-card>Anschrift</mat-card>
