@@ -54,7 +54,7 @@ export class ContactDetailsComponent implements OnInit{
     this.groups = new Array<Group>();
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.accountService.findAll().subscribe(sourceAccounts =>
       sourceAccounts.forEach(entry=> {
         if(entry.active) {

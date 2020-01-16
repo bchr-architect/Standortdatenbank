@@ -47,7 +47,6 @@ export class AccountDetailsComponent {
   onEdit() {
     this.isReadOnly = false;
     this.changeActive = true;
-
   }
 
   goToAccountList() {
