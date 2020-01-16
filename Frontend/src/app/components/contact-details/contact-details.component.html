@@ -226,8 +226,8 @@
 
       <div class="form-group">
         <mat-form-field>
-          <label>Notizen</label>
           <textarea [(ngModel)]="data.notes" [readonly]="isReadOnly"
+                    placeholder="Notizen"
                     matInput cdkTextareaAutosize
                     #autosize="cdkTextareaAutosize"
                     cdkAutosizeMinRows="1"
