@@ -28,21 +28,20 @@ export class ContactListComponent implements OnInit {
   displayedColumns: string[] = ['firstName', 'lastName', 'email', 'account', 'group', 'createdDate', 'notes'];
   private contacts: Contact[];
   private contact: Contact;
-
   selectedRowIndex: number = -1;
+  panelOpenState = false;
 
   constructor(private contactService: ContactService,
               private accountService: AccountService,
               private route: ActivatedRoute,
               private router: Router,
-              public dialog: MatDialog) {
-    this.tableSource = new MatTableDataSource<Contact>(this.contacts)
+                public dialog: MatDialog) {
+              this.tableSource = new MatTableDataSource<Contact>(this.contacts)
   }
 
   ngOnInit() {
     this.contactService.findAll().subscribe(data => {
       this.updateTable(data);
-
     });
   }
 
@@ -62,7 +61,7 @@ export class ContactListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe( result => {
-      console.log('The dialog was closed', this.tableSource.data);
+      console.log('The dialog was closed');
 
       if(!isUndefined(result)) {
         this.tableSource.filteredData.filter((value, index) => {
@@ -89,22 +88,13 @@ export class ContactListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', this.tableSource.data);
-      if(!isUndefined(result)) {
-        this.tableSource.filteredData.filter((value, index) => {
-          if(value.id==result.id) {
-            value=result;
-          }
-
-        });
-      }
+      console.log('The dialog was closed');
       this.contact = result;
       this.contactService.findAll().subscribe(data => {
         this.tableSource.data = data;
         this.tableSource.data.forEach(entry => {
 
           this.checkNullValues(entry);
-          this.checkInactive(entry);
 
         });
         this.tableSource.sort = this.sort;
@@ -135,11 +125,9 @@ export class ContactListComponent implements OnInit {
   }
 
   updateTable(data: any) {
-
     this.tableSource.data = data;
     this.tableSource.data.forEach(entry => {
       this.checkNullValues(entry);
-      this.checkInactive(entry);
     })
     this.tableSource.sort = this.sort;
     this.tableSource.paginator = this.paginator;
@@ -151,12 +139,5 @@ export class ContactListComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Kontakte');
 
     XLSX.writeFile(wb, 'Kontakte.xlsx');
-  }
-
-  checkInactive(entry: any) {
-    if (entry.inactive) {
-      const index = this.tableSource.data.indexOf(entry);
-      this.tableSource.data.splice(index,1);
-    }
   }
 }

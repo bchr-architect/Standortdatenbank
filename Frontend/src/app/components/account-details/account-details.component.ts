@@ -22,8 +22,6 @@ export class AccountDetailsComponent{
   account: Account;
   isReadOnly: boolean;
   changeActive: boolean
-  tableSource: MatTableDataSource<Contact>;
-  displayedColumns: string[] = ['firstName', 'lastName', 'email'];
 
   constructor(
     private route: ActivatedRoute,

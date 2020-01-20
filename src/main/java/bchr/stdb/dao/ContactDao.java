@@ -12,4 +12,6 @@ public interface ContactDao extends JpaRepository<Contact, Integer> {
     @Query(value="select * From CONTACT_TABLE c Join ACCOUNT_TABLE a ON c.account_id=a.id",
     nativeQuery = true)
     List<Contact> findAllContactsWithAccount();
+
+    List<Contact> findContactByInactive(boolean active);
 }

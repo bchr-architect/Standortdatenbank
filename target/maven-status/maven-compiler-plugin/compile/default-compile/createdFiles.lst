@@ -4,7 +4,12 @@ bchr\stdb\misc\Auditable.class
 bchr\stdb\dao\AccountDao.class
 bchr\stdb\entity\Account.class
 bchr\stdb\controller\ContactController.class
+bchr\stdb\controller\GroupController.class
+bchr\stdb\dao\GroupDao.class
 bchr\stdb\dao\ContactDao.class
 bchr\stdb\controller\AccountController.class
+bchr\stdb\service\GroupService.class
+bchr\stdb\entity\Employee.class
 bchr\stdb\service\ContactService.class
+bchr\stdb\entity\Group.class
 bchr\stdb\StdbApplication.class
