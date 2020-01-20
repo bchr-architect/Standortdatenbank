@@ -35,7 +35,7 @@ export class ContactListComponent implements OnInit {
               private accountService: AccountService,
               private route: ActivatedRoute,
               private router: Router,
-              public dialog: MatDialog) {
+                public dialog: MatDialog) {
               this.tableSource = new MatTableDataSource<Contact>(this.contacts)
   }
 
@@ -95,7 +95,6 @@ export class ContactListComponent implements OnInit {
         this.tableSource.data.forEach(entry => {
 
           this.checkNullValues(entry);
-          this.checkInactive(entry);
 
         });
         this.tableSource.sort = this.sort;
@@ -129,7 +128,6 @@ export class ContactListComponent implements OnInit {
     this.tableSource.data = data;
     this.tableSource.data.forEach(entry => {
       this.checkNullValues(entry);
-      this.checkInactive(entry);
     })
     this.tableSource.sort = this.sort;
     this.tableSource.paginator = this.paginator;
@@ -141,12 +139,5 @@ export class ContactListComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, 'Kontakte');
 
     XLSX.writeFile(wb, 'Kontakte.xlsx');
-  }
-
-  checkInactive(entry: any) {
-    if (entry.inactive) {
-      const index = this.tableSource.data.indexOf(entry);
-      this.tableSource.data.splice(index,1);
-    }
   }
 }
