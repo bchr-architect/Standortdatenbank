@@ -41,7 +41,13 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit() {
     this.contactService.findAll().subscribe(data => {
-      this.updateTable(data);
+      this.tableSource.data = data;
+      this.tableSource.data.forEach(contact => {
+        this.checkNullValues(contact);
+        this.checkInactive(contact);
+      });
+      this.tableSource.sort = this.sort;
+      this.tableSource.paginator = this.paginator;
     });
   }
 
@@ -135,7 +141,7 @@ export class ContactListComponent implements OnInit {
       this.checkNullValues(entry);
       this.checkInactive(entry);
 
-    })
+    });
     this.tableSource.sort = this.sort;
     this.tableSource.paginator = this.paginator;
   }
