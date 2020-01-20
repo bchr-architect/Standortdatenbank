@@ -2,403 +2,458 @@
     <h1>Kontakt hinzufügen</h1>
   <form #contactForm="ngForm">
 
-    <div class="form-group">
-      <mat-form-field>
-        <label>Gruppe</label>
-        <mat-select [(value)]="contact.group" [compareWith]="compareByGroupId">
-          <mat-option *ngFor="let group of groups" [value]="group">
-            {{group.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Persönliche Daten
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-    <!--<div class="form-group">
-      <mat-checkbox [(ngModel)]="contact.privatePerson" id="privatePerson" name="privatePerson">Privatperson</mat-checkbox>
-    </div> -->
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Anrede" id="appellation"
+          [(ngModel)]="contact.appellation"
+          name="appellation">
+        </mat-form-field>
 
-    <div class="form-group">
-      <mat-form-field>
-        <label for="appellation">Anrede</label>
-        <input matInput type="text" class="form-control" id="appellation"
-               [(ngModel)]="contact.appellation"
-               name="appellation">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Briefanrede"
+                 id="letterAppellation"
+                 [(ngModel)]="contact.letterAppellation"
+                 name="letterAppellation">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="letterAppellation">Briefanrede</label>
-        <input matInput type="text" class="form-control" id="letterAppellation"
-               [(ngModel)]="contact.letterAppellation"
-               name="letterAppellation">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Titel"
+                 id="title"
+                 [(ngModel)]="contact.title"
+                 name="title">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="title">Titel</label>
-        <input matInput type="text" class="form-control" id="title"
-               [(ngModel)]="contact.title"
-               name="title">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Nachgestellter Titel"
+                 id="postpositiveTitle"
+                 [(ngModel)]="contact.postpositiveTitle"
+                 name="postpositiveTitle">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="postpositiveTitle">Nachgestellter Titel</label>
-        <input matInput type="text" class="form-control" id="postpositiveTitle"
-               [(ngModel)]="contact.postpositiveTitle"
-               name="postpositiveTitle">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Vorname"
+                 id="firstname" required
+                 [(ngModel)]="contact.firstName"
+                 name="firstname">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="firstname">Vorname</label>
-        <input matInput type="text" class="form-control" id="firstname" required
-               [(ngModel)]="contact.firstName"
-               name="firstname">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Nachname"
+                 id="lastname" required
+                 [(ngModel)]="contact.lastName"
+                 name="lastname">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="lastname">Nachname</label>
-        <input matInput type="text" class="form-control" id="lastname" required
-               [(ngModel)]="contact.lastName"
-               name="lastname">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="date" class="form-control" placeholder="Geburtstag"
+                 id="birthday"
+                 [(ngModel)]="contact.birthday"
+                 name="birthday">
+        </mat-form-field>
+      </mat-expansion-panel>
 
-      <mat-form-field>
-        <label for="birthday">Geburtstag</label>
-        <input matInput type="date" class="form-control" id="birthday"
-               [(ngModel)]="contact.birthday"
-               name="birthday">
-      </mat-form-field>
-    </div>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Kontaktdaten
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-    <div class="form-group">
-      <mat-form-field>
-        <label for="email">Email</label>
-        <input matInput type="text" class="form-control" id="email" required
-               [(ngModel)]="contact.email"
-               name="email">
-      </mat-form-field>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="E-Mail"
+                   id="email" required
+                   [(ngModel)]="contact.email"
+                   name="email">
+          </mat-form-field>
 
-      <mat-form-field>
-        <label for="email">2. Email</label>
-        <input matInput type="text" class="form-control" id="email2"
-               [(ngModel)]="contact.email2"
-               name="email2">
-      </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="2. E-Mail"
+                   id="email2"
+                   [(ngModel)]="contact.email2"
+                   name="email2">
+          </mat-form-field>
 
-      <mat-form-field>
-        <label for="phone">1. Telefonnummer</label>
-        <input matInput type="text" class="form-control" id="phone"
-               [(ngModel)]="contact.phone"
-               name="phone">
-      </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="1. Telefonnummer"
+                   id="phone"
+                   [(ngModel)]="contact.phone"
+                   name="phone">
+          </mat-form-field>
 
-      <mat-form-field>
-        <label for="phone2">2. Telefonnummer</label>
-        <input matInput type="text" class="form-control" id="phone2"
-               [(ngModel)]="contact.phone2"
-               name="phone2">
-      </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="2. Telefonnummer"
+                   id="phone2"
+                   [(ngModel)]="contact.phone2"
+                   name="phone2">
+          </mat-form-field>
 
-      <mat-form-field>
-        <label for="phone3">3. Telefonnummer</label>
-        <input matInput type="text" class="form-control" id="phone3"
-               [(ngModel)]="contact.phone3"
-               name="phone3">
-      </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="3. Telefonnummer"
+                   id="phone3"
+                   [(ngModel)]="contact.phone3"
+                   name="phone3">
+          </mat-form-field>
 
-      <mat-form-field>
-        <label for="phone4">4. Telefonnummer</label>
-        <input matInput type="text" class="form-control" id="phone4"
-               [(ngModel)]="contact.phone4"
-               name="phone4">
-      </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="4. Telefonnummer"
+                   id="phone4"
+                   [(ngModel)]="contact.phone4"
+                   name="phone4">
+          </mat-form-field>
 
-      <mat-form-field>
-        <label for="fax">Fax</label>
-        <input matInput type="text" class="form-control" id="fax"
-               [(ngModel)]="contact.fax"
-               name="fax">
-      </mat-form-field>
-    </div>
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="Fax"
+                   id="fax"
+                   [(ngModel)]="contact.fax"
+                   name="fax">
+          </mat-form-field>
 
-    <div class="form-group">
-      <mat-form-field>
-        <label>Account</label>
-        <mat-select [(value)]="contact.account" [compareWith]="compareById">
-          <mat-option *ngFor="let account of accounts" [value]="account">
-            {{account.compName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="Homepage"
+                   id="homepage"
+                   [(ngModel)]="contact.homepage"
+                   name="homepage">
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
 
-    <div class="form-group">
-      <mat-form-field>
-        <label for="corporation">Unternehmen</label>
-        <input matInput type="text" class="form-control" id="corporation"
-               [(ngModel)]="contact.corporation"
-               name="corporation">
-      </mat-form-field>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Tätigkeit
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-      <mat-form-field>
-        <label for="function">Funktion</label>
-        <input matInput type="text" class="form-control" id="function"
-               [(ngModel)]="contact.function"
-               name="function">
-      </mat-form-field>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="Unternehmen"
+                   id="corporation"
+                   [(ngModel)]="contact.corporation"
+                   name="corporation">
+          </mat-form-field>
 
-      <mat-form-field>
-        <label for="department">Abteilung</label>
-        <input matInput type="text" class="form-control" id="department"
-               [(ngModel)]="contact.department"
-               name="department">
-      </mat-form-field>
+            <mat-form-field>
+              <input matInput type="date" class="form-control" placeholder="Gegründet am"
+                     id="foundingDate"
+                     [(ngModel)]="contact.foundingDate"
+                     name="foundingDate">
+            </mat-form-field>
 
-      <mat-form-field>
-        <label for="priority">Priorität</label>
-        <input matInput type="number" class="form-control" id="priority"
-               [(ngModel)]="contact.priority"
-               name="priority">
-      </mat-form-field>
-    </div>
+            <mat-form-field>
+              <input matInput type="text" class="form-control" placeholder="Ansprechperson Standortagentur"
+                     id="representativeID"
+                     [(ngModel)]="contact.representativeID"
+                     name="representativeID">
+            </mat-form-field>
 
-    <div class="form-group">
-      <mat-checkbox [(ngModel)]="contact.freeFlag1" id="freeFlag1" name="freeFlag1">1. Freies Kennzeichen</mat-checkbox>
-      <mat-checkbox [(ngModel)]="contact.freeFlag2" id="freeFlag2" name="freeFlag2">2. Freies Kennzeichen</mat-checkbox>
-    </div>
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="Funktion"
+                   id="function"
+                   [(ngModel)]="contact.function"
+                   name="function">
+          </mat-form-field>
 
-    <div class="form-group">
-      <mat-form-field>
-        <label for="foundingDate">Gegründet am</label>
-        <input matInput type="date" class="form-control" id="foundingDate"
-               [(ngModel)]="contact.foundingDate"
-               name="foundingDate">
-      </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="Abteilung"
+                   id="department"
+                   [(ngModel)]="contact.department"
+                   name="department">
+          </mat-form-field>
 
-      <mat-form-field>
-        <label for="representativeID">Ansprechperson Standortagentur</label>
-        <input matInput type="text" class="form-control" id="representativeID"
-               [(ngModel)]="contact.representativeID"
-               name="representativeID">
-      </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="Steuernummer"
+                   id="ustID"
+                   [(ngModel)]="contact.ustID"
+                   name="ustID">
+          </mat-form-field>
 
-      <mat-form-field>
-        <label for="additional">Zusatz</label>
-        <input matInput type="text" class="form-control" id="additional"
-               [(ngModel)]="contact.additional"
-               name="additional">
-      </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" class="form-control" placeholder="Priorität"
+                   id="priority"
+                   [(ngModel)]="contact.priority"
+                   name="priority">
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
 
-      <mat-form-field>
-        <label for="additional2">2. Zusatz</label>
-        <input matInput type="text" class="form-control" id="additional2"
-               [(ngModel)]="contact.additional2"
-               name="additional">
-      </mat-form-field>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Zuordnung
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-      <mat-form-field>
-        <input matInput placeholder="Sprache" [(ngModel)]="contact.languageID">
-      </mat-form-field>
-    </div>
+        <div class="form-group">
+          <mat-form-field>
+            <label>Organisation</label>
+            <mat-select [(value)]="contact.account" [compareWith]="compareById">
+              <mat-option *ngFor="let account of accounts" [value]="account">
+                {{account.compName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-    <mat-card>Anschrift</mat-card>
+          <mat-form-field>
+            <label>Gruppe</label>
+            <mat-select [(value)]="contact.group" [compareWith]="compareByGroupId">
+              <mat-option *ngFor="let group of groups" [value]="group">
+                {{group.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
 
-    <div class="form-group">
-      <mat-form-field>
-        <label for="street">Straße</label>
-        <input matInput type="text" class="form-control" id="street"
-               [(ngModel)]="contact.street"
-               name="street">
-      </mat-form-field>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Anschrift
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-      <mat-form-field>
-        <label for="postCode">PLZ</label>
-        <input matInput type="text" class="form-control" id="postCode"
-               [(ngModel)]="contact.postCode"
-               name="postcode">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Strasse"
+                 id="street"
+                 [(ngModel)]="contact.street"
+                 name="street">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="place">Ort</label>
-        <input matInput type="text" class="form-control" id="place"
-               [(ngModel)]="contact.place"
-               name="place">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Postleitzahl"
+                 id="postCode"
+                 [(ngModel)]="contact.postCode"
+                 name="postcode">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="country">Land</label>
-        <input matInput type="text" class="form-control" id="country"
-               [(ngModel)]="contact.country"
-               name="country">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Ort"
+                 id="place"
+                 [(ngModel)]="contact.place"
+                 name="place">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="region">Region</label>
-        <input matInput type="text" class="form-control" id="region"
-               [(ngModel)]="contact.region"
-               name="region">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Land"
+                 id="country"
+                 [(ngModel)]="contact.country"
+                 name="country">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="mailbox">Postfach</label>
-        <input matInput type="text" class="form-control" id="mailbox"
-               [(ngModel)]="contact.mailbox"
-               name="mailbox">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Region"
+                 id="region"
+                 [(ngModel)]="contact.region"
+                 name="region">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="mailboxPlace">Postfach Ort</label>
-        <input matInput type="text" class="form-control" id="mailboxPlace"
-               [(ngModel)]="contact.mailboxPlace"
-               name="mailboxPlace">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Lieferanschrift"
+                 id="shippingAdress"
+                 [(ngModel)]="contact.shippingAddress"
+                 name="shippingAddress">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="mailboxPostcode">Postfach PLZ</label>
-        <input matInput type="text" class="form-control" id="mailboxPostcode"
-               [(ngModel)]="contact.mailboxPostcode"
-               name="mailboxPostcode">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="1. RefAdresse"
+                 id="refAddress"
+                 [(ngModel)]="contact.refAddress"
+                 name="refAddress">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="mailboxCountry">Postfach Land</label>
-        <input matInput type="text" class="form-control" id="mailboxCountry"
-               [(ngModel)]="contact.mailboxCountry"
-               name="mailboxCountry">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="2. RefAdresse"
+                 id="refAddress2"
+                 [(ngModel)]="contact.refAddress2"
+                 name="refAddress2">
+        </mat-form-field>
+      </mat-expansion-panel>
 
-      <mat-form-field>
-        <label for="shippingAdress">Lieferanschrift</label>
-        <input matInput type="text" class="form-control" id="shippingAdress"
-               [(ngModel)]="contact.shippingAddress"
-               name="shippingAddress">
-      </mat-form-field>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Postfach
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-      <mat-form-field>
-        <label for="refAddress">RefAdresse</label>
-        <input matInput type="text" class="form-control" id="refAddress"
-               [(ngModel)]="contact.refAddress"
-               name="refAddress">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Postfach"
+                 id="mailbox"
+                 [(ngModel)]="contact.mailbox"
+                 name="mailbox">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="refAddress2">2. RefAdresse</label>
-        <input matInput type="text" class="form-control" id="refAddress2"
-               [(ngModel)]="contact.refAddress2"
-               name="refAddress2">
-      </mat-form-field>
-    </div>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Ort"
+                 id="mailboxPlace"
+                 [(ngModel)]="contact.mailboxPlace"
+                 name="mailboxPlace">
+        </mat-form-field>
 
-    <div class="form-group">
-      <mat-form-field>
-        <label for="ustID">Steuernummer</label>
-        <input matInput type="text" class="form-control" id="ustID"
-               [(ngModel)]="contact.ustID"
-               name="ustID">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="PLZ"
+                 id="mailboxPostcode"
+                 [(ngModel)]="contact.mailboxPostcode"
+                 name="mailboxPostcode">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="additional3">3. Zusatz</label>
-        <input matInput type="text" class="form-control" id="additional3"
-               [(ngModel)]="contact.additional3"
-               name="additional3">
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Land"
+                 id="mailboxCountry"
+                 [(ngModel)]="contact.mailboxCountry"
+                 name="mailboxCountry">
+        </mat-form-field>
 
-      <mat-form-field>
-        <label for="homepage">Homepage</label>
-        <input matInput type="text" class="form-control" id="homepage"
-               [(ngModel)]="contact.homepage"
-               name="homepage">
-      </mat-form-field>
+      </mat-expansion-panel>
 
-      <mat-form-field>
-        <label for="status">Status</label>
-        <input matInput type="number" class="form-control" id="status"
-               [(ngModel)]="contact.status"
-               name="status">
-      </mat-form-field>
-    </div>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Notizen
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-    <mat-card>Datenschutzverordnung</mat-card>
+        <mat-form-field>
+          <mat-label>Notizen</mat-label>
+          <textarea matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5">
+        </textarea>
+        </mat-form-field>
 
-    <div class="form-group">
-      <mat-checkbox [(ngModel)]="contact.dsvAnonymised" id="dsvAnonymised" name="Anonymised">Anonym</mat-checkbox>
-    </div>
+      </mat-expansion-panel>
 
-    <div class="form-group">
-      <mat-form-field>
-        <label for="dsvAnonymisedBy">Anonymisiert von</label>
-        <input matInput type="text" class="form-control" id="dsvAnonymisedBy"
-               [(ngModel)]="contact.dsvAnonymisedBy"
-               name="dsvAnonymisedBy">
-      </mat-form-field>
 
-      <mat-form-field>
-        <label for="dsvDataCollection">Datenerhebung am</label>
-        <input matInput type="date" class="form-control" id="dsvDataCollection"
-               [(ngModel)]="contact.dsvDataCollection"
-               name="dsvDataCollection">
-      </mat-form-field>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Datenschutz-Grundverordnung
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-      <mat-form-field>
-        <label for="dsvSourceOfData">Datenherkunft</label>
-        <input matInput type="text" class="form-control" id="dsvSourceOfData"
-               [(ngModel)]="contact.dsvSourceOfData"
-               name="dsvSourceOfData">
-      </mat-form-field>
-    </div>
+        <div>
+          <mat-checkbox [(ngModel)]="contact.dsvAnonymised" id="dsvAnonymised" name="Anonymised">Anonymisiert</mat-checkbox>
+        </div>
 
-    <div class="form-group">
-      <mat-checkbox [(ngModel)]="contact.dsvDirectAdFlag" id="dsvDirectAdFlag" name="dsvDirectAdFlag">Direkt Werbeverbot</mat-checkbox>
-      <mat-checkbox [(ngModel)]="contact.dsvNotification" id="dsvNotification" name="dsvNotification">Person benachrichtigt</mat-checkbox>
-    </div>
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Anonymisiert von"
+                 id="dsvAnonymisedBy"
+                 [(ngModel)]="contact.dsvAnonymisedBy"
+                 name="dsvAnonymisedBy">
+        </mat-form-field>
 
-    <div class="form-group">
-      <mat-form-field>
-        <label for="cessionNote">Zessionvermerk</label>
-        <input matInput type="text" class="form-control" id="cessionNote"
-               [(ngModel)]="contact.cessionNote"
-               name="cessionNote">
-      </mat-form-field>
+        <div>
+          <mat-form-field>
+            <input matInput type="date" class="form-control" placeholder="Datenerhebung am"
+                   id="dsvDataCollection"
+                   [(ngModel)]="contact.dsvDataCollection"
+                   name="dsvDataCollection">
+          </mat-form-field>
 
-        <mat-checkbox [(ngModel)]="contact.cession" id="cession" name="cession">Zession</mat-checkbox>
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="Datenherkunft"
+                   id="dsvSourceOfData"
+                   [(ngModel)]="contact.dsvSourceOfData"
+                   name="dsvSourceOfData">
+          </mat-form-field>
+        </div>
 
-      <mat-form-field>
-        <label for="targetAudience">Zielgruppe</label>
-        <input matInput type="text" class="form-control" id="targetAudience"
-               [(ngModel)]="contact.targetAudience"
-               name="targetAudience">
-      </mat-form-field>
-    </div>
+        <div class="form-group">
+          <mat-checkbox [(ngModel)]="contact.dsvDirectAdFlag" id="dsvDirectAdFlag" name="dsvDirectAdFlag">Direktwerbeverbot</mat-checkbox>
+          <mat-checkbox [(ngModel)]="contact.dsvNotification" id="dsvNotification" name="dsvNotification">Person gem. Art.14 informiert</mat-checkbox>
+        </div>
+      </mat-expansion-panel>
 
-    <div class ="form-group">
-    <mat-form-field>
-      <mat-label>Notizen hinzufügen</mat-label>
-      <textarea matInput
-                cdkTextareaAutosize
-                #autosize="cdkTextareaAutosize"
-                cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5">
-      </textarea>
-    </mat-form-field>
-    </div>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Zusätze
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-    <div class="form-group">
-      <mat-form-field>
-        <label for="creatorID">Hinzugefügt von</label>
-        <input matInput type=text class="formm-control" id="creatorID"
-               [(ngModel)]="contact.creatorID"
-               name="creatorID">
-      </mat-form-field>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="1. Zusatz"
+                   id="additional"
+                   [(ngModel)]="contact.additional"
+                   name="additional">
+          </mat-form-field>
 
-      <mat-form-field>
-        <label for="editedByID">Geändert von</label>
-        <input matInput type=text class="formm-control" id="editedByID"
-               [(ngModel)]="contact.editedByID"
-               name="editedByID">
-      </mat-form-field>
-    </div>
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="2. Zusatz"
+                   id="additional2"
+                   [(ngModel)]="contact.additional2"
+                   name="additional2">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="3. Zusatz"
+                   id="additional3"
+                   [(ngModel)]="contact.additional3"
+                   name="additional3">
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-checkbox [(ngModel)]="contact.freeFlag1" id="freeFlag1" name="freeFlag1">1. Freies Kennzeichen</mat-checkbox>
+          <mat-checkbox [(ngModel)]="contact.freeFlag2" id="freeFlag2" name="freeFlag2">2. Freies Kennzeichen</mat-checkbox>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="Zessionvermerk"
+                   id="cessionNote"
+                   [(ngModel)]="contact.cessionNote"
+                   name="cessionNote">
+          </mat-form-field>
+
+          <mat-checkbox [(ngModel)]="contact.cession" id="cession" name="cession">Zession</mat-checkbox>
+
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="Zielgruppe"
+                   id="targetAudience"
+                   [(ngModel)]="contact.targetAudience"
+                   name="targetAudience">
+          </mat-form-field>
+        </div>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Administration
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+          <input matInput type=text class="formm-control" placeholder="Hinzugefügt von"
+                 id="creatorID"
+                 [(ngModel)]="contact.creatorID"
+                 name="creatorID">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type=text class="formm-control" placeholder="Geändert von"
+                 id="editedByID"
+                 [(ngModel)]="contact.editedByID"
+                 name="editedByID">
+        </mat-form-field>
+
+      </mat-expansion-panel>
+    </mat-accordion>
 
     <mat-dialog-actions align="center">
-      <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Submit</button>
+      <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Speichern</button>
     </mat-dialog-actions>
 
   </form>
