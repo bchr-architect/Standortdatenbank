@@ -1,6 +1,7 @@
 package bchr.stdb.dao;
 
 import bchr.stdb.entity.Account;
+import bchr.stdb.entity.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface AccountDao extends JpaRepository<Account,Integer> {
 
     Account findByCompName(String compName);
     List<Account> findAccountByActive(boolean active);
+
 }

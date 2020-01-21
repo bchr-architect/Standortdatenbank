@@ -24,20 +24,23 @@ public class Group extends Auditable {
     @Column(name = "ADDITIVE", length = 30)
     private String additive;
 
-    // x Children -> 1 Mother
-    @ManyToOne(cascade= CascadeType.MERGE)
-    @JoinColumn(name="mother_id")
-    public Group mother;
-
-    // 1 Mother -> x Children
-    @OneToMany(mappedBy="mother")
-    @JsonBackReference
-    public Set<Group> children = new HashSet<Group>();
-
     // 1 Group -> x Contacts
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "group")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     @JsonIgnoreProperties
     private Set<Contact> contacts = new HashSet<>();
+
+    // 1 Group -> x Contacts
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
+    @JsonIgnoreProperties
+    private Set<Contact> accounts = new HashSet<>();
+
+    public Set<Contact> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Contact> accounts) {
+        this.accounts = accounts;
+    }
 
     public Set<Contact> getContacts() {
         return contacts;
@@ -63,24 +66,8 @@ public class Group extends Auditable {
         this.additive = additive;
     }
 
-    public Group getMother() {
-        return mother;
-    }
-
-    public void setMother(Group mother) {
-        this.mother = mother;
-    }
-
     public Integer getId() {
         return id;
-    }
-
-    public Set<Group> getChildren() {
-        return children;
-    }
-
-    public void setChildren(Set<Group> children) {
-        this.children = children;
     }
 
     public Boolean getActive() {
@@ -92,16 +79,5 @@ public class Group extends Auditable {
     }
 
     public Group() {
-    }
-
-    public Group(String name, String additive) {
-        this.name=name;
-        this.additive = additive;
-    }
-
-    public Group(String name, String additive, Group mother, Group[] children) {
-        this.name=name;
-        this.additive = additive;
-        this.mother = mother;
     }
 }

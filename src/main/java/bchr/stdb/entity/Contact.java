@@ -93,7 +93,7 @@ public class Contact extends Auditable {
     public Account account3;
 
     // x Contacts -> 1 Group
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "Group_id")
     @JsonIgnoreProperties("groups")
     public Group group;

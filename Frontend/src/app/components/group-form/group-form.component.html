@@ -33,25 +33,6 @@
           </mat-form-field>
         </div>
       </mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Zugehörigkeit
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <div class="single-mat-field">
-          <mat-form-field>
-            <label>Teil von</label>
-            <mat-select [(value)]="group.mother">
-              <mat-option *ngFor="let mother of groups" [value]="mother">
-                {{mother.name}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </mat-expansion-panel>
     </mat-accordion>
 
     <mat-dialog-actions align="center">
