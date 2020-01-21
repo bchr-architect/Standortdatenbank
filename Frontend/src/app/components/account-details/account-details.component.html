@@ -1,7 +1,14 @@
 <div class="container">
+
   <div>
-    <h1>Account Details</h1>
-    <div class="editButtons">
+    <h1>Organisation Details</h1>
+
+    <mat-dialog-actions align="end" class="top-button">
+      <button mat-raised-button color="primary" type="button" (click)="accordion.openAll()">Alle Felder öffnen</button>
+      <button mat-raised-button color="primary" type="button" (click)="accordion.closeAll()">Alle Felder schließen</button>
+    </mat-dialog-actions>
+
+    <div class="editButton" align="end">
       <div>
         <button mat-raised-button type="button" class="changeBtn"
                 color="primary"
@@ -9,104 +16,141 @@
                 [disabled]=this.changeActive>Bearbeiten
         </button>
       </div>
+    </div>
+
+    <div class="deleteButton">
       <div>
         <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data"
                 (click)="onDelete()">Account löschen
         </button>
       </div>
     </div>
+
   </div>
+  <br>
+
   <div class="form-group">
     <mat-form-field>
       <input matInput placeholder="ID" [(ngModel)]="data.id" readonly>
     </mat-form-field>
   </div>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Firmenname" autofocus [(ngModel)]="data.compName" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
+  <mat-accordion #accordion="matAccordion" [multi]="true">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Über die Organisation
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Email" [(ngModel)]="data.email" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Branche" [(ngModel)]="data.companyType" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
+      <div class="single-mat-field">
+        <mat-form-field>
+          <input matInput placeholder="Firmenname" autofocus [(ngModel)]="data.compName" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Telefon" [(ngModel)]="data.phone" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Telefon 2" [(ngModel)]="data.phone2" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Strasse" [(ngModel)]="data.street" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="PLZ" [(ngModel)]="data.postCode" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Ort" [(ngModel)]="data.place" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Land" [(ngModel)]="data.country" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Mitarbeiteranzahl" [(ngModel)]="data.nrOfEmployees" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Steuernummer" [(ngModel)]="data.ustID" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Homepage" [(ngModel)]="data.homepage" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
+      <div class="single-mat-field">
+        <mat-form-field>
+          <input matInput placeholder="Email" [(ngModel)]="data.email" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
 
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput placeholder="Branche" [(ngModel)]="data.companyType" [readonly]="isReadOnly">
+        </mat-form-field>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Erstellt am" [ngModel]="data.createdDate | date:'dd/MM/yyyy'"
-             (ngModelChange)="data.createdDate"
-             readonly>
-    </mat-form-field>
-  </div>
+          <mat-form-field>
+            <input matInput placeholder="Steuernummer" [(ngModel)]="data.ustID" [readonly]="isReadOnly">
+          </mat-form-field>
+      </div>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Zuletzt geändert am" [ngModel]="data.lastModifiedDate | date:'dd/MM/yyyy'"
-             (ngModelChange)="data.lastModifiedDate"
-             readonly>
-    </mat-form-field>
-  </div>
+      <div class="single-mat-field">
+        <mat-form-field>
+          <input matInput placeholder="Mitarbeiteranzahl" [(ngModel)]="data.nrOfEmployees" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
 
-  <mat-dialog-actions float="right">
-    <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data"
-            (click)="onSubmit()">Speichern
-    </button>
-  </mat-dialog-actions>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Kontaktdaten
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput placeholder="1. Telefonnummer" [(ngModel)]="data.phone" [readonly]="isReadOnly">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="2. Telefonnummer" [(ngModel)]="data.phone2" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
+
+      <div class="single-mat-field">
+        <mat-form-field>
+          <input matInput placeholder="Homepage" [(ngModel)]="data.homepage" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Anschrift
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="address">
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput class="street" placeholder="Strasse" [(ngModel)]="data.street" [readonly]="isReadOnly">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="PLZ" [(ngModel)]="data.postCode" [readonly]="isReadOnly">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Ort" [(ngModel)]="data.place" [readonly]="isReadOnly">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Land" [(ngModel)]="data.country" [readonly]="isReadOnly">
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Administration
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput placeholder="Erstellt am" [ngModel]="data.createdDate | date:'dd/MM/yyyy'"
+                 (ngModelChange)="data.createdDate"
+                 readonly>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Zuletzt geändert am" [ngModel]="data.lastModifiedDate | date:'dd/MM/yyyy'"
+                 (ngModelChange)="data.lastModifiedDate"
+                 readonly>
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+    <mat-dialog-actions align="center">
+      <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data"
+              (click)="onSubmit()">Speichern
+      </button>
+    </mat-dialog-actions>
 
 </div>
-

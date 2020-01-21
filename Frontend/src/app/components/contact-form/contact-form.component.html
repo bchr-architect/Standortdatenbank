@@ -2,7 +2,12 @@
     <h1>Kontakt hinzufügen</h1>
   <form #contactForm="ngForm">
 
-    <mat-accordion>
+    <mat-dialog-actions align="end" class="top-button">
+      <button mat-raised-button color="primary" type="button" (click)="accordion.openAll()">Alle Felder öffnen</button>
+      <button mat-raised-button color="primary" type="button" (click)="accordion.closeAll()">Alle Felder schließen</button>
+    </mat-dialog-actions>
+
+    <mat-accordion #accordion="matAccordion" [multi]="true">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -17,24 +22,10 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput type="text" class="form-control" placeholder="Briefanrede"
-                 id="letterAppellation"
-                 [(ngModel)]="contact.letterAppellation"
-                 name="letterAppellation">
-        </mat-form-field>
-
-        <mat-form-field>
           <input matInput type="text" class="form-control" placeholder="Titel"
                  id="title"
                  [(ngModel)]="contact.title"
                  name="title">
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput type="text" class="form-control" placeholder="Nachgestellter Titel"
-                 id="postpositiveTitle"
-                 [(ngModel)]="contact.postpositiveTitle"
-                 name="postpositiveTitle">
         </mat-form-field>
 
         <mat-form-field>
@@ -49,13 +40,6 @@
                  id="lastname" required
                  [(ngModel)]="contact.lastName"
                  name="lastname">
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput type="date" class="form-control" placeholder="Geburtstag"
-                 id="birthday"
-                 [(ngModel)]="contact.birthday"
-                 name="birthday">
         </mat-form-field>
       </mat-expansion-panel>
 
@@ -133,20 +117,6 @@
         </mat-expansion-panel-header>
 
         <div class="form-group">
-          <mat-form-field>
-            <input matInput type="text" class="form-control" placeholder="Unternehmen"
-                   id="corporation"
-                   [(ngModel)]="contact.corporation"
-                   name="corporation">
-          </mat-form-field>
-
-            <mat-form-field>
-              <input matInput type="date" class="form-control" placeholder="Gegründet am"
-                     id="foundingDate"
-                     [(ngModel)]="contact.foundingDate"
-                     name="foundingDate">
-            </mat-form-field>
-
             <mat-form-field>
               <input matInput type="text" class="form-control" placeholder="Ansprechperson Standortagentur"
                      id="representativeID"
@@ -161,26 +131,14 @@
                    name="function">
           </mat-form-field>
 
-          <mat-form-field>
-            <input matInput type="text" class="form-control" placeholder="Abteilung"
-                   id="department"
-                   [(ngModel)]="contact.department"
-                   name="department">
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput type="text" class="form-control" placeholder="Steuernummer"
-                   id="ustID"
-                   [(ngModel)]="contact.ustID"
-                   name="ustID">
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput type="number" class="form-control" placeholder="Priorität"
-                   id="priority"
-                   [(ngModel)]="contact.priority"
-                   name="priority">
-          </mat-form-field>
+          <div class="single-mat-field">
+            <mat-form-field>
+              <input matInput type="text" class="form-control" placeholder="Abteilung"
+                     id="department"
+                     [(ngModel)]="contact.department"
+                     name="department">
+            </mat-form-field>
+          </div>
         </div>
       </mat-expansion-panel>
 
@@ -193,8 +151,7 @@
 
         <div class="form-group">
           <mat-form-field>
-            <label>Organisation</label>
-            <mat-select [(value)]="contact.account" [compareWith]="compareById">
+            <mat-select [(value)]="contact.account1" [compareWith]="compareById" placeholder="Organisation">
               <mat-option *ngFor="let account of accounts" [value]="account">
                 {{account.compName}}
               </mat-option>
@@ -202,8 +159,23 @@
           </mat-form-field>
 
           <mat-form-field>
-            <label>Gruppe</label>
-            <mat-select [(value)]="contact.group" [compareWith]="compareByGroupId">
+            <mat-select [(value)]="contact.account2" [compareWith]="compareById" placeholder="Organisation">
+              <mat-option *ngFor="let account of accounts" [value]="account">
+                {{account.compName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select [(value)]="contact.account3" [compareWith]="compareById" placeholder="Organisation">
+              <mat-option *ngFor="let account of accounts" [value]="account">
+                {{account.compName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-select [(value)]="contact.group" [compareWith]="compareByGroupId" placeholder="Gruppe">
               <mat-option *ngFor="let group of groups" [value]="group">
                 {{group.name}}
               </mat-option>
@@ -247,41 +219,16 @@
                  name="country">
         </mat-form-field>
 
-        <mat-form-field>
-          <input matInput type="text" class="form-control" placeholder="Region"
-                 id="region"
-                 [(ngModel)]="contact.region"
-                 name="region">
-        </mat-form-field>
+        <div class="single-mat-field">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="Region"
+                   id="region"
+                   [(ngModel)]="contact.region"
+                   name="region">
+          </mat-form-field>
+        </div>
 
-        <mat-form-field>
-          <input matInput type="text" class="form-control" placeholder="Lieferanschrift"
-                 id="shippingAdress"
-                 [(ngModel)]="contact.shippingAddress"
-                 name="shippingAddress">
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput type="text" class="form-control" placeholder="1. RefAdresse"
-                 id="refAddress"
-                 [(ngModel)]="contact.refAddress"
-                 name="refAddress">
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput type="text" class="form-control" placeholder="2. RefAdresse"
-                 id="refAddress2"
-                 [(ngModel)]="contact.refAddress2"
-                 name="refAddress2">
-        </mat-form-field>
-      </mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Postfach
-          </mat-panel-title>
-        </mat-expansion-panel-header>
+        <mat-card>Postfach</mat-card>
 
         <mat-form-field>
           <input matInput type="text" class="form-control" placeholder="Postfach"
@@ -320,15 +267,17 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <mat-form-field>
-          <mat-label>Notizen</mat-label>
-          <textarea matInput
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="1"
-                    cdkAutosizeMaxRows="5">
-        </textarea>
-        </mat-form-field>
+        <div class="single-mat-field">
+          <mat-form-field>
+            <mat-label>Notizen</mat-label>
+            <textarea matInput
+                      cdkTextareaAutosize
+                      #autosize="cdkTextareaAutosize"
+                      cdkAutosizeMinRows="1"
+                      cdkAutosizeMaxRows="5">
+          </textarea>
+          </mat-form-field>
+        </div>
 
       </mat-expansion-panel>
 
@@ -336,7 +285,7 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Datenschutz-Grundverordnung
+            Datenschutz
           </mat-panel-title>
         </mat-expansion-panel-header>
 
@@ -344,12 +293,14 @@
           <mat-checkbox [(ngModel)]="contact.dsvAnonymised" id="dsvAnonymised" name="Anonymised">Anonymisiert</mat-checkbox>
         </div>
 
-        <mat-form-field>
-          <input matInput type="text" class="form-control" placeholder="Anonymisiert von"
-                 id="dsvAnonymisedBy"
-                 [(ngModel)]="contact.dsvAnonymisedBy"
-                 name="dsvAnonymisedBy">
-        </mat-form-field>
+        <div class="single-mat-field">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" placeholder="Anonymisiert von"
+                   id="dsvAnonymisedBy"
+                   [(ngModel)]="contact.dsvAnonymisedBy"
+                   name="dsvAnonymisedBy">
+          </mat-form-field>
+        </div>
 
         <div>
           <mat-form-field>
@@ -395,37 +346,20 @@
                    name="additional2">
           </mat-form-field>
 
-          <mat-form-field>
-            <input matInput type="text" class="form-control" placeholder="3. Zusatz"
-                   id="additional3"
-                   [(ngModel)]="contact.additional3"
-                   name="additional3">
-          </mat-form-field>
+          <div class="single-mat-field">
+            <mat-form-field>
+              <input matInput type="text" class="form-control" placeholder="3. Zusatz"
+                     id="additional3"
+                     [(ngModel)]="contact.additional3"
+                     name="additional3">
+            </mat-form-field>
+          </div>
         </div>
 
         <div class="form-group">
           <mat-checkbox [(ngModel)]="contact.freeFlag1" id="freeFlag1" name="freeFlag1">1. Freies Kennzeichen</mat-checkbox>
           <mat-checkbox [(ngModel)]="contact.freeFlag2" id="freeFlag2" name="freeFlag2">2. Freies Kennzeichen</mat-checkbox>
         </div>
-
-        <div class="form-group">
-          <mat-form-field>
-            <input matInput type="text" class="form-control" placeholder="Zessionvermerk"
-                   id="cessionNote"
-                   [(ngModel)]="contact.cessionNote"
-                   name="cessionNote">
-          </mat-form-field>
-
-          <mat-checkbox [(ngModel)]="contact.cession" id="cession" name="cession">Zession</mat-checkbox>
-
-          <mat-form-field>
-            <input matInput type="text" class="form-control" placeholder="Zielgruppe"
-                   id="targetAudience"
-                   [(ngModel)]="contact.targetAudience"
-                   name="targetAudience">
-          </mat-form-field>
-        </div>
-
       </mat-expansion-panel>
 
       <mat-expansion-panel>

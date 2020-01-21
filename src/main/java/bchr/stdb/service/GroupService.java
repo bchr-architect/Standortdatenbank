@@ -14,8 +14,9 @@ public class GroupService {
     @Autowired
     GroupDao groupDao;
 
-    public List getAllGroups() { return this.groupDao.findAll(); }
+    public List getAllGroups() { return this.groupDao.findGroupByActive(true); }
 
     // hier evtl die übergebene Gruppe als Child der Mother definieren
-    public Group addGroup(Group group) { return this.groupDao.save(group); }
+    public Group addGroup(Group group) {
+        return this.groupDao.save(group); }
 }

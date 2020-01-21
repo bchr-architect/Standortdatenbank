@@ -59,10 +59,10 @@ public class Account extends Auditable {
     @Column(name = "ACTIVE")
     private Boolean active;
 
-    @Column()
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
-    @JsonIgnoreProperties("account")
-    private Set<Contact> contacts = new HashSet<>();
+    @Column(name= "CONTACTS")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account1")
+    @JsonIgnoreProperties("account1")
+    private Set<Contact> contacts = new HashSet<Contact>();
 
     public Account() {
 
@@ -199,7 +199,7 @@ public class Account extends Auditable {
 
     public void addContact(Contact contact) {
         this.contacts.add(contact);
-        contact.setAccount(this);
+        contact.setAccount1(this);
     }
 
     public String toString() {

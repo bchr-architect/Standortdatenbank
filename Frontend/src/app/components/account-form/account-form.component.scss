@@ -1,5 +1,5 @@
-h1{
-  width: 200px;
+h1 {
+  width: 500px;
   position: relative;
   left: 225px;
   font-weight: lighter;
@@ -8,12 +8,30 @@ h1{
 
 button {
   position: relative;
-  top: 115px;
-  left: 430px;
+  margin: 5px;
+}
+
+.top-button {
+  margin: 10px;
+}
+
+mat-form-field {
+  width: 50%;
+}
+
+.single-mat-field mat-form-field{
+  width: 100%;
+}
+
+mat-expansion-panel {
+  margin: 5px;
+  outline-color: #ab8d38;
+  background-color: dimgray;
 }
 
 .mat-raised-button {
   font-weight: lighter;
+  background-color: #888888;
 }
 
 .mat-row:hover {

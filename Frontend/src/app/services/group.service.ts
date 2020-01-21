@@ -20,6 +20,6 @@ export class GroupService {
   }
 
   public save(group: Group):Observable<Group> {
-    return this.http.post<Group>(this.groupUrl+'/add', group);
+    return this.http.put<Group>(this.groupUrl+'/add', group);
   }
 }

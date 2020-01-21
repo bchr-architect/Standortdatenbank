@@ -26,14 +26,14 @@ public class ContactService {
 
 
     public List getAllContacts() {
-        List contactList = this.contactDao.findAll();
+        List contactList = this.contactDao.findContactByInactive(false);
         return contactList;
     }
 
     public Contact addContact(Contact contact) {
-        if (contact.account!=null) {
-            if (this.accountDao.existsByCompName(contact.account.getCompName())) {
-                contact.setAccount(accountDao.findByCompName(contact.account.getCompName()));
+        if (contact.account1!=null) {
+            if (this.accountDao.existsByCompName(contact.account1.getCompName())) {
+                contact.setAccount1(accountDao.findByCompName(contact.account1.getCompName()));
             }
         }
 

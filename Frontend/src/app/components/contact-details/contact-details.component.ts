@@ -14,13 +14,13 @@ import {isUndefined} from "util";
   templateUrl: './contact-details.component.html',
   styleUrls: ['./contact-details.component.scss']
 })
-export class ContactDetailsComponent implements OnInit{
+export class ContactDetailsComponent implements OnInit {
 
   contact: Contact;
   isReadOnly: boolean;
   accounts: Account[];
   groups: Group[];
-  s : string;
+  s: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,22 +31,21 @@ export class ContactDetailsComponent implements OnInit{
     private accountService: AccountService,
     @Inject(MAT_DIALOG_DATA) public data: {
       id: number, lastName: string, firstName: string, email: string, email2: string,
-      createdDate: number, lastModifiedDate: number, corporation: string, place: string,
+      createdDate: number, lastModifiedDate: number, place: string,
       street: string, postCode: string, country: string, phone: string, phone2: string,
       phone3: string, phone4: string, fax: string, mailbox: string, mailboxPlace: string,
-      mailboxPostcode: string, mailboxCountry: string, homepage: string, account: Account,
+      mailboxPostcode: string, mailboxCountry: string, homepage: string, account1: Account, account2: Account, account3: Account,
       creatorID: string, editedByID: string, representativeID: string,
-      languageID: string, ustID: string, contactID: number, shippingAddress: string,
+      languageID: string,
       refAddress: string, refAddress2: string, additional: string, additional2: string,
-      additional3: string, inactive: boolean, privatePerson: boolean, cession: boolean,
-      cessionNote: string, appellation: string, letterAppellation: string, title: string,
-      postpositiveTitle: string, memo: number, department: string, function: string,
-      priority: number, freeFlag1: boolean, freeFlag2: boolean, displayName: string,
-      tradeFlag: boolean, productionFlag: boolean, serviceFlag: boolean, foundingDate: number,
-      status: number, contactType: number, dsvFlag: boolean, dsvSourceOfData: string,
+      additional3: string, inactive: boolean, privatePerson: boolean,  appellation: string, title: string,
+      memo: number, department: string, function: string,
+      freeFlag1: boolean, freeFlag2: boolean, displayName: string,
+      tradeFlag: boolean, productionFlag: boolean, serviceFlag: boolean,
+      status: number, dsvFlag: boolean, dsvSourceOfData: string,
       dsvNotification: boolean, dsvDirectAdFlag: boolean, dsvAnonymisedBy: string,
-      dsvDataCollection: number, dsvAnonymised: boolean, region: string, targetAudience: string,
-      notes: string; birthday: number; group: Group;
+      dsvDataCollection: number, dsvAnonymised: boolean, region: string,
+      notes: string;  group: Group;
     }) {
     this.contact = new Contact();
     this.isReadOnly = true;
@@ -56,8 +55,8 @@ export class ContactDetailsComponent implements OnInit{
 
   ngOnInit() {
     this.accountService.findAll().subscribe(sourceAccounts =>
-      sourceAccounts.forEach(entry=> {
-        if(entry.active) {
+      sourceAccounts.forEach(entry => {
+        if (entry.active) {
           this.accounts.push(entry)
         }
       })
@@ -65,54 +64,52 @@ export class ContactDetailsComponent implements OnInit{
 
     this.groupService.findAll().subscribe(sourceGroups =>
       sourceGroups.forEach(entry => {
-        if(entry.active) {
+        if (entry.active) {
           this.groups.push(entry)
         }
       })
     )
   }
 
-    onSubmit() {
-      this.checkNullValues();
-      this.contactService.save(this.contact).subscribe();
-    }
+  onSubmit() {
+    this.checkNullValues();
+    this.contactService.save(this.contact).subscribe();
+  }
 
-    onDelete() {
-      this.checkNullValues();
-      this.contact.inactive = true;
-      this.contactService.save(this.contact).subscribe();
-      this.dialogRef.close();
-    }
+  onDelete() {
+    this.checkNullValues();
+    this.contact.inactive = true;
+    this.contactService.save(this.contact).subscribe();
+    this.dialogRef.close();
+  }
 
-    onEdit() {
-      this.isReadOnly = false;
-    }
+  onEdit() {
+    this.isReadOnly = false;
+  }
 
-    goToContactList() {
-      this.router.navigate(['contacts']);
-    }
+  goToContactList() {
+    this.router.navigate(['contacts']);
+  }
 
-    compareById(i1: Account, i2: Account): boolean {
-      return i1 && i2 ? i1.id == i2.id : i1 == i2;
-    }
+  compareById(i1: Account, i2: Account): boolean {
+    return i1 && i2 ? i1.id == i2.id : i1 == i2;
+  }
 
-    compareByGroupId(i1: Group, i2: Group): boolean {
-      return i1 && i2 ? i1.id == i2.id : i1 == i2;
-    }
+  compareByGroupId(i1: Group, i2: Group): boolean {
+    return i1 && i2 ? i1.id == i2.id : i1 == i2;
+  }
 
-    checkNullValues() { //saving "" not possible, saving null is
-      if(this.data.account == null || isUndefined(this.data.account.compName) || this.data.account.compName == "") {
-        this.data.account = null;
-        this.contact = this.data;
-      } else {
-        this.contact = this.data;
-      }
-
-      if(this.data.group == null || isUndefined(this.data.group.name) || this.data.group.name == "") {
-        this.data.group = null;
-        this.contact = this.data;
-      } else {
-        this.contact = this.data;
-      }
+  checkNullValues() { //saving "" not possible, saving null is
+    if (this.data.account1 == null || isUndefined(this.data.account1.compName) || this.data.account1.compName == "") {
+      this.data.account1 = null;
     }
+    this.contact = this.data;
+
+    if (this.data.group == null || isUndefined(this.data.group.name) || this.data.group.name == "") {
+      this.data.group = null;
+      this.contact = this.data;
+    } else {
+      this.contact = this.data;
+    }
+  }
 }

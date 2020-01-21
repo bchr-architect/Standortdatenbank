@@ -2,8 +2,6 @@ package bchr.stdb.entity;
 
 import bchr.stdb.misc.Auditable;
 import com.fasterxml.jackson.annotation.*;
-import org.hibernate.annotations.Cascade;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
@@ -79,9 +77,19 @@ public class Contact extends Auditable {
     private Date birthday;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "Account_id")
+    @JoinColumn(name = "Account1_id")
     @JsonIgnoreProperties("contacts")
-    public Account account;
+    public Account account1;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "Account2_id")
+    @JsonIgnoreProperties("contacts")
+    public Account account2;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "Account3_id")
+    @JsonIgnoreProperties("contacts")
+    public Account account3;
 
     // x Contacts -> 1 Group
     @ManyToOne(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
@@ -100,12 +108,6 @@ public class Contact extends Auditable {
 
     @Column(name = "LANGUAGE", length = 20)
     private String languageID;
-
-    @Column(name = "UST_ID", length = 40)
-    private String ustID;
-
-    @Column(name = "CONTACT_PERSON", length = 20)
-    private Integer contactID;
 
     @Column(name = "SHIPPING_ADDRESS", length = 20)
     private String shippingAddress;
@@ -131,32 +133,17 @@ public class Contact extends Auditable {
     @Column(name = "PRIVATE_PERSON")
     private Boolean privatePerson;
 
-    @Column(name = "CESSION")
-    private Boolean cession;
-
-    @Column(name = "CESSION_NOTE", length = 80)
-    private String cessionNote;
-
     @Column(name = "APPELLATION", length = 40)
     private String appellation;
 
-    @Column(name = "LETTER_APPELATION", length = 40)
-    private String letterAppellation;
-
     @Column(name = "TITLE", length = 40)
     private String title;
-
-    @Column(name = "POSTPOSITIVE_TITLE", length = 40)
-    private String postpositiveTitle;
 
     @Column(name = "MEMO", length = 20)
     private Integer memo;
 
     @Column(name = "DEPARTMENT", length = 70)
     private String department;
-
-    @Column(name = "FUNCTION", length = 70)
-    private String function;
 
     @Column(name = "PRIORITY", length = 1)
     private Integer priority;
@@ -178,9 +165,6 @@ public class Contact extends Auditable {
 
     @Column(name = "SERVICE_FLAG")
     private Boolean serviceFlag;
-
-    @Column(name = "FOUNDING_DATE", length = 40)
-    private Date foundingDate;
 
     @Column(name = "STATUS", length = 1)
     private Integer status;
@@ -302,13 +286,6 @@ public class Contact extends Auditable {
         return languageID;
     }
 
-    public String getUstID() {
-        return ustID;
-    }
-
-    public Integer getContactID() {
-        return contactID;
-    }
 
     public String getShippingAddress() {
         return shippingAddress;
@@ -338,28 +315,12 @@ public class Contact extends Auditable {
         return privatePerson;
     }
 
-    public Boolean getCession() {
-        return cession;
-    }
-
-    public String getCessionNote() {
-        return cessionNote;
-    }
-
     public String getAppellation() {
         return appellation;
     }
 
-    public String getLetterAppellation() {
-        return letterAppellation;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public String getPostpositiveTitle() {
-        return postpositiveTitle;
     }
 
     public Integer getMemo() {
@@ -368,10 +329,6 @@ public class Contact extends Auditable {
 
     public String getDepartment() {
         return department;
-    }
-
-    public String getFunction() {
-        return function;
     }
 
     public Integer getPriority() {
@@ -400,10 +357,6 @@ public class Contact extends Auditable {
 
     public Boolean getServiceFlag() {
         return serviceFlag;
-    }
-
-    public Date getFoundingDate() {
-        return foundingDate;
     }
 
     public Integer getStatus() {
@@ -524,14 +477,6 @@ public class Contact extends Auditable {
         this.languageID = languageID;
     }
 
-    public void setUstID(String ustID) {
-        this.ustID = ustID;
-    }
-
-    public void setContactID(Integer contactID) {
-        this.contactID = contactID;
-    }
-
     public void setShippingAddress(String shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
@@ -560,28 +505,12 @@ public class Contact extends Auditable {
         this.privatePerson = privatePerson;
     }
 
-    public void setCession(Boolean cession) {
-        this.cession = cession;
-    }
-
-    public void setCessionNote(String cessionNote) {
-        this.cessionNote = cessionNote;
-    }
-
     public void setAppellation(String appellation) {
         this.appellation = appellation;
     }
 
-    public void setLetterAppellation(String letterAppellation) {
-        this.letterAppellation = letterAppellation;
-    }
-
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public void setPostpositiveTitle(String postpositiveTitle) {
-        this.postpositiveTitle = postpositiveTitle;
     }
 
     public void setMemo(Integer memo) {
@@ -590,10 +519,6 @@ public class Contact extends Auditable {
 
     public void setDepartment(String department) {
         this.department = department;
-    }
-
-    public void setFunction(String function) {
-        this.function = function;
     }
 
     public void setPriority(Integer priority) {
@@ -622,10 +547,6 @@ public class Contact extends Auditable {
 
     public void setServiceFlag(Boolean serviceFlag) {
         this.serviceFlag = serviceFlag;
-    }
-
-    public void setFoundingDate(Date foundingDate) {
-        this.foundingDate = foundingDate;
     }
 
     public void setStatus(Integer status) {
@@ -683,12 +604,13 @@ public class Contact extends Auditable {
         this.email = email;
     }
 
-    public Account getAccount() {
-        return account;
+    public Account getAccount1() {
+        return account1;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccount1(Account account1) {
+        this.account1 = account1;
+        account1.getContacts().add(this);
     }
 
     public String getNotes() {
@@ -727,14 +649,14 @@ public class Contact extends Auditable {
         this.lastName=lastName;
         this.firstName=firstName;
         this.email=email;
-        this.account=account;
+        this.account1 =account;
     }
 
     public Contact(String lastName, String firstName, String email, Account account, String notes) {
         this.lastName=lastName;
         this.firstName=firstName;
         this.email=email;
-        this.account=account;
+        this.account1 =account;
         this.notes=notes;
     }
 }

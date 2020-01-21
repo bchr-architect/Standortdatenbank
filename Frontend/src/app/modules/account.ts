@@ -17,4 +17,5 @@ export class Account {
   companyType: string;
   homepage: string;
   nrOfEmployees: number;
+  contacts: Array<Contact>;
 }

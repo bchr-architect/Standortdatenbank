@@ -22,7 +22,7 @@ export class AccountListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   accountTableSource: MatTableDataSource<Account>;
-  displayedColumns: string[] = ['compName', 'email','companyType','street', 'place', 'postCode', 'nrOfEmployees','ustID'];
+  displayedColumns: string[] = ['compName', 'email', 'companyType', 'street', 'place', 'postCode', 'nrOfEmployees', 'ustID'];
   private accounts: Account[];
   private account: Account;
   selectedRowIndex: number = -1;
@@ -31,7 +31,7 @@ export class AccountListComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog) {
-              this.accountTableSource = new MatTableDataSource<Account>(this.accounts);
+    this.accountTableSource = new MatTableDataSource<Account>(this.accounts);
   }
 
   ngOnInit() {
@@ -59,33 +59,32 @@ export class AccountListComponent implements OnInit {
       entry.createdDate = Date.UTC(2019, 11, 20, 13, 45, 0);
     }
 
-    if(entry.active == null){
-      entry.active=false;
+    if (entry.active == null) {
+      entry.active = false;
     }
   }
 
   openAccountDetailsDialog(data: Data) {
     const dialogRef = this.dialog.open(AccountDetailsComponent, {
-      height: '1200px',
-      width: '800px',
-      data: { ...data}
+      height: '1800px',
+      width: '1200px',
+      data: {...data}
     });
-    dialogRef.afterClosed().subscribe( result => {
+    dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
 
-      if(!isUndefined(result)){
+      if (!isUndefined(result)) {
         this.accountTableSource.filteredData.filter((value, index) => {
-          if(value.id == result.id){
-            value=result;
+          if (value.id == result.id) {
+            value = result;
           }
 
         });
       }
 
-
       this.accountService.findAll().subscribe(data => {
-        this.accountTableSource.data=data;
-        this.accountTableSource.data.forEach( entry => {
+        this.accountTableSource.data = data;
+        this.accountTableSource.data.forEach(entry => {
           this.checkNullValues(entry);
         })
         this.accountTableSource.sort = this.sort;
@@ -96,33 +95,37 @@ export class AccountListComponent implements OnInit {
 
   openAddAccountDialog() {
     const dialogRef = this.dialog.open(AccountFormComponent, {
-      height: '1200px',
-      width: '800px',
+      height: '1800px',
+      width: '1200px',
       data: {account: this.account}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+
       this.account = result;
       this.accountService.findAll().subscribe(data => {
-        this.accountTableSource.data = data;
-        this.accountTableSource.data.forEach(entry => {
-          this.checkNullValues(entry);
-
-
-        })
-        this.accountTableSource.sort = this.sort;
-        this.accountTableSource.paginator = this.paginator;
+       this.updateTable(data);
       });
     });
   }
 
   exportAsExcel() {
-    const ws: XLSX.WorkSheet=XLSX.utils.json_to_sheet(this.accountTableSource.filteredData);
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.accountTableSource.filteredData);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Unternehmen');
 
     XLSX.writeFile(wb, 'Unternehmen.xlsx');
 
   }
+
+  updateTable(data: any) {
+
+    this.accountTableSource.data = data;
+    this.accountTableSource.data.forEach(entry => {
+      this.checkNullValues(entry);
+    })
+    this.accountTableSource.sort = this.sort;
+    this.accountTableSource.paginator = this.paginator;
+  }
+
 }
