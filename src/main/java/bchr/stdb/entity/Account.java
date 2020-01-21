@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -60,7 +61,7 @@ public class Account extends Auditable {
     private Boolean active;
 
     @Column(name= "CONTACTS")
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account1")
+    @OneToMany(mappedBy = "account1")
     @JsonIgnoreProperties("account1")
     private Set<Contact> contacts = new HashSet<Contact>();
 
@@ -204,5 +205,22 @@ public class Account extends Auditable {
 
     public String toString() {
         return this.compName;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Account)){
+            return false;
+        }
+        Account a= (Account) obj;
+        if (a.getCompName()!=this.getCompName()){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(compName);
     }
 }
