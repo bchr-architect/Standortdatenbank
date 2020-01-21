@@ -1,6 +1,11 @@
 <div class="container">
-  <h1>Branchendetails</h1>
-  <div class="form-group">
+    <div class="form-group">
+
+      <div>
+        <div class = "dialog-header-title">
+          <h1>Details zur Branche</h1>
+          <h2>{{data.name}}</h2>
+        </div>
 
     <mat-dialog-actions align="end" class="top-button">
       <button mat-raised-button color="primary" type="button" (click)="accordion.openAll()">Alle Felder öffnen</button>
@@ -51,21 +56,7 @@
 
         <div class="form-group">
           <mat-form-field>
-            <input matInput placeholder="Zusatz" [(ngModel)]="data.additive" [readonly]="isReadOnly">
-          </mat-form-field>
-        </div>
-      </mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Zugehörigkeit
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <div class="form-group">
-          <mat-form-field>
-            <input matInput placeholder="Übergeordnet" [(ngModel)]= "data.mother.name" [readonly]="isReadOnly">
+            <input matInput placeholder="Beschreibung" [(ngModel)]="data.additive" [readonly]="isReadOnly">
           </mat-form-field>
         </div>
       </mat-expansion-panel>
@@ -86,7 +77,6 @@
             <input matInput placeholder="Zuletzt geändert am" [ngModel]="data.lastModifiedDate | date:'dd/MM/yyyy'" readonly>
           </mat-form-field>
         </div>
-
       </mat-expansion-panel>
 
     </mat-accordion>

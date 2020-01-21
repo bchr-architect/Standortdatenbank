@@ -17,8 +17,7 @@
 
         <div class="single-mat-field">
           <mat-form-field>
-            <label for="compname">Firmenname</label>
-            <input matInput type="text" class="form-control" id="compname" required
+            <input matInput type="text" class="form-control" id="compname" placeholder="Firmenname" required
                    [(ngModel)]="account.compName"
                    name="compname">
           </mat-form-field>
@@ -26,8 +25,7 @@
 
         <div class="single-mat-field">
           <mat-form-field>
-            <label for="email">Email</label>
-            <input matInput type="text" class="form-control" id="email" required
+            <input matInput type="text" class="form-control" id="email" placeholder="E-Mail" required
                    [(ngModel)]="account.email"
                    name="email">
           </mat-form-field>
@@ -35,15 +33,13 @@
 
         <div class="form-group">
           <mat-form-field>
-            <label for="companyType">Branche</label>
-            <input matInput type="text" class="form-control" id="companyType"
+            <input matInput type="text" class="form-control" placeholder="Branche" id="companyType"
                    [(ngModel)]="account.companyType"
                    name="postpositiveTitle">
           </mat-form-field>
 
           <mat-form-field>
-            <label for="ustID">Steuernummer</label>
-            <input matInput type="text" class="form-control" id="ustID"
+            <input matInput type="text" class="form-control" placeholder="Steuernummer" id="ustID"
                    [(ngModel)]="account.ustID"
                    name="ustID">
           </mat-form-field>
@@ -51,8 +47,7 @@
 
         <div class="single-mat-field">
           <mat-form-field>
-            <label for="nrOfEmployees">Mitarbeiteranzahl</label>
-            <input matInput type="number" class="form-control" id="nrOfEmployees"
+            <input matInput type="number" class="form-control" placeholder="Mitarbeitranzahl" id="nrOfEmployees"
                    [(ngModel)]="account.nrOfEmployees"
                    value="0"
                    name="nrOfEmployees">
@@ -69,15 +64,13 @@
 
         <div class="form-group">
           <mat-form-field>
-            <label for="phone1">1. Telefonnummer</label>
-            <input matInput type="text" class="form-control" id="phone1"
+            <input matInput type="text" class="form-control" placeholder="1. Telefonnummer" id="phone1"
                    [(ngModel)]="account.phone"
                    name="phone1">
           </mat-form-field>
 
           <mat-form-field>
-            <label for="phone2">2. Telefonnummer</label>
-            <input matInput type="text" class="form-control" id="phone2"
+            <input matInput type="text" class="form-control" placeholder="2. Telefonnummer" id="phone2"
                    [(ngModel)]="account.phone2"
                    name="phone2">
           </mat-form-field>
@@ -85,8 +78,7 @@
 
         <div class="single-mat-field">
           <mat-form-field>
-            <label for="homepage">Homepage</label>
-            <input matInput type="text" class="form-control" id="homepage"
+            <input matInput type="text" class="form-control" placeholder="Homepage" id="homepage"
                    [(ngModel)]="account.homepage"
                    name="homepage">
           </mat-form-field>
@@ -102,27 +94,25 @@
 
         <div class="form-group">
           <mat-form-field>
-            <label for="street">Strasse</label>
-            <input matInput type="text" class="form-control" id="street"
+            <input matInput type="text" class="form-control" placeholder="Strasse" id="street"
                    [(ngModel)]="account.street"
                    name="street">
           </mat-form-field>
 
           <mat-form-field>
-            <label for="PLZ">PLZ</label>
-            <input matInput type="text" class="form-control" id="PLZ"
+            <input matInput type="text" class="form-control" placeholder="PLZ" id="PLZ"
                    [(ngModel)]="account.postCode"
                    name="PLZ">
           </mat-form-field>
+
           <mat-form-field>
-            <label for="place">Ort</label>
-            <input matInput type="text" class="form-control" id="place"
+            <input matInput type="text" class="form-control" placeholder="Ort" id="place"
                    [(ngModel)]="account.place"
                    name="place">
           </mat-form-field>
+
           <mat-form-field>
-            <label for="country">Land</label>
-            <input matInput type="text" class="form-control" id="country"
+            <input matInput type="text" class="form-control" placeholder="Land" id="country"
                    [(ngModel)]="account.country"
                    name="country">
           </mat-form-field>

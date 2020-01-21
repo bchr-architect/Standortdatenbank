@@ -1,7 +1,10 @@
 <div class="container">
 
   <div>
-    <h1>Organisation Details</h1>
+    <div class = "dialog-header-title">
+      <h1>Details zur Organisation</h1>
+      <h2>{{data.compName}}</h2>
+    </div>
 
     <mat-dialog-actions align="end" class="top-button">
       <button mat-raised-button color="primary" type="button" (click)="accordion.openAll()">Alle Felder öffnen</button>
@@ -29,7 +32,7 @@
   </div>
   <br>
 
-  <div class="form-group">
+  <div class="single-mat-field">
     <mat-form-field>
       <input matInput placeholder="ID" [(ngModel)]="data.id" readonly>
     </mat-form-field>
