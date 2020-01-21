@@ -39,7 +39,6 @@ export class GroupDetailsComponent {
   onDelete() {
     this.group = this.data;
     this.group.active = false;
-    console.log('deleting', this.group.active, this.group.id);
     this.groupService.save(this.group).subscribe();
     this.dialogRef.close();
   }

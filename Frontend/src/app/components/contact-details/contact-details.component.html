@@ -1,10 +1,31 @@
 <div class="container">
-  <h1>Contact Details</h1>
+  <h1>Kontakt Details</h1>
 
   <mat-dialog-actions align="end" class="top-button">
     <button mat-raised-button color="primary" type="button" (click)="accordion.openAll()">Alle Felder öffnen</button>
     <button mat-raised-button color="primary" type="button" (click)="accordion.closeAll()">Alle Felder schließen</button>
   </mat-dialog-actions>
+
+  <div class="editButton" align="end">
+    <div>
+      <button mat-raised-button type="button" class="changeBtn"
+              color="primary"
+              (click)="onEdit()"
+              [disabled]=this.changeActive>Bearbeiten
+      </button>
+    </div>
+  </div>
+
+  <div class="deleteButton">
+    <div>
+      <button mat-raised-button type="submit" class="changeBtn"
+              color="primary" [mat-dialog-close]="data"
+              (click)="onDelete()">Kontakt löschen
+      </button>
+    </div>
+  </div>
+
+  <br>
 
   <div class="form-group">
     <mat-form-field>
@@ -317,8 +338,6 @@
   </mat-accordion>
 
   <mat-dialog-actions align="center">
-    <button mat-raised-button type="button" class="changeBtn" color="primary" (click)="onEdit()">Bearbeiten</button>
     <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onSubmit()">Speichern</button>
-    <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onDelete()">Kontakt löschen</button>
   </mat-dialog-actions>
 </div>
