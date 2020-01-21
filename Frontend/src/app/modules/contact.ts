@@ -35,8 +35,12 @@ export class Contact {
   appellation: string;
   title: string;
   memo: number;
-  department: string;
-  function: string;
+  department1: string;
+  department2:string;
+  department3: string;
+  function1: string;
+  function2: string;
+  function3: string
   freeFlag1: boolean;
   freeFlag2: boolean;
   displayName: string;
