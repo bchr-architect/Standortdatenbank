@@ -114,14 +114,14 @@ export class ContactListComponent implements OnInit {
       entry.group.name = "";
       entry.group.additive = "";
     }
-    if (!entry.account) {
-      entry.account = new Account();
-      entry.account.id = "";
-      entry.account.compName = "";
-      entry.account.email = "";
-      entry.account.active = "";
-      entry.account.createdDate="";
-      entry.account.lastModifiedDate="";
+    if (!entry.account1) {
+      entry.account1 = new Account();
+      entry.account1.id = "";
+      entry.account1.compName = "";
+      entry.account1.email = "";
+      entry.account1.active = "";
+      entry.account1.createdDate="";
+      entry.account1.lastModifiedDate="";
     }
 
     if (!entry.createdDate) {

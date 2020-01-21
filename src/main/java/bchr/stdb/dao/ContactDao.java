@@ -14,4 +14,6 @@ public interface ContactDao extends JpaRepository<Contact, Integer> {
     List<Contact> findAllContactsWithAccount();
 
     List<Contact> findContactByInactive(boolean active);
+
+    List<Contact> findContactByAccount1(String account);
 }

@@ -27,11 +27,6 @@
       <td mat-cell *matCellDef="let group"> {{group.createdDate | date: 'd.L.y'}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="mother">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Übergeordnet</th>
-      <td mat-cell *matCellDef="let group"> {{group.mother.name }} </td>
-    </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr (click)="openGroupDetailsDialog(group)" mat-row *matRowDef="let group; columns: displayedColumns;">
     </tr>

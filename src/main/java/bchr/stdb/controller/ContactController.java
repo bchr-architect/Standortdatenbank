@@ -24,6 +24,7 @@ public class ContactController {
 
     @PostMapping(path={"/add"})
     public Contact addNewContact(@RequestBody Contact contact) {
+        Contact testContact=contact;
         return this.contactService.addContact(contact);
     }
 }

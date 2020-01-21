@@ -3,7 +3,8 @@
 
   <mat-dialog-actions align="end" class="top-button">
     <button mat-raised-button color="primary" type="button" (click)="accordion.openAll()">Alle Felder öffnen</button>
-    <button mat-raised-button color="primary" type="button" (click)="accordion.closeAll()">Alle Felder schließen</button>
+    <button mat-raised-button color="primary" type="button" (click)="accordion.closeAll()">Alle Felder schließen
+    </button>
   </mat-dialog-actions>
 
   <div class="editButton" align="end">
@@ -16,9 +17,9 @@
     </div>
   </div>
 
-  <div class="deleteButton">
+  <div class="deleteButton" align="end">
     <div>
-      <button mat-raised-button type="submit" class="changeBtn"
+      <button mat-raised-button type="submit" class="deleteContact"
               color="primary" [mat-dialog-close]="data"
               (click)="onDelete()">Kontakt löschen
       </button>
@@ -26,9 +27,16 @@
   </div>
 
   <br>
-
+  <!--<mat-form-field>
+    <mat-select [(value)]="contact.group" [compareWith]="compareByGroupId" placeholder="Branche"
+                [disabled]="isReadOnly">
+      <mat-option *ngFor="let group of groups" [value]="group">
+        {{group.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>-->
   <mat-accordion #accordion="matAccordion" [multi]="true">
-    <mat-expansion-panel>
+    <mat-expansion-panel expanded="true">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Persönliche Daten
@@ -54,135 +62,47 @@
       </div>
     </mat-expansion-panel>
 
-    <mat-expansion-panel>
-    <mat-expansion-panel-header>
+    <mat-expansion-panel expanded="true">
+      <mat-expansion-panel-header>
         <mat-panel-title>
           Kontaktdaten
         </mat-panel-title>
       </mat-expansion-panel-header>
 
       <div class="form-group">
-      <mat-form-field>
-        <input matInput placeholder="Email" [(ngModel)]="data.email" [readonly]="isReadOnly">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="2. Email" [(ngModel)]="data.email2" [readonly]="isReadOnly">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="1. Telefonummer" [(ngModel)]="data.phone" [readonly]="isReadOnly">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="2. Telefonummer" [(ngModel)]="data.phone2" [readonly]="isReadOnly">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="3. Telefonummer" [(ngModel)]="data.phone3" [readonly]="isReadOnly">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="4. Telefonummer" [(ngModel)]="data.phone4" [readonly]="isReadOnly">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="Fax" [(ngModel)]="data.fax" [readonly]="isReadOnly">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="Homepage" [(ngModel)]="data.homepage" [readonly]="isReadOnly">
-      </mat-form-field>
-    </div>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Organisation 1
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <div class="form-group">
         <mat-form-field>
-          <mat-select placeholder="Organisation 1" [(value)]="data.account1" [compareWith]="compareById" [disabled]="isReadOnly">
-            <mat-option *ngFor="let account of accounts" [value]="account">
-              {{account.compName}}
-            </mat-option>
-          </mat-select>
+          <input matInput placeholder="1. E-Mail" [(ngModel)]="data.email" [readonly]="isReadOnly">
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Funktion" [(ngModel)]="data.function1" [readonly]="isReadOnly">
+          <input matInput placeholder="2. E-Mail" [(ngModel)]="data.email2" [readonly]="isReadOnly">
         </mat-form-field>
-      </div>
 
-      <div class="single-mat-field">
         <mat-form-field>
-          <input matInput placeholder="Abteilung" [(ngModel)]="data.department1" [readonly]="isReadOnly">
+          <input matInput placeholder="1. Telefonummer" [(ngModel)]="data.phone" [readonly]="isReadOnly">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="2. Telefonummer" [(ngModel)]="data.phone2" [readonly]="isReadOnly">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="3. Telefonummer" [(ngModel)]="data.phone3" [readonly]="isReadOnly">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="4. Telefonummer" [(ngModel)]="data.phone4" [readonly]="isReadOnly">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Fax" [(ngModel)]="data.fax" [readonly]="isReadOnly">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Homepage" [(ngModel)]="data.homepage" [readonly]="isReadOnly">
         </mat-form-field>
       </div>
     </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Organisation 2
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <div class="form-group">
-        <mat-form-field>
-          <mat-select placeholder="Organisation 2" [(value)]="data.account2" [compareWith]="compareById" [disabled]="isReadOnly">
-            <mat-option *ngFor="let account of accounts" [value]="account">
-              {{account.compName}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput placeholder="Funktion" [(ngModel)]="data.function2" [readonly]="isReadOnly">
-        </mat-form-field>
-      </div>
-
-      <div class="single-mat-field">
-        <mat-form-field>
-          <input matInput placeholder="Abteilung" [(ngModel)]="data.department2" [readonly]="isReadOnly">
-        </mat-form-field>
-      </div>
-
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Organisation 3
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <div class="form-group">
-        <mat-form-field>
-          <mat-select placeholder="Organisation 3" [(value)]="data.account3" [compareWith]="compareById" [disabled]="isReadOnly">
-            <mat-option *ngFor="let account of accounts" [value]="account">
-              {{account.compName}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput placeholder="Funktion" [(ngModel)]="data.function3" [readonly]="isReadOnly">
-        </mat-form-field>
-      </div>
-
-      <div class="single-mat-field">
-        <mat-form-field>
-          <input matInput placeholder="Abteilung" [(ngModel)]="data.department3" [readonly]="isReadOnly">
-        </mat-form-field>
-      </div>
-
-    </mat-expansion-panel>
-
-
 
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -214,32 +134,122 @@
           </mat-form-field>
         </div>
       </div>
+      <!--
+            <mat-form-field>
+              <input matInput placeholder="1. RefAdresse" [(ngModel)]="data.refAddress" [readonly]="isReadOnly">
+            </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="1. RefAdresse" [(ngModel)]="data.refAddress" [readonly]="isReadOnly">
-      </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="2. RefAdresse" [(ngModel)]="data.refAddress2" [readonly]="isReadOnly">
+            </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="2. RefAdresse" [(ngModel)]="data.refAddress2" [readonly]="isReadOnly">
-      </mat-form-field>
+            <mat-card>Postfach</mat-card>
 
-      <mat-card>Postfach</mat-card>
+            <mat-form-field>
+              <input matInput placeholder="Postfach" [(ngModel)]="data.mailbox" [readonly]="isReadOnly">
+            </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Postfach" [(ngModel)]="data.mailbox" [readonly]="isReadOnly">
-      </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Ort" [(ngModel)]="data.mailboxPlace" [readonly]="isReadOnly">
+            </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Ort" [(ngModel)]="data.mailboxPlace" [readonly]="isReadOnly">
-      </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="PLZ" [(ngModel)]="data.mailboxPostcode" [readonly]="isReadOnly">
+            </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="PLZ" [(ngModel)]="data.mailboxPostcode" [readonly]="isReadOnly">
-      </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Land" [(ngModel)]="data.mailboxCountry" [readonly]="isReadOnly">
+            </mat-form-field>-->
+    </mat-expansion-panel>
 
-      <mat-form-field>
-        <input matInput placeholder="Land" [(ngModel)]="data.mailboxCountry" [readonly]="isReadOnly">
-      </mat-form-field>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Organisation 1
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select placeholder="Organisation 1" [(value)]="data.account1" [compareWith]="compareById"
+                      [disabled]="isReadOnly">
+            <mat-option *ngFor="let account of accounts" [value]="account">
+              {{account.compName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Funktion" [(ngModel)]="data.function1" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
+
+      <div class="single-mat-field">
+        <mat-form-field>
+          <input matInput placeholder="Abteilung" [(ngModel)]="data.department1" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Organisation 2
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select placeholder="Organisation 2" [(value)]="data.account2" [compareWith]="compareById"
+                      [disabled]="isReadOnly">
+            <mat-option *ngFor="let account of accounts" [value]="account">
+              {{account.compName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Funktion" [(ngModel)]="data.function2" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
+
+      <div class="single-mat-field">
+        <mat-form-field>
+          <input matInput placeholder="Abteilung" [(ngModel)]="data.department2" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Organisation 3
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select placeholder="Organisation 3" [(value)]="data.account3" [compareWith]="compareById"
+                      [disabled]="isReadOnly">
+            <mat-option *ngFor="let account of accounts" [value]="account">
+              {{account.compName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Funktion" [(ngModel)]="data.function3" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
+
+      <div class="single-mat-field">
+        <mat-form-field>
+          <input matInput placeholder="Abteilung" [(ngModel)]="data.department3" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
+
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -279,19 +289,22 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput type="date" placeholder="Datenerhebung am" [ngModel]="data.dsvDataCollection | date:'yyyy-MM-dd'" (ngModelChange)="data.dsvDataCollection=$event" [readonly]="isReadOnly">
+          <input matInput type="date" placeholder="Datenerhebung am"
+                 [ngModel]="data.dsvDataCollection | date:'yyyy-MM-dd'" (ngModelChange)="data.dsvDataCollection=$event"
+                 [readonly]="isReadOnly">
         </mat-form-field>
 
         <div class="single-mat-field">
-        <mat-form-field>
-          <input matInput placeholder="Datenherkunft" [(ngModel)]="data.dsvSourceOfData" [readonly]="isReadOnly">
-        </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Datenherkunft" [(ngModel)]="data.dsvSourceOfData" [readonly]="isReadOnly">
+          </mat-form-field>
         </div>
       </div>
 
       <div class="form-group">
-        <mat-checkbox [(ngModel)]="data.dsvDirectAdFlag" [disabled]="isReadOnly">Direktwerbeverbot</mat-checkbox>
-        <mat-checkbox [(ngModel)]="data.dsvNotification" [disabled]="isReadOnly">Person gem. Art.14 informiert</mat-checkbox>
+        <mat-checkbox [(ngModel)]="data.dsvDirectAdFlag" [disabled]="isReadOnly">Keine Direktwerbung</mat-checkbox>
+        <mat-checkbox [(ngModel)]="data.dsvNotification" [disabled]="isReadOnly">Person gem. Art.14 informiert
+        </mat-checkbox>
       </div>
     </mat-expansion-panel>
 
@@ -354,6 +367,8 @@
   </mat-accordion>
 
   <mat-dialog-actions align="center">
-    <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onSubmit()">Speichern</button>
+    <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data"
+            (click)="onSubmit()">Speichern
+    </button>
   </mat-dialog-actions>
 </div>

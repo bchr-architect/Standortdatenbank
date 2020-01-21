@@ -21,7 +21,7 @@ export class GroupListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   groupTableSource: MatTableDataSource<Group>;
-  displayedColumns: string[] = ['name', 'additive', 'createdDate', 'mother'];
+  displayedColumns: string[] = ['name', 'additive', 'createdDate'];
   private groups: Group[];
   private group: Group;
   selectedRowIndex: number = -1;
