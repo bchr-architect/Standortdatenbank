@@ -66,8 +66,8 @@ export class GroupListComponent implements OnInit {
 
   openGroupDetailsDialog(data: Data) {
     const dialogRef = this.dialog.open(GroupDetailsComponent, {
-      height: '500px',
-      width: '550px',
+      height: '1800px',
+      width: '1200px',
       data: { ...data}
     });
 
@@ -94,8 +94,8 @@ export class GroupListComponent implements OnInit {
 
   openAddGroupDialog() {
     const dialogRef = this.dialog.open(GroupFormComponent, {
-      width: '700px',
-      height: '300px',
+      height: '1800px',
+      width: '1200px',
       data: {group: this.group}
     });
 

@@ -1,36 +1,62 @@
 <div class="container">
   <h1>Gruppe hinzufügen</h1>
   <form #groupForm="ngForm">
-    <div class="form-group">
-      <mat-form-field>
-        <label for="name">Name</label>
-        <input matInput type="text" class="form-control" id="name" required
-               [(ngModel)]="group.name"
-               name="name">
-      </mat-form-field>
-    </div>
 
-    <div class="form-group">
-      <mat-form-field>
-        <label for="additive">Beschreibung</label>
-        <input matInput type="text" class="form-control" id="additive" required
-               [(ngModel)]="group.additive"
-               name="additive">
-      </mat-form-field>
-    </div>
+    <mat-dialog-actions align="end" class="top-button">
+      <button mat-raised-button color="primary" type="button" (click)="accordion.openAll()">Alle Felder öffnen</button>
+      <button mat-raised-button color="primary" type="button" (click)="accordion.closeAll()">Alle Felder schließen</button>
+    </mat-dialog-actions>
 
-    <div class="form-group">
-      <mat-form-field>
-        <label>Teil von</label>
-        <mat-select [(value)]="group.mother">
-          <mat-option *ngFor="let mother of groups" [value]="mother">
-            {{mother.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+    <mat-accordion #accordion="matAccordion" [multi]="true">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Über die Branche
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-    <button mat-raised-button color="primary" type="submit"  (click)="onSubmit()">Hinzufügen</button>
+        <div class="single-mat-field">
+          <mat-form-field>
+            <label for="name">Name</label>
+            <input matInput type="text" class="form-control" id="name" required
+                   [(ngModel)]="group.name"
+                   name="name">
+          </mat-form-field>
+        </div>
+
+        <div class="single-mat-field">
+          <mat-form-field>
+            <label for="additive">Beschreibung</label>
+            <input matInput type="text" class="form-control" id="additive" required
+                   [(ngModel)]="group.additive"
+                   name="additive">
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Zugehörigkeit
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="single-mat-field">
+          <mat-form-field>
+            <label>Teil von</label>
+            <mat-select [(value)]="group.mother">
+              <mat-option *ngFor="let mother of groups" [value]="mother">
+                {{mother.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-dialog-actions align="center">
+      <button mat-raised-button color="primary" type="submit"  (click)="onSubmit()">Speichern</button>
+    </mat-dialog-actions>
 
   </form>
 </div>

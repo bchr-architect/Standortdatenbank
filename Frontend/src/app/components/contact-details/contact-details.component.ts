@@ -18,6 +18,7 @@ export class ContactDetailsComponent implements OnInit {
 
   contact: Contact;
   isReadOnly: boolean;
+  changeActive: boolean
   accounts: Account[];
   groups: Group[];
   s: string;
@@ -49,6 +50,7 @@ export class ContactDetailsComponent implements OnInit {
     }) {
     this.contact = new Contact();
     this.isReadOnly = true;
+    this.changeActive = false;
     this.accounts = new Array<Account>();
     this.groups = new Array<Group>();
   }
@@ -85,6 +87,7 @@ export class ContactDetailsComponent implements OnInit {
 
   onEdit() {
     this.isReadOnly = false;
+    this.changeActive = true;
   }
 
   goToContactList() {

@@ -41,7 +41,12 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit() {
     this.contactService.findAll().subscribe(data => {
-      this.updateTable(data);
+      this.tableSource.data = data;
+      this.tableSource.data.forEach(contact => {
+        this.checkNullValues(contact);
+      });
+      this.tableSource.sort = this.sort;
+      this.tableSource.paginator = this.paginator;
     });
   }
 
@@ -55,8 +60,8 @@ export class ContactListComponent implements OnInit {
 
   openContactDetailsDialog(data: Data){
     const dialogRef = this.dialog.open(ContactDetailsComponent, {
-      height: '600px',
-      width: '850px',
+      height: '1800px',
+      width: '1200px',
       data: { ...data}
     });
 
@@ -82,8 +87,8 @@ export class ContactListComponent implements OnInit {
 
   openAddContactDialog() {
     const dialogRef = this.dialog.open(ContactFormComponent, {
-      width: '850px',
-      height: '600px',
+      height: '1800px',
+      width: '1200px',
       data: {contact: this.contact}
     });
 
@@ -128,7 +133,9 @@ export class ContactListComponent implements OnInit {
     this.tableSource.data = data;
     this.tableSource.data.forEach(entry => {
       this.checkNullValues(entry);
-    })
+
+    });
+
     this.tableSource.sort = this.sort;
     this.tableSource.paginator = this.paginator;
   }

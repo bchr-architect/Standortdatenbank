@@ -2,45 +2,97 @@
   <h1>Branchendetails</h1>
   <div class="form-group">
 
+    <mat-dialog-actions align="end" class="top-button">
+      <button mat-raised-button color="primary" type="button" (click)="accordion.openAll()">Alle Felder öffnen</button>
+      <button mat-raised-button color="primary" type="button" (click)="accordion.closeAll()">Alle Felder schließen</button>
+    </mat-dialog-actions>
+
+    <div>
+      <div class="editButton" align="end">
+        <div>
+          <button mat-raised-button type="button" class="changeBtn"
+                  color="primary"
+                  (click)="onEdit()"
+                  [disabled]=this.changeActive>Bearbeiten
+          </button>
+        </div>
+      </div>
+
+      <div class="deleteButton">
+        <div>
+          <button mat-raised-button type="submit" class="changeBtn"
+                  color="primary"
+                  [mat-dialog-close]="data"
+                  (click)="onDelete()">Gruppe löschen
+          </button>
+
+        </div>
+      </div>
+    </div>
+
     <mat-form-field>
       <input matInput placeholder="ID" [(ngModel)]="data.id" readonly>
     </mat-form-field>
   </div>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Name" [(ngModel)]="data.name" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
+    <mat-accordion #accordion="matAccordion" [multi]="true">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Über die Branche
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Zusatz" [(ngModel)]="data.additive" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput placeholder="Name" [(ngModel)]="data.name" [readonly]="isReadOnly">
+          </mat-form-field>
+        </div>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Übergeordnet" [(ngModel)]= "data.mother.name" [readonly]="isReadOnly">
-    </mat-form-field>
-  </div>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput placeholder="Zusatz" [(ngModel)]="data.additive" [readonly]="isReadOnly">
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
 
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput placeholder="Erstellt am" [ngModel]="data.createdDate | date:'dd/MM/yyyy'" readonly>
-    </mat-form-field>
-  </div>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Zugehörigkeit
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-  <div class="form-group">
-    <mat-form-field >
-      <input matInput placeholder="Zuletzt geändert am" [ngModel]="data.lastModifiedDate | date:'dd/MM/yyyy'" readonly>
-    </mat-form-field>
-  </div>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput placeholder="Übergeordnet" [(ngModel)]= "data.mother.name" [readonly]="isReadOnly">
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Administration
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput placeholder="Erstellt am" [ngModel]="data.createdDate | date:'dd/MM/yyyy'" readonly>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Zuletzt geändert am" [ngModel]="data.lastModifiedDate | date:'dd/MM/yyyy'" readonly>
+          </mat-form-field>
+        </div>
+
+      </mat-expansion-panel>
+
+    </mat-accordion>
 
   <mat-dialog-actions align="center">
-    <button mat-raised-button type="button" class="changeBtn" color="primary" (click)="onEdit()">Bearbeiten</button>
     <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onSubmit()">Speichern</button>
-    <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onDelete()">Gruppe löschen</button>
   </mat-dialog-actions>
 
 </div>

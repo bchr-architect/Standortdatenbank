@@ -1,9 +1,40 @@
 h1 {
   width: 300px;
   position: relative;
-  left: 150px;
+  left: 30%;
   font-weight: lighter;
 }
+
+button {
+  font-weight: lighter;
+}
+
+.editButton {
+  margin-top: 20px;
+}
+
+.mat-raised-button {
+  background-color: #888888;
+}
+
+mat-form-field {
+  width: 50%;
+}
+
+mat-expansion-panel {
+  margin: 5px;
+  outline-color: #ab8d38;
+  background-color: dimgray;
+}
+
+.single-mat-field mat-form-field{
+  width: 100%;
+}
+
+.deleteButton {
+  margin-bottom: 20px;
+}
+
 
 mat-form-field {
   width: 100%;

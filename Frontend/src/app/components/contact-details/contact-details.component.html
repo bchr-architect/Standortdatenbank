@@ -1,5 +1,31 @@
 <div class="container">
-  <h1>Contact Details</h1>
+  <h1>Kontakt Details</h1>
+
+  <mat-dialog-actions align="end" class="top-button">
+    <button mat-raised-button color="primary" type="button" (click)="accordion.openAll()">Alle Felder öffnen</button>
+    <button mat-raised-button color="primary" type="button" (click)="accordion.closeAll()">Alle Felder schließen</button>
+  </mat-dialog-actions>
+
+  <div class="editButton" align="end">
+    <div>
+      <button mat-raised-button type="button" class="changeBtn"
+              color="primary"
+              (click)="onEdit()"
+              [disabled]=this.changeActive>Bearbeiten
+      </button>
+    </div>
+  </div>
+
+  <div class="deleteButton">
+    <div>
+      <button mat-raised-button type="submit" class="changeBtn"
+              color="primary" [mat-dialog-close]="data"
+              (click)="onDelete()">Kontakt löschen
+      </button>
+    </div>
+  </div>
+
+  <br>
 
   <div class="form-group">
     <mat-form-field>
@@ -7,7 +33,7 @@
     </mat-form-field>
   </div>
 
-  <mat-accordion>
+  <mat-accordion #accordion="matAccordion" [multi]="true">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -21,15 +47,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Briefanrede" [(ngModel)]="data.letterAppellation" [readonly]="isReadOnly">
-        </mat-form-field>
-
-        <mat-form-field>
           <input matInput placeholder="Titel" [(ngModel)]="data.title" [readonly]="isReadOnly">
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput placeholder="Nachgestellter Titel" [(ngModel)]="data.postpositiveTitle" [readonly]="isReadOnly">
         </mat-form-field>
 
         <mat-form-field>
@@ -38,10 +56,6 @@
 
         <mat-form-field>
           <input matInput placeholder="Nachname" [(ngModel)]="data.lastName" [readonly]="isReadOnly">
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput type="date" placeholder="Geburtstag" [ngModel]="data.birthday | date:'yyyy-MM-dd'" (ngModelChange)="data.birthday=$event" [readonly]="isReadOnly">
         </mat-form-field>
       </div>
     </mat-expansion-panel>
@@ -97,33 +111,20 @@
 
       <div class="form-group">
         <mat-form-field>
-          <input matInput placeholder="Unternehmen" [(ngModel)]="data.corporation" [readonly]="isReadOnly">
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput [ngModel]="data.foundingDate | date:'yyyy-MM-dd'" (ngModelChange)="data.foundingDate=$event" type="date" placeholder="Gegründet am" [readonly]="isReadOnly">
-        </mat-form-field>
-
-        <mat-form-field>
           <input matInput placeholder="Ansprechperson Standortagentur" [(ngModel)]="data.representativeID" [readonly]="isReadOnly">
         </mat-form-field>
 
         <mat-form-field>
           <input matInput placeholder="Funktion" [(ngModel)]="data.function" [readonly]="isReadOnly">
         </mat-form-field>
+      </div>
 
+      <div class="single-mat-field">
         <mat-form-field>
           <input matInput placeholder="Abteilung" [(ngModel)]="data.department" [readonly]="isReadOnly">
         </mat-form-field>
-
-        <mat-form-field>
-          <input matInput placeholder="Steuernummer" [(ngModel)]="data.ustID" [readonly]="isReadOnly">
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput type="number" placeholder="Priorität" [(ngModel)]="data.priority" [readonly]="isReadOnly">
-        </mat-form-field>
       </div>
+
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -134,12 +135,29 @@
       </mat-expansion-panel-header>
 
       <mat-form-field>
-        <mat-select placeholder="Organisation" [(value)]="data.account" [compareWith]="compareById" [disabled]="isReadOnly">
+        <mat-select placeholder="Organisation" [(value)]="data.account1" [compareWith]="compareById" [disabled]="isReadOnly">
           <mat-option *ngFor="let account of accounts" [value]="account">
             {{account.compName}}
           </mat-option>
         </mat-select>
       </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Organisation" [(value)]="data.account2" [compareWith]="compareById" [disabled]="isReadOnly">
+          <mat-option *ngFor="let account of accounts" [value]="account">
+            {{account.compName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Organisation" [(value)]="data.account3" [compareWith]="compareById" [disabled]="isReadOnly">
+          <mat-option *ngFor="let account of accounts" [value]="account">
+            {{account.compName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
 
       <mat-form-field>
         <mat-select placeholder="Groups" [(value)]="data.group" [compareWith]="compareByGroupId" [disabled]="isReadOnly">
@@ -174,13 +192,11 @@
           <input matInput placeholder="Land" [(ngModel)]="data.country" [readonly]="isReadOnly">
         </mat-form-field>
 
-        <mat-form-field>
-          <input matInput placeholder="Region" [(ngModel)]="data.region" [readonly]="isReadOnly">
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput placeholder="Lieferanschrift" [(ngModel)]="data.shippingAddress" [readonly]="isReadOnly">
-        </mat-form-field>
+        <div class="single-mat-field">
+          <mat-form-field>
+            <input matInput placeholder="Region" [(ngModel)]="data.region" [readonly]="isReadOnly">
+          </mat-form-field>
+        </div>
       </div>
 
       <mat-form-field>
@@ -191,14 +207,7 @@
         <input matInput placeholder="2. RefAdresse" [(ngModel)]="data.refAddress2" [readonly]="isReadOnly">
       </mat-form-field>
 
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Postfach
-        </mat-panel-title>
-      </mat-expansion-panel-header>
+      <mat-card>Postfach</mat-card>
 
       <mat-form-field>
         <input matInput placeholder="Postfach" [(ngModel)]="data.mailbox" [readonly]="isReadOnly">
@@ -224,7 +233,7 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <div class="form-group">
+      <div class="single-mat-field">
         <mat-form-field>
           <textarea [(ngModel)]="data.notes" [readonly]="isReadOnly"
                     placeholder="Notizen"
@@ -257,9 +266,11 @@
           <input matInput type="date" placeholder="Datenerhebung am" [ngModel]="data.dsvDataCollection | date:'yyyy-MM-dd'" (ngModelChange)="data.dsvDataCollection=$event" [readonly]="isReadOnly">
         </mat-form-field>
 
+        <div class="single-mat-field">
         <mat-form-field>
           <input matInput placeholder="Datenherkunft" [(ngModel)]="data.dsvSourceOfData" [readonly]="isReadOnly">
         </mat-form-field>
+        </div>
       </div>
 
       <div class="form-group">
@@ -283,25 +294,15 @@
         <input matInput placeholder="2. Zusatz" [(ngModel)]="data.additional2" [readonly]="isReadOnly">
       </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="3. Zusatz" [(ngModel)]="data.additional3" [readonly]="isReadOnly">
-      </mat-form-field>
+      <div class="single-mat-field">
+        <mat-form-field>
+          <input matInput placeholder="3. Zusatz" [(ngModel)]="data.additional3" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
 
       <div class="form-group">
         <mat-checkbox [(ngModel)]="data.freeFlag1" [disabled]="isReadOnly">1. Freies Kennzeichen</mat-checkbox>
         <mat-checkbox [(ngModel)]="data.freeFlag2" [disabled]="isReadOnly">2. Freies Kennzeichen</mat-checkbox>
-      </div>
-
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="Zessionvermerk" [(ngModel)]="data.cessionNote" [readonly]="isReadOnly">
-        </mat-form-field>
-
-        <mat-checkbox [(ngModel)]="data.cession" [disabled]="isReadOnly">Zession</mat-checkbox>
-
-        <mat-form-field>
-          <input matInput placeholder="Zielgruppe" [(ngModel)]="data.targetAudience" [readonly]="isReadOnly">
-        </mat-form-field>
       </div>
     </mat-expansion-panel>
 
@@ -337,8 +338,6 @@
   </mat-accordion>
 
   <mat-dialog-actions align="center">
-    <button mat-raised-button type="button" class="changeBtn" color="primary" (click)="onEdit()">Bearbeiten</button>
     <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onSubmit()">Speichern</button>
-    <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onDelete()">Kontakt löschen</button>
   </mat-dialog-actions>
 </div>
