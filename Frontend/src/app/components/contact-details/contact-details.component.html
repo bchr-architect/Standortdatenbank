@@ -30,12 +30,13 @@
   </div>
 
   <br>
-
+  
   <div class="single-mat-field">
     <mat-form-field>
       <input matInput placeholder="ID" [(ngModel)]="data.id" readonly>
     </mat-form-field>
   </div>
+
 
   <mat-accordion #accordion="matAccordion" [multi]="true">
     <mat-expansion-panel>
@@ -109,23 +110,55 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Tätigkeit
+          Organisation 1
         </mat-panel-title>
       </mat-expansion-panel-header>
 
       <div class="form-group">
         <mat-form-field>
-          <input matInput placeholder="Ansprechperson Standortagentur" [(ngModel)]="data.representativeID" [readonly]="isReadOnly">
+          <mat-select placeholder="Organisation 1" [(value)]="data.account1" [compareWith]="compareById" [disabled]="isReadOnly">
+            <mat-option *ngFor="let account of accounts" [value]="account">
+              {{account.compName}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Funktion" [(ngModel)]="data.function" [readonly]="isReadOnly">
+          <input matInput placeholder="Funktion" [(ngModel)]="data.function1" [readonly]="isReadOnly">
         </mat-form-field>
       </div>
 
       <div class="single-mat-field">
         <mat-form-field>
-          <input matInput placeholder="Abteilung" [(ngModel)]="data.department" [readonly]="isReadOnly">
+          <input matInput placeholder="Abteilung" [(ngModel)]="data.department1" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Organisation 2
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select placeholder="Organisation 2" [(value)]="data.account2" [compareWith]="compareById" [disabled]="isReadOnly">
+            <mat-option *ngFor="let account of accounts" [value]="account">
+              {{account.compName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Funktion" [(ngModel)]="data.function2" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
+
+      <div class="single-mat-field">
+        <mat-form-field>
+          <input matInput placeholder="Abteilung" [(ngModel)]="data.department2" [readonly]="isReadOnly">
         </mat-form-field>
       </div>
 
@@ -134,43 +167,33 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Zuordnung
+          Organisation 3
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <mat-form-field>
-        <mat-select placeholder="Organisation" [(value)]="data.account1" [compareWith]="compareById" [disabled]="isReadOnly">
-          <mat-option *ngFor="let account of accounts" [value]="account">
-            {{account.compName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select placeholder="Organisation 3" [(value)]="data.account3" [compareWith]="compareById" [disabled]="isReadOnly">
+            <mat-option *ngFor="let account of accounts" [value]="account">
+              {{account.compName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-select placeholder="Organisation" [(value)]="data.account2" [compareWith]="compareById" [disabled]="isReadOnly">
-          <mat-option *ngFor="let account of accounts" [value]="account">
-            {{account.compName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Funktion" [(ngModel)]="data.function3" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
 
-      <mat-form-field>
-        <mat-select placeholder="Organisation" [(value)]="data.account3" [compareWith]="compareById" [disabled]="isReadOnly">
-          <mat-option *ngFor="let account of accounts" [value]="account">
-            {{account.compName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="single-mat-field">
+        <mat-form-field>
+          <input matInput placeholder="Abteilung" [(ngModel)]="data.department3" [readonly]="isReadOnly">
+        </mat-form-field>
+      </div>
 
-
-      <mat-form-field>
-        <mat-select placeholder="Groups" [(value)]="data.group" [compareWith]="compareByGroupId" [disabled]="isReadOnly">
-          <mat-option *ngFor="let group of groups" [value]="group">
-            {{group.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
     </mat-expansion-panel>
+
+
 
     <mat-expansion-panel>
       <mat-expansion-panel-header>

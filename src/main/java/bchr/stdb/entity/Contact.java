@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.*;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "CONTACT_TABLE")
@@ -76,23 +77,23 @@ public class Contact extends Auditable {
     @Column(name = "BIRTHDAY", length = 30)
     private Date birthday;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Account1_id")
     @JsonIgnoreProperties("contacts")
     public Account account1;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Account2_id")
     @JsonIgnoreProperties("contacts")
     public Account account2;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Account3_id")
     @JsonIgnoreProperties("contacts")
     public Account account3;
 
     // x Contacts -> 1 Group
-    @ManyToOne(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "Group_id")
     @JsonIgnoreProperties("groups")
     public Group group;
@@ -142,11 +143,23 @@ public class Contact extends Auditable {
     @Column(name = "MEMO", length = 20)
     private Integer memo;
 
-    @Column(name = "DEPARTMENT", length = 70)
-    private String department;
+    @Column(name = "DEPARTMENT1", length = 70)
+    private String department1;
+    @Column(name = "DEPARTMENT2", length = 70)
+    private String department2;
 
-    @Column(name = "PRIORITY", length = 1)
-    private Integer priority;
+    @Column(name = "DEPARTMENT3", length = 70)
+    private String department3;
+
+
+    @Column(name = "FUNCTION1", length = 70)
+    private String function1;
+    @Column(name = "FUNCTION2", length = 70)
+    private String function2;
+
+    @Column(name = "FUNCTION3", length = 70)
+    private String function3;
+
 
     @Column(name = "FREE_FLAG1")
     private Boolean freeFlag1;
@@ -327,13 +340,33 @@ public class Contact extends Auditable {
         return memo;
     }
 
-    public String getDepartment() {
-        return department;
+
+    public String getDepartment1() {
+        return department1;
     }
 
-    public Integer getPriority() {
-        return priority;
+
+    public String getDepartment2() {
+        return department2;
     }
+
+
+    public String getDepartment3() {
+        return department3;
+    }
+
+    public String getFunction1() {
+        return function1;
+    }
+
+    public String getFunction2() {
+        return function2;
+    }
+
+    public String getFunction3() {
+        return function3;
+    }
+
 
     public Boolean getFreeFlag1() {
         return freeFlag1;
@@ -395,7 +428,9 @@ public class Contact extends Auditable {
         return targetAudience;
     }
 
-    public void setTargetAudience(String targetAudience) { this.targetAudience = targetAudience; }
+    public void setTargetAudience(String targetAudience) {
+        this.targetAudience = targetAudience;
+    }
 
     public void setCorporation(String corporation) {
         this.corporation = corporation;
@@ -517,12 +552,31 @@ public class Contact extends Auditable {
         this.memo = memo;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setDepartment1(String department1) {
+        this.department1 = department1;
     }
 
-    public void setPriority(Integer priority) {
-        this.priority = priority;
+    public void setDepartment2(String department2) {
+        this.department2 = department2;
+    }
+
+    public void setDepartment3(String department3) {
+        this.department3 = department3;
+    }
+
+
+    public void setFunction1(String function1) {
+        this.function1 = function1;
+    }
+
+
+    public void setFunction2(String function2) {
+        this.function2 = function2;
+    }
+
+
+    public void setFunction3(String function3) {
+        this.function3 = function3;
     }
 
     public void setFreeFlag1(Boolean freeFlag1) {
@@ -585,7 +639,8 @@ public class Contact extends Auditable {
         this.lastName = lastName;
     }
 
-    public String getLastName() {return this.lastName;
+    public String getLastName() {
+        return this.lastName;
     }
 
     public String getFirstName() {
@@ -608,10 +663,27 @@ public class Contact extends Auditable {
         return account1;
     }
 
+    public Account getAccount2() {
+        return account2;
+    }
+
+    public Account getAccount3() {
+        return account3;
+    }
+
     public void setAccount1(Account account1) {
         this.account1 = account1;
         account1.getContacts().add(this);
     }
+
+    public void setAccount2(Account account2) {
+        this.account2 = account2;
+    }
+
+    public void setAccount3(Account account3) {
+        this.account3 = account3;
+    }
+
 
     public String getNotes() {
         return notes;
@@ -621,13 +693,21 @@ public class Contact extends Auditable {
         this.notes = notes;
     }
 
-    public Date getBirthday() { return birthday; }
+    public Date getBirthday() {
+        return birthday;
+    }
 
-    public Date getDsvDataCollection() { return dsvDataCollection; }
+    public Date getDsvDataCollection() {
+        return dsvDataCollection;
+    }
 
-    public String getRefAddress2() { return refAddress2; }
+    public String getRefAddress2() {
+        return refAddress2;
+    }
 
-    public String getDsvAnonymisedBy() { return dsvAnonymisedBy; }
+    public String getDsvAnonymisedBy() {
+        return dsvAnonymisedBy;
+    }
 
     public Contact() {
     }
@@ -641,22 +721,48 @@ public class Contact extends Auditable {
     }
 
     public Contact(String lastName, String firstName, String email) {
-        this.lastName=lastName;
-        this.firstName=firstName;
-        this.email=email;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
     }
+
     public Contact(String lastName, String firstName, String email, Account account) {
-        this.lastName=lastName;
-        this.firstName=firstName;
-        this.email=email;
-        this.account1 =account;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
+        this.account1 = account;
     }
 
     public Contact(String lastName, String firstName, String email, Account account, String notes) {
-        this.lastName=lastName;
-        this.firstName=firstName;
-        this.email=email;
-        this.account1 =account;
-        this.notes=notes;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
+        this.account1 = account;
+        this.notes = notes;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Account)){
+            return false;
+        }
+        Contact c= (Contact) obj;
+
+        if(this.id != null) {
+            return Objects.equals(this.id, c.id);
+        }
+
+        if (c.getLastName()!=this.getLastName() &&c.getFirstName()!=this.getFirstName() ){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        if (this.id != null) {
+            return id.hashCode();
+        }
+        return Objects.hash(lastName, firstName);
     }
 }
