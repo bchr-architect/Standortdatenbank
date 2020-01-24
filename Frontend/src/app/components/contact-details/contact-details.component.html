@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <div class="deleteButton">
+  <div class=" ">
     <div>
       <button mat-raised-button type="submit" class="changeBtn"
               color="primary" [mat-dialog-close]="data"
@@ -30,19 +30,19 @@
   </div>
 
   <br>
-  
+
   <div class="single-mat-field">
     <mat-form-field>
       <input matInput placeholder="ID" [(ngModel)]="data.id" readonly>
     </mat-form-field>
   </div>
 
-
   <mat-accordion #accordion="matAccordion" [multi]="true">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
           Persönliche Daten
+
         </mat-panel-title>
       </mat-expansion-panel-header>
 
@@ -116,7 +116,7 @@
 
       <div class="form-group">
         <mat-form-field>
-          <mat-select placeholder="Organisation 1" [(value)]="data.account1" [compareWith]="compareById" [disabled]="isReadOnly">
+          <mat-select placeholder="Organisation 1" [(value)]="data.account1" [compareWith]="compareByGroupId" [disabled]="isReadOnly">
             <mat-option *ngFor="let account of accounts" [value]="account">
               {{account.compName}}
             </mat-option>
@@ -144,7 +144,7 @@
 
       <div class="form-group">
         <mat-form-field>
-          <mat-select placeholder="Organisation 2" [(value)]="data.account2" [compareWith]="compareById" [disabled]="isReadOnly">
+          <mat-select placeholder="Organisation 2" [(value)]="data.account2" [compareWith]="compareByGroupId" [disabled]="isReadOnly">
             <mat-option *ngFor="let account of accounts" [value]="account">
               {{account.compName}}
             </mat-option>
@@ -161,7 +161,6 @@
           <input matInput placeholder="Abteilung" [(ngModel)]="data.department2" [readonly]="isReadOnly">
         </mat-form-field>
       </div>
-
     </mat-expansion-panel>
 
     <mat-expansion-panel>
@@ -173,7 +172,7 @@
 
       <div class="form-group">
         <mat-form-field>
-          <mat-select placeholder="Organisation 3" [(value)]="data.account3" [compareWith]="compareById" [disabled]="isReadOnly">
+          <mat-select placeholder="Organisation 3" [(value)]="data.account3" [compareWith]="compareByGroupId" [disabled]="isReadOnly">
             <mat-option *ngFor="let account of accounts" [value]="account">
               {{account.compName}}
             </mat-option>
@@ -192,8 +191,6 @@
       </div>
 
     </mat-expansion-panel>
-
-
 
     <mat-expansion-panel>
       <mat-expansion-panel-header>
