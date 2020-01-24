@@ -8,18 +8,20 @@
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="accountTableSource" matSort
-    matSortActive="ID"
-    matSortDirection="asc">
+         matSortActive="ID"
+         matSortDirection="asc">
 
     <ng-container matColumnDef="compName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td  *matCellDef="let account" mat-cell>
+      <td *matCellDef="let account" mat-cell>
         {{account.compName}}</td>
     </ng-container>
 
-    <ng-container matColumnDef="companyType">
+    <ng-container  matColumnDef="companyType">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Branche</th>
-      <td mat-cell *matCellDef="let account"> {{account.companyType}} </td>
+      <ng-container>
+        <td mat-cell *matCellDef="let account"> {{account.branche.name}} </td>
+      </ng-container>
     </ng-container>
 
     <!-- Progress Column -->

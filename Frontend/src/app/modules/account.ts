@@ -1,4 +1,5 @@
 import { Contact} from "./contact";
+import {Group} from "./group";
 
 export class Account {
   id: number;
@@ -14,7 +15,7 @@ export class Account {
   postCode: string;
   country: string;
   ustID: string;
-  companyType: string;
+  branche: Group;
   homepage: string;
   nrOfEmployees: number;
   contacts: Array<Contact>;

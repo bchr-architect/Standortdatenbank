@@ -15,7 +15,7 @@ public class Contact extends Auditable {
     @Column(name = "ID")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name = "LAST_NAME", nullable = false, length = 30)
     private String lastName;
@@ -93,7 +93,7 @@ public class Contact extends Auditable {
     public Account account3;
 
     // x Contacts -> 1 Group
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "Group_id")
     @JsonIgnoreProperties("groups")
     public Group group;
@@ -128,8 +128,8 @@ public class Contact extends Auditable {
     @Column(name = "ADDITIONAL3", length = 80)
     private String additional3;
 
-    @Column(name = "INACTIVE")
-    private Boolean inactive;
+    @Column(name = "ACTIVE")
+    private Boolean active;
 
     @Column(name = "PRIVATE_PERSON")
     private Boolean privatePerson;
@@ -215,7 +215,7 @@ public class Contact extends Auditable {
     @Column(name = "NOTES", length = 100)
     private String notes;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -320,8 +320,8 @@ public class Contact extends Auditable {
         return additional3;
     }
 
-    public Boolean getInactive() {
-        return inactive;
+    public Boolean getActive() {
+        return active;
     }
 
     public Boolean getPrivatePerson() {
@@ -532,8 +532,8 @@ public class Contact extends Auditable {
         this.additional3 = additional3;
     }
 
-    public void setInactive(Boolean inactive) {
-        this.inactive = inactive;
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public void setPrivatePerson(Boolean privatePerson) {

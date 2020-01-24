@@ -58,7 +58,7 @@ export class ContactFormComponent implements OnInit{
         'mailboxPostcode':[this.contact.mailboxPostcode],
         'mailboxCountry':[this.contact.mailboxCountry],
         'homepage':[this.contact.homepage],
-        'inactive': [this.contact.inactive]
+        'active': [this.contact.active]
       }
     )
 
@@ -87,7 +87,7 @@ export class ContactFormComponent implements OnInit{
   }
 
   onSubmit() {
-    this.contact.inactive = false;
+    this.contact.active = true;
     this.contactService.save(this.contact).subscribe();
     this.dialogRef.close();
   }

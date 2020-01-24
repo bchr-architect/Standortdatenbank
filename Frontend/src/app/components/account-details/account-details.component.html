@@ -32,14 +32,8 @@
   </div>
   <br>
 
-  <div class="single-mat-field">
-    <mat-form-field>
-      <input matInput placeholder="ID" [(ngModel)]="data.id" readonly>
-    </mat-form-field>
-  </div>
-
   <mat-accordion #accordion="matAccordion" [multi]="true">
-    <mat-expansion-panel>
+    <mat-expansion-panel expanded="true">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Über die Organisation
@@ -49,12 +43,6 @@
       <div class="single-mat-field">
         <mat-form-field>
           <input matInput placeholder="Firmenname" autofocus [(ngModel)]="data.compName" [readonly]="isReadOnly">
-        </mat-form-field>
-      </div>
-
-      <div class="single-mat-field">
-        <mat-form-field>
-          <input matInput placeholder="Email" [(ngModel)]="data.email" [readonly]="isReadOnly">
         </mat-form-field>
       </div>
 
@@ -83,6 +71,17 @@
       </mat-expansion-panel-header>
 
       <div class="form-group">
+
+
+          <mat-form-field>
+            <input matInput placeholder="1. E-Mail" [(ngModel)]="data.email" [readonly]="isReadOnly">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="2. E-Mail" [(ngModel)]="data.email" [readonly]="isReadOnly">
+          </mat-form-field>
+
+
         <mat-form-field>
           <input matInput placeholder="1. Telefonnummer" [(ngModel)]="data.phone" [readonly]="isReadOnly">
         </mat-form-field>
@@ -109,7 +108,7 @@
       <div class="address">
         <div class="form-group">
           <mat-form-field>
-            <input matInput class="street" placeholder="Strasse" [(ngModel)]="data.street" [readonly]="isReadOnly">
+            <input matInput class="street" placeholder="Straße" [(ngModel)]="data.street" [readonly]="isReadOnly">
           </mat-form-field>
 
           <mat-form-field>
