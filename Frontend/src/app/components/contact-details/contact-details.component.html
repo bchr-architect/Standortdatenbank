@@ -1,11 +1,15 @@
 <div class="container">
   <h1>Kontakt Details</h1>
 
+<div class="buttonContainer">
+  <img class="profile" [src]="data.imagePath">
+
   <mat-dialog-actions align="end" class="top-button">
     <button mat-raised-button color="primary" type="button" (click)="accordion.openAll()">Alle Felder öffnen</button>
     <button mat-raised-button color="primary" type="button" (click)="accordion.closeAll()">Alle Felder schließen
     </button>
   </mat-dialog-actions>
+
 
   <div class="editButton" align="end">
     <div>
@@ -25,6 +29,8 @@
       </button>
     </div>
   </div>
+</div>
+
 
   <br>
   <!--<mat-form-field>

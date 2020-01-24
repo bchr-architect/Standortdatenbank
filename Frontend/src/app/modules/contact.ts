@@ -62,4 +62,5 @@ export class Contact {
   group: Group;
   trailingTitle: string;
   letterSalutation: string;
+  imagePath: string;
 }
