@@ -60,4 +60,6 @@ export class Contact {
   createdDate: number;
   lastModifiedDate: number;
   group: Group;
+  trailingTitle: string;
+  letterSalutation: string;
 }
