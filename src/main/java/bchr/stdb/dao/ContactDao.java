@@ -7,13 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Set;
 
-public interface ContactDao extends JpaRepository<Contact, Integer> {
+public interface ContactDao extends JpaRepository<Contact, Long> {
 
-    @Query(value="select * From CONTACT_TABLE c Join ACCOUNT_TABLE a ON c.account_id=a.id",
+    @Query(value="select * From CONTACT_TABLE c Join ACCOUNT_TABLE a ON c.account1_id=a.id",
     nativeQuery = true)
     List<Contact> findAllContactsWithAccount();
 
-    List<Contact> findContactByInactive(boolean active);
+    List<Contact> findContactByActive(boolean active);
 
     List<Contact> findContactByAccount1(String account);
 }

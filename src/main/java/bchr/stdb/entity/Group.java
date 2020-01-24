@@ -30,15 +30,15 @@ public class Group extends Auditable {
     private Set<Contact> contacts = new HashSet<>();
 
     // 1 Group -> x Contacts
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
-    @JsonIgnoreProperties
-    private Set<Contact> accounts = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "branche")
+    @JsonIgnoreProperties("branche")
+    private Set<Account> accounts = new HashSet<>();
 
-    public Set<Contact> getAccounts() {
+    public Set<Account> getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(Set<Contact> accounts) {
+    public void setAccounts(Set<Account> accounts) {
         this.accounts = accounts;
     }
 

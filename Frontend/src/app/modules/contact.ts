@@ -30,7 +30,7 @@ export class Contact {
   additional: string;
   additional2: string;
   additional3: string;
-  inactive: boolean;
+  active: boolean;
   privatePerson: boolean;
   appellation: string;
   title: string;
