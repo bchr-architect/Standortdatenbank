@@ -74,6 +74,9 @@ public class Contact extends Auditable {
     @Column(name = "HOMEPAGE", length = 70)
     private String homepage;
 
+    @Column(name="IMAGE_PATH")
+    private String imagePath;
+
     @Column(name = "BIRTHDAY", length = 30)
     private Date birthday;
 
@@ -429,6 +432,13 @@ public class Contact extends Auditable {
 
     public String getTargetAudience() {
         return targetAudience;
+    }
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public void setTargetAudience(String targetAudience) {
