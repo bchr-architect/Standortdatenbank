@@ -10,6 +10,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {ContactDetailsComponent} from "../contact-details/contact-details.component";
 import {isUndefined} from "util";
+import {Group} from "../../modules/group";
 
 @Component({
   selector: 'app-account-details',
@@ -30,7 +31,9 @@ export class AccountDetailsComponent{
     public dialogRef: MatDialogRef<AccountDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {
       id: number, compName: string, email: string,
-      createdDate: number, lastModifiedDate: number, active: boolean, phone: string, phone2: string, street: string, place: string, postCode: string, country: string, ustID: string, companyType: string, homepage: string, nrOfEmployees: number, contacts: Array<Contact>;
+      createdDate: number, lastModifiedDate: number, active: boolean, phone: string, phone2: string, street: string,
+      place: string, postCode: string, country: string, ustID: string, companyType: string, homepage: string,
+      nrOfEmployees: number, branche: Group, contacts: Array<Contact>;
     }) {
     this.account = new Account();
     this.isReadOnly = true;

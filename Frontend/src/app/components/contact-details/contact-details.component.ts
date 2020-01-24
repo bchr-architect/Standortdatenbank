@@ -39,7 +39,7 @@ export class ContactDetailsComponent implements OnInit {
       creatorID: string, editedByID: string, representativeID: string,
       languageID: string,
       refAddress: string, refAddress2: string, additional: string, additional2: string,
-      additional3: string, inactive: boolean, privatePerson: boolean,  appellation: string, title: string,
+      additional3: string, active: boolean, privatePerson: boolean,  appellation: string, title: string,
       memo: number, department1: string; department2:string; department3: string; function1: string; function2: string;  function3: string
       freeFlag1: boolean, freeFlag2: boolean, displayName: string,
       tradeFlag: boolean, productionFlag: boolean, serviceFlag: boolean,
@@ -80,7 +80,7 @@ export class ContactDetailsComponent implements OnInit {
 
   onDelete() {
     this.checkNullValues();
-    this.contact.inactive = true;
+    this.contact.active = true;
     this.contactService.save(this.contact).subscribe();
     this.dialogRef.close();
   }

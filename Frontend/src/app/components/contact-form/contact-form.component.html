@@ -136,7 +136,7 @@
 
         <div class="form-group">
           <mat-form-field>
-            <mat-select placeholder="Organisation 1" [(value)]="contact.account1" [compareWith]="compareById">
+            <mat-select placeholder="Organisation 1" [(value)]="contact.account1" [compareWith]="compareById" name="organisation1">
               <mat-option *ngFor="let account of accounts" [value]="account">
                 {{account.compName}}
               </mat-option>
