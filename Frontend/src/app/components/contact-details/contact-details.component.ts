@@ -43,7 +43,7 @@ export class ContactDetailsComponent implements OnInit {
       memo: number, department1: string; department2:string; department3: string; function1: string; function2: string;  function3: string
       freeFlag1: boolean, freeFlag2: boolean, displayName: string,
       tradeFlag: boolean, productionFlag: boolean, serviceFlag: boolean,
-      status: number, dsvFlag: boolean, dsvSourceOfData: string,
+      status: number, dsvFlag: boolean, dsvSourceOfData: string, trailingTitle: string, letterSalutation: string,
       dsvNotification: boolean, dsvDirectAdFlag: boolean, dsvAnonymisedBy: string,
       dsvDataCollection: number, dsvAnonymised: boolean, region: string,
       notes: string;  group: Group;
