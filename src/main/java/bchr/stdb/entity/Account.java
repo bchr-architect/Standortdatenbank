@@ -16,9 +16,9 @@ public class Account extends Auditable {
     @Column(name = "ID")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "COMP_NAME", nullable = false, length = 30)
+    @Column(name = "COMP_NAME", nullable = false, length = 80)
     private String compName;
 
     @Column(name = "EMAIL", length = 70)
@@ -45,11 +45,13 @@ public class Account extends Auditable {
     @Column(name = "UST_ID", length = 40)
     private String ustID;
 
-    @Column(name = "CONTACT_PERSON", length = 20)
+    @Column(name = "CONTACT_PERSON", length = 90)
     private Integer contactID;
 
-    @Column(name = "COMP_TYPE", length = 40)
-    private String companyType;
+    @ManyToOne
+    @JoinColumn(name="GROUP_ID")
+    @JsonIgnoreProperties("groups")
+    private Group branche;
 
     @Column(name = "HOMEPAGE", length = 70)
     private String homepage;
@@ -69,12 +71,8 @@ public class Account extends Auditable {
 
     }
 
-    public Integer getID() {
+    public Long getID() {
         return id;
-    }
-
-    public void setID(Integer ID) {
-        this.id = ID;
     }
 
     public Account(String name) {
@@ -181,12 +179,13 @@ public class Account extends Auditable {
         return contacts;
     }
 
-    public String getCompanyType() {
-        return companyType;
+    public Group getBranche() {
+        return branche;
     }
 
-    public void setCompanyType(String companyType) {
-        this.companyType = companyType;
+    public void setBranche(Group branche) {
+        this.branche = branche;
+        branche.getAccounts().add(this);
     }
 
     public int getNrOfEmployees() {

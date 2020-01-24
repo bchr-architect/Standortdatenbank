@@ -62,6 +62,10 @@ export class AccountListComponent implements OnInit {
     if (entry.active == null) {
       entry.active = false;
     }
+
+    if(!entry.branche) {
+      entry.branche="";
+    }
   }
 
   openAccountDetailsDialog(data: Data) {

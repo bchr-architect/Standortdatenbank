@@ -26,7 +26,7 @@ public class ContactService {
 
 
     public List getAllContacts() {
-        List contactList = this.contactDao.findContactByInactive(false);
+        List contactList = this.contactDao.findContactByActive(true);
         return contactList;
     }
 
