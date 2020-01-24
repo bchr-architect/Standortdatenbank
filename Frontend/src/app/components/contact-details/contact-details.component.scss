@@ -13,7 +13,7 @@ mat-form-field {
   width: 50%;
 }
 
-.single-mat-field mat-form-field{
+.single-mat-field mat-form-field {
   width: 100%;
 }
 
@@ -21,6 +21,26 @@ mat-button-toggle-group {
   margin-top: 15px;
   margin-right: 50%;
 }
+.profile {
+  margin-left: 5px;
+  float: left;
+  height: 200px;
+  width: 200px;
+  margin-bottom: 10px;
+}
+.buttonContainer {
+  display: inline-block;
+  flex-direction: row;
+  width: 100%;
+
+  mat-dialog-actions {
+    padding: 0px;
+    min-height: 0px;
+    margin-bottom: 0px;
+  }
+
+}
+
 
 mat-card {
   width: 50%;
@@ -36,12 +56,13 @@ mat-checkbox {
 .mat-raised-button {
   font-weight: lighter;
   background-color: #888888;
+  margin: 10px;
 }
-.deleteContact{
-  margin-top: 15px;
+
+.deleteContact {
 }
+
 .editButton {
-  margin-top: 20px;
 }
 
 mat-placeholder {

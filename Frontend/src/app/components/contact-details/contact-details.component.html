@@ -5,11 +5,15 @@
     <h2>{{data.firstName + " " + data.lastName}}</h2>
   </div>
 
+<div class="buttonContainer">
+  <img class="profile" [src]="data.imagePath">
+
   <mat-dialog-actions align="end" class="top-button">
     <button mat-raised-button color="primary" type="button" (click)="accordion.openAll()">Alle Felder öffnen</button>
     <button mat-raised-button color="primary" type="button" (click)="accordion.closeAll()">Alle Felder schließen
     </button>
   </mat-dialog-actions>
+
 
   <div class="editButton" align="end">
     <div>
@@ -30,6 +34,8 @@
       </button>
     </div>
   </div>
+</div>
+
 
   <br>
 <<<<<<< HEAD -->
