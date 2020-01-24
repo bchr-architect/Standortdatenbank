@@ -215,6 +215,14 @@ public class Contact extends Auditable {
     @Column(name = "NOTES", length = 100)
     private String notes;
 
+    @Column(name ="LETTER_SALUTATION", length = 120)
+    private String letterSalutation;
+
+    @Column(name= "TRAILING_TITLE", length= 50)
+    private String trailingTitle;
+
+
+
     public Long getId() {
         return id;
     }
@@ -299,7 +307,6 @@ public class Contact extends Auditable {
         return languageID;
     }
 
-
     public String getShippingAddress() {
         return shippingAddress;
     }
@@ -340,16 +347,13 @@ public class Contact extends Auditable {
         return memo;
     }
 
-
     public String getDepartment1() {
         return department1;
     }
 
-
     public String getDepartment2() {
         return department2;
     }
-
 
     public String getDepartment3() {
         return department3;
@@ -366,7 +370,6 @@ public class Contact extends Auditable {
     public String getFunction3() {
         return function3;
     }
-
 
     public Boolean getFreeFlag1() {
         return freeFlag1;
@@ -657,6 +660,22 @@ public class Contact extends Auditable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getLetterSalutation() {
+        return letterSalutation;
+    }
+
+    public void setLetterSalutation(String letterSalutation) {
+        this.letterSalutation = letterSalutation;
+    }
+
+    public String getTrailingTitle() {
+        return trailingTitle;
+    }
+
+    public void setTrailingTitle(String trailingTitle) {
+        this.trailingTitle = trailingTitle;
     }
 
     public Account getAccount1() {
