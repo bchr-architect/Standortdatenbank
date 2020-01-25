@@ -1,6 +1,12 @@
 import {ChangeDetectorRef, Component, Inject, OnInit, Optional} from '@angular/core';
 import {ActivatedRoute, Router, RouterLinkActive, Routes} from "@angular/router";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {Account} from "../../modules/account";
+import {Group} from "../../modules/group";
+import {AccountDetailsComponent} from "../account-details/account-details.component";
+import {Contact} from "../../modules/contact";
+import {AccountService} from "../../services/account.service";
+import {GroupService} from "../../services/group.service";
 
 @Component({
   selector: 'app-meta-dialog-account',
@@ -9,50 +15,60 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 })
 export class MetaDialogAccountComponent implements OnInit {
 
-  selectedIndex;
-  navLinks = ['editaccount', 'viewaccounts']; //Navigation ändern
-  isViewInitialized = false;
+  account: Account;
+  isReadOnly: boolean;
+  changeActive: boolean;
+  groups: Group[];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private accountService: AccountService,
+    private groupService: GroupService,
     private changeDetector: ChangeDetectorRef,
-    // public dialogRef: MatDialogRef<DialogComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+    public dialogRef: MatDialogRef<AccountDetailsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: {
+      id: number, compName: string, email: string, branche: Group,
+      createdDate: number, lastModifiedDate: number, active: boolean, phone: string, phone2: string,
+      street: string, place: string, postCode: string, country: string, ustID: string, companyType: string,
+      mailbox: string, mailboxPlace: string,
+      mailboxPostcode: string, mailboxCountry: string,
+      homepage: string, nrOfEmployees: number, contacts: Array<Contact>;},
+    @Optional() @Inject(MAT_DIALOG_DATA) public optionalData: {
+      id: number, compName: string, email: string, branche: Group,
+      createdDate: number, lastModifiedDate: number, active: boolean, phone: string, phone2: string,
+      street: string, place: string, postCode: string, country: string, ustID: string, companyType: string,
+      mailbox: string, mailboxPlace: string,
+      mailboxPostcode: string, mailboxCountry: string,
+      homepage: string, nrOfEmployees: number, contacts: Array<Contact>;
+    })
+    {
+      this.account = new Account();
+      this.isReadOnly = true;
+      this.changeActive = false;
+      this.groups=new Array<Group>();
+    }
 
   ngOnInit() {
-  }
+    this.groupService.findAll().subscribe(sourceGroups =>
+      sourceGroups.forEach(entry => {
+        if (entry.active) {
+          this.groups.push(entry)
+        }
+      })
+    )
 
-  selectedIndexChange(val: number) {
-    this.selectedIndex = val;
-    console.log('this is selected index: ', val);
-  }
-
-  ngAfterViewInit() {
-    this.isViewInitialized = true;
-    this.changeDetector.detectChanges();
+    this.router.navigate(['accounts/editaccount']);
   }
 
   ngOnDestroy() {
     console.warn('---- Dialog was destroyed ----');
     this.router.navigate(['accounts']);
+    window.location.href = 'http://localhost:4200/accounts';
   }
 
-  buildNavItems(routes: Routes) {
-    return (routes)
-      .filter(route => route.data)
-      .map(({ path = '', data }) => ({
-        path: path,
-        label: data.label,
-        icon: data.icon
-      }));
-  }
-
-  isLinkActive(rla: RouterLinkActive): boolean {
-    const routerLink = rla.linksWithHrefs.first;
-
-    return this.router.isActive(routerLink.urlTree, false);
+  reload() {
+    window.location.reload();
   }
 
 }

@@ -1,6 +1,8 @@
 import {ChangeDetectorRef, Component, Inject, OnInit, Optional} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ActivatedRoute, Router, RouterLinkActive, Routes} from "@angular/router";
+import {Group} from "../../modules/group";
+import {GroupDetailsComponent} from "../group-details/group-details.component";
 
 @Component({
   selector: 'app-meta-dialog-contact',
@@ -9,53 +11,37 @@ import {ActivatedRoute, Router, RouterLinkActive, Routes} from "@angular/router"
 })
 export class MetaDialogGroupComponent implements OnInit {
 
-  selectedIndex;
-  navLinks = ['editgroup', 'viewgroups']; //Navigation ändern
-  isViewInitialized = false;
+  group: Group;
+  isReadOnly: boolean;
+  changeActive: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private changeDetector: ChangeDetectorRef,
-    // public dialogRef: MatDialogRef<DialogComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
-
+    public dialogRef: MatDialogRef<GroupDetailsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: {id: number, name: string, additive: string, mother: Group,
+      createdDate: number, active: boolean, lastModifiedDate:number;},
+    @Optional() @Inject(MAT_DIALOG_DATA) public optionalData: {id: number, name: string, additive: string, mother: Group,
+      createdDate: number, active: boolean, lastModifiedDate:number;})
+  {
+    this.group = new Group();
+    this.isReadOnly = true;
+    this.changeActive = false;
   }
 
   ngOnInit() {
-
-  }
-
-  selectedIndexChange(val: number) {
-    this.selectedIndex = val;
-    console.log('this is selected index: ', val);
-  }
-
-  ngAfterViewInit() {
-    this.isViewInitialized = true;
-    this.changeDetector.detectChanges();
+    this.router.navigate(['groups/editgroup']);
   }
 
   ngOnDestroy() {
     console.warn('---- Dialog was destroyed ----');
     this.router.navigate(['groups']);
+    window.location.href = 'http://localhost:4200/groups';
   }
 
-  buildNavItems(routes: Routes) {
-    return (routes)
-      .filter(route => route.data)
-      .map(({ path = '', data }) => ({
-        path: path,
-        label: data.label,
-        icon: data.icon
-      }));
-  }
-
-  isLinkActive(rla: RouterLinkActive): boolean {
-    const routerLink = rla.linksWithHrefs.first;
-
-    return this.router.isActive(routerLink.urlTree, false);
+  reload() {
+    window.location.reload();
   }
 
 }

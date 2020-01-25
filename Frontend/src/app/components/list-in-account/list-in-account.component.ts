@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-list-in-account',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListInAccountComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
+    this.router.navigate(['accounts/viewaccounts']);
+  }
+
+  ngAfterClose() {
+    console.warn('---- Dialog was destroyed in ListInAccount ----');
+    this.router.navigate(['accounts']);
   }
 
 }
