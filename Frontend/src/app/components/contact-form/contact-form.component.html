@@ -7,16 +7,8 @@
       <button mat-raised-button color="primary" type="button" (click)="accordion.closeAll()">Alle Felder schließen</button>
     </mat-dialog-actions>
 
-    <mat-form-field>
-      <mat-select [(value)]="contact.group" [compareWith]="compareByGroupId" placeholder="Branche">
-        <mat-option *ngFor="let group of groups" [value]="group">
-          {{group.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
     <mat-accordion #accordion="matAccordion" [multi]="true">
-      <mat-expansion-panel>
+      <mat-expansion-panel expanded="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Persönliche Daten
@@ -30,10 +22,24 @@
         </mat-form-field>
 
         <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Briefanrede"
+                 id="letterSalutation"
+                 [(ngModel)]="contact.letterSalutation"
+                 name="letterSalutation">
+        </mat-form-field>
+
+        <mat-form-field>
           <input matInput type="text" class="form-control" placeholder="Titel"
                  id="title"
                  [(ngModel)]="contact.title"
                  name="title">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="text" class="form-control" placeholder="Nachgestellter Titel"
+                 id="trailingTitle"
+                 [(ngModel)]="contact.trailingTitle"
+                 name="trailingTitle">
         </mat-form-field>
 
         <mat-form-field>
@@ -117,91 +123,15 @@
         </div>
       </mat-expansion-panel>
 
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Organisation 1
-          </mat-panel-title>
-        </mat-expansion-panel-header>
+      <!--  <div class="form-group">
+        < <mat-form-field>
+             <input matInput type="text" class="form-control" placeholder="Ansprechperson Standortagentur"
+                    id="representativeID"
+                    [(ngModel)]="contact.representativeID"
+                    name="representativeID">
+           </mat-form-field>
 
-        <div class="form-group">
-          <mat-form-field>
-            <mat-select placeholder="Organisation 1" [(value)]="contact.account1" [compareWith]="compareById">
-              <mat-option *ngFor="let account of accounts" [value]="account">
-                {{account.compName}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput placeholder="Funktion" class="form-control" [(ngModel)]="contact.function1">
-          </mat-form-field>
-        </div>
-
-        <div class="single-mat-field">
-          <mat-form-field>
-            <input matInput placeholder="Abteilung"  class="form-control" [(ngModel)]="contact.department1">
-          </mat-form-field>
-        </div>
-      </mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Organisation 2
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <div class="form-group">
-          <mat-form-field>
-            <mat-select placeholder="Organisation 2" [(value)]="contact.account2" [compareWith]="compareById">
-              <mat-option *ngFor="let account of accounts" [value]="account">
-                {{account.compName}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput placeholder="Funktion" class="form-control" [(ngModel)]="contact.function2">
-          </mat-form-field>
-        </div>
-
-        <div class="single-mat-field">
-          <mat-form-field>
-            <input matInput placeholder="Abteilung" class="form-control" [(ngModel)]="contact.department2">
-          </mat-form-field>
-        </div>
-
-      </mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Organisation 3
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <div class="form-group">
-          <mat-form-field>
-            <mat-select placeholder="Organisation 3" [(value)]="contact.account3" [compareWith]="compareById">
-              <mat-option *ngFor="let account of accounts" [value]="account">
-                {{account.compName}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput placeholder="Funktion" class="form-control" [(ngModel)]="contact.function3">
-          </mat-form-field>
-        </div>
-
-        <div class="single-mat-field">
-          <mat-form-field>
-            <input matInput placeholder="Abteilung" class="form-control" [(ngModel)]="contact.department3">
-          </mat-form-field>
-        </div>
-
-      </mat-expansion-panel>
+        </div> -->
 
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -246,36 +176,91 @@
                    name="region">
           </mat-form-field>
         </div>
+      </mat-expansion-panel>
 
-        <mat-card>Postfach</mat-card>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Organisation 1
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-        <mat-form-field>
-          <input matInput type="text" class="form-control" placeholder="Postfach"
-                 id="mailbox"
-                 [(ngModel)]="contact.mailbox"
-                 name="mailbox">
-        </mat-form-field>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-select placeholder="Organisation 1" [(value)]="contact.account1" [compareWith]="compareById" name="organisation1">
+              <mat-option *ngFor="let account of accounts" [value]="account">
+                {{account.compName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <mat-form-field>
-          <input matInput type="text" class="form-control" placeholder="Ort"
-                 id="mailboxPlace"
-                 [(ngModel)]="contact.mailboxPlace"
-                 name="mailboxPlace">
-        </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Funktion" class="form-control" [(ngModel)]="contact.function1" name="function1">
+          </mat-form-field>
+        </div>
 
-        <mat-form-field>
-          <input matInput type="text" class="form-control" placeholder="PLZ"
-                 id="mailboxPostcode"
-                 [(ngModel)]="contact.mailboxPostcode"
-                 name="mailboxPostcode">
-        </mat-form-field>
+        <div class="single-mat-field">
+          <mat-form-field>
+            <input matInput placeholder="Abteilung"  class="form-control" [(ngModel)]="contact.department1" name="departmemt1">
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
 
-        <mat-form-field>
-          <input matInput type="text" class="form-control" placeholder="Land"
-                 id="mailboxCountry"
-                 [(ngModel)]="contact.mailboxCountry"
-                 name="mailboxCountry">
-        </mat-form-field>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Organisation 2
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-select placeholder="Organisation 2" [(value)]="contact.account2" [compareWith]="compareById">
+              <mat-option *ngFor="let account of accounts" [value]="account">
+                {{account.compName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Funktion" class="form-control" [(ngModel)]="contact.function2" name="function2">
+          </mat-form-field>
+        </div>
+
+        <div class="single-mat-field">
+          <mat-form-field>
+            <input matInput placeholder="Abteilung" class="form-control" [(ngModel)]="contact.department2" name="department2">
+          </mat-form-field>
+        </div>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Organisation 3
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-select placeholder="Organisation 3" [(value)]="contact.account3" [compareWith]="compareById">
+              <mat-option *ngFor="let account of accounts" [value]="account">
+                {{account.compName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Funktion" class="form-control" [(ngModel)]="contact.function3" name="function3">
+          </mat-form-field>
+        </div>
+
+        <div class="single-mat-field">
+          <mat-form-field>
+            <input matInput placeholder="Abteilung" class="form-control" [(ngModel)]="contact.department3" name="department3">
+          </mat-form-field>
+        </div>
 
       </mat-expansion-panel>
 
@@ -299,7 +284,6 @@
         </div>
 
       </mat-expansion-panel>
-
 
       <mat-expansion-panel>
         <mat-expansion-panel-header>

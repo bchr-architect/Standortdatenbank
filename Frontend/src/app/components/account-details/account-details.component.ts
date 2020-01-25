@@ -5,12 +5,8 @@ import {AccountService} from "../../services/account.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Account} from "../../modules/account";
 import {Contact} from "../../modules/contact";
-import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
-import {ContactDetailsComponent} from "../contact-details/contact-details.component";
-import {isUndefined} from "util";
 import {Group} from "../../modules/group";
+import {GroupService} from "../../services/group.service";
 
 @Component({
   selector: 'app-account-details',
@@ -18,26 +14,42 @@ import {Group} from "../../modules/group";
   styleUrls: ['./account-details.component.scss']
 })
 
-export class AccountDetailsComponent{
+export class AccountDetailsComponent implements OnInit{
 
   account: Account;
   isReadOnly: boolean;
-  changeActive: boolean
+  changeActive: boolean;
+  groups: Group[];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
+    private groupService: GroupService,
     public dialogRef: MatDialogRef<AccountDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {
       id: number, compName: string, email: string, branche: Group,
-      createdDate: number, lastModifiedDate: number, active: boolean, phone: string, phone2: string, street: string, place: string, postCode: string, country: string, ustID: string, companyType: string, homepage: string, nrOfEmployees: number, contacts: Array<Contact>;
+      createdDate: number, lastModifiedDate: number, active: boolean, phone: string, phone2: string,
+      street: string, place: string, postCode: string, country: string, ustID: string, companyType: string,
+      mailbox: string, mailboxPlace: string,
+      mailboxPostcode: string, mailboxCountry: string,
+      homepage: string, nrOfEmployees: number, contacts: Array<Contact>;
     }) {
     this.account = new Account();
     this.isReadOnly = true;
     this.changeActive = false;
+    this.groups=new Array<Group>();
   }
 
+  ngOnInit(): void {
+    this.groupService.findAll().subscribe(sourceGroups =>
+      sourceGroups.forEach(entry => {
+        if (entry.active) {
+          this.groups.push(entry)
+        }
+      })
+    )
+  }
 
   onSubmit() {
     this.account = this.data;
@@ -55,13 +67,14 @@ export class AccountDetailsComponent{
   onEdit() {
     this.isReadOnly = false;
     this.changeActive = true;
-
-
   }
 
   goToAccountList() {
     this.router.navigate(['accounts']);
   }
 
+  compareByGroupId(i1: Group, i2: Group): boolean {
+    return i1 && i2 ? i1.id == i2.id : i1 == i2;
+  }
 
 }

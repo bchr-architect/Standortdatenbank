@@ -18,5 +18,9 @@ export class Account {
   branche: Group;
   homepage: string;
   nrOfEmployees: number;
+  mailbox: string;
+  mailboxPlace: string;
+  mailboxPostcode: string;
+  mailboxCountry: string;
   contacts: Array<Contact>;
 }

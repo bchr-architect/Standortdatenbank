@@ -10,6 +10,7 @@ import {MatDialog} from "@angular/material/dialog";
 import * as XLSX from "xlsx";
 import {GroupDetailsComponent} from "../group-details/group-details.component";
 import {isUndefined} from "util";
+import {MetaDialogGroupComponent} from "../meta-dialog-group/meta-dialog-group.component";
 
 @Component({
   selector: 'app-group-list',
@@ -65,7 +66,7 @@ export class GroupListComponent implements OnInit {
   }
 
   openGroupDetailsDialog(data: Data) {
-    const dialogRef = this.dialog.open(GroupDetailsComponent, {
+    const dialogRef = this.dialog.open(MetaDialogGroupComponent, {
       height: '1800px',
       width: '1200px',
       data: { ...data}

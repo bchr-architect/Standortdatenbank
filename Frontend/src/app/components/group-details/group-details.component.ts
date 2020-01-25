@@ -16,7 +16,6 @@ export class GroupDetailsComponent {
   isReadOnly: boolean;
   changeActive: boolean
 
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,

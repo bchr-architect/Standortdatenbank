@@ -98,7 +98,7 @@ public class Contact extends Auditable {
     // x Contacts -> 1 Group
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "Group_id")
-    @JsonIgnoreProperties("groups")
+    @JsonIgnoreProperties(value = "groups")
     public Group group;
 
     @Column(name = "CREATOR", length = 40)
@@ -115,12 +115,6 @@ public class Contact extends Auditable {
 
     @Column(name = "SHIPPING_ADDRESS", length = 20)
     private String shippingAddress;
-
-    @Column(name = "REF_ADDRESS", length = 20)
-    private String refAddress;
-
-    @Column(name = "REF_ADDRESS2", length = 20)
-    private String refAddress2;
 
     @Column(name = "ADDITIONAL", length = 80)
     private String additional;
@@ -312,10 +306,6 @@ public class Contact extends Auditable {
 
     public String getShippingAddress() {
         return shippingAddress;
-    }
-
-    public String getRefAddress() {
-        return refAddress;
     }
 
     public String getAdditional() {
@@ -529,10 +519,6 @@ public class Contact extends Auditable {
         this.shippingAddress = shippingAddress;
     }
 
-    public void setRefAddress(String refAddress) {
-        this.refAddress = refAddress;
-    }
-
     public void setAdditional(String additional) {
         this.additional = additional;
     }
@@ -728,10 +714,6 @@ public class Contact extends Auditable {
 
     public Date getDsvDataCollection() {
         return dsvDataCollection;
-    }
-
-    public String getRefAddress2() {
-        return refAddress2;
     }
 
     public String getDsvAnonymisedBy() {

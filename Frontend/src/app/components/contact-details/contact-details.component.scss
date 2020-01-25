@@ -1,7 +1,11 @@
-h1 {
-  width: 300px;
+.dialog-header-title {
+  width: 500px;
   position: relative;
-  left: 150px;
+  left: 30%;
+  font-weight: lighter;
+}
+
+h1 {
   font-weight: lighter;
 }
 
@@ -37,7 +41,6 @@ mat-button-toggle-group {
 
 }
 
-
 mat-card {
   width: 50%;
   margin-bottom: 10px;
@@ -72,8 +75,20 @@ mat-expansion-panel {
 
 }
 
+/*::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
 
-/*.mat-expansion-panel-header.mat-expanded {
+  background-color: #005691!important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #005691;
+}
+
+.mat-expansion-panel-header.mat-expanded {
   background: #888888;
 }*/
+
+::ng-deep .mat-checkbox-disabled .mat-checkbox-background {
+  background-color: #ab8d38;
+}
 
