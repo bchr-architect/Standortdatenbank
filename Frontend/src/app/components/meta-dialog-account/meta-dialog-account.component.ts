@@ -50,6 +50,7 @@ export class MetaDialogAccountComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.router.navigate(['accounts/editaccount']);
     this.groupService.findAll().subscribe(sourceGroups =>
       sourceGroups.forEach(entry => {
         if (entry.active) {
@@ -57,18 +58,20 @@ export class MetaDialogAccountComponent implements OnInit {
         }
       })
     )
-
-    this.router.navigate(['accounts/editaccount']);
   }
 
   ngOnDestroy() {
-    console.warn('---- Dialog was destroyed ----');
+    console.warn('---- Dialog was destroyed in Accounts ----');
     this.router.navigate(['accounts']);
     window.location.href = 'http://localhost:4200/accounts';
   }
 
   reload() {
     window.location.reload();
+  }
+
+  compareByGroupId(i1: Group, i2: Group): boolean {
+    return i1 && i2 ? i1.id == i2.id : i1 == i2;
   }
 
 }

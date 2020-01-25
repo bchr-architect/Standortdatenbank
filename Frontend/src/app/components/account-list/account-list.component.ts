@@ -86,8 +86,6 @@ export class AccountListComponent implements OnInit {
         });
       }
 
-      window.location.reload();
-
       this.accountService.findAll().subscribe(data => {
         this.accountTableSource.data = data;
         this.accountTableSource.data.forEach(entry => {
