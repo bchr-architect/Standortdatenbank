@@ -62,6 +62,18 @@ public class Account extends Auditable {
     @Column(name = "ACTIVE")
     private Boolean active;
 
+    @Column(name = "MAILBOX", length = 30)
+    private String mailbox;
+
+    @Column(name = "MAILBOX_PLACE", length = 70)
+    private String mailboxPlace;
+
+    @Column(name = "MAILBOX_POSTCODE", length = 10)
+    private String mailboxPostcode;
+
+    @Column(name = "MAILBOX_COUNTRY", length = 30)
+    private String mailboxCountry;
+
     @Column(name= "CONTACTS")
     @OneToMany(mappedBy = "account1")
     @JsonIgnoreProperties("account1")
@@ -173,6 +185,38 @@ public class Account extends Auditable {
 
     public void setContacts(Set<Contact> contacts) {
         this.contacts = contacts;
+    }
+
+    public void setMailbox(String mailbox) {
+        this.mailbox = mailbox;
+    }
+
+    public String getMailbox() {
+        return mailbox;
+    }
+
+    public String getMailboxCountry() {
+        return mailboxCountry;
+    }
+
+    public void setMailboxCountry(String mailboxCountry) {
+        this.mailboxCountry = mailboxCountry;
+    }
+
+    public void setMailboxPlace(String mailboxPlace) {
+        this.mailboxPlace = mailboxPlace;
+    }
+
+    public String getMailboxPlace() {
+        return mailboxPlace;
+    }
+
+    public void setMailboxPostcode(String mailboxPostcode) {
+        this.mailboxPostcode = mailboxPostcode;
+    }
+
+    public String getMailboxPostcode() {
+        return mailboxPostcode;
     }
 
     public Set<Contact> getContacts() {

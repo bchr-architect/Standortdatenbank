@@ -7,33 +7,34 @@
           <h2>{{data.name}}</h2>
         </div>
 
-    <mat-dialog-actions align="end" class="top-button">
-      <button mat-raised-button color="primary" type="button" (click)="accordion.openAll()">Alle Felder öffnen</button>
-      <button mat-raised-button color="primary" type="button" (click)="accordion.closeAll()">Alle Felder schließen</button>
-    </mat-dialog-actions>
+        <div class="buttonContainer">
+          <mat-dialog-actions align="end" class="top-button">
+            <button mat-raised-button color="primary" type="button" (click)="accordion.openAll()">Alle Felder öffnen</button>
+            <button mat-raised-button color="primary" type="button" (click)="accordion.closeAll()">Alle Felder schließen</button>
+          </mat-dialog-actions>
 
-    <div>
-      <div class="editButton" align="end">
-        <div>
-          <button mat-raised-button type="button" class="changeBtn"
-                  color="primary"
-                  (click)="onEdit()"
-                  [disabled]=this.changeActive>Bearbeiten
-          </button>
+            <div class="editButton" align="end">
+              <div>
+                <button mat-raised-button type="button" class="changeBtn"
+                        color="primary"
+                        (click)="onEdit()"
+                        [disabled]=this.changeActive>Bearbeiten
+                </button>
+              </div>
+            </div>
+
+            <div class="deleteButton" align="end">
+              <div>
+                <button mat-raised-button type="submit" class="changeBtn"
+                        color="primary"
+                        [mat-dialog-close]="data"
+                        (click)="onDelete()">Gruppe löschen
+                </button>
+
+              </div>
+            </div>
+
         </div>
-      </div>
-
-      <div class="deleteButton">
-        <div>
-          <button mat-raised-button type="submit" class="changeBtn"
-                  color="primary"
-                  [mat-dialog-close]="data"
-                  (click)="onDelete()">Gruppe löschen
-          </button>
-
-        </div>
-      </div>
-    </div>
 
     <mat-accordion #accordion="matAccordion" [multi]="true">
       <mat-expansion-panel>
@@ -77,7 +78,10 @@
     </mat-accordion>
 
   <mat-dialog-actions align="center">
-    <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data" (click)="onSubmit()">Speichern</button>
+    <button mat-raised-button type="submit" class="changeBtn" color="primary" [mat-dialog-close]="data"
+            (click)="onSubmit()" [disabled]=!this.changeActive>Speichern</button>
   </mat-dialog-actions>
 
+      </div>
+    </div>
 </div>

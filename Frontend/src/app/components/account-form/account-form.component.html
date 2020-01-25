@@ -33,8 +33,13 @@
 
         <div class="form-group">
           <mat-form-field>
-            <input matInput type="text" class="form-control" placeholder="Branche" id="companyType"
-                   name="postpositiveTitle">
+            <mat-select placeholder="Organisation" [(value)]="account.branche" [compareWith]="compareByGroupId">
+              <mat-option *ngFor="let group of groups" [value]="group">
+                {{group.name}}
+              </mat-option>
+            </mat-select>
+
+
           </mat-form-field>
 
           <mat-form-field>
@@ -115,6 +120,37 @@
                    [(ngModel)]="account.country"
                    name="country">
           </mat-form-field>
+
+          <div class="single-mat-field">
+            <mat-form-field>
+              <input matInput type="text" class="form-control" placeholder="Postfach"
+                     id="mailbox"
+                     [(ngModel)]="account.mailbox"
+                     name="mailbox">
+            </mat-form-field>
+          </div>
+
+            <mat-form-field>
+              <input matInput type="text" class="form-control" placeholder="Ort"
+                     id="mailboxPlace"
+                     [(ngModel)]="account.mailboxPlace"
+                     name="mailboxPlace">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput type="text" class="form-control" placeholder="PLZ"
+                     id="mailboxPostcode"
+                     [(ngModel)]="account.mailboxPostcode"
+                     name="mailboxPostcode">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput type="text" class="form-control" placeholder="Land"
+                     id="mailboxCountry"
+                     [(ngModel)]="account.mailboxCountry"
+                     name="mailboxCountry">
+            </mat-form-field>
+
         </div>
       </mat-expansion-panel>
     </mat-accordion>

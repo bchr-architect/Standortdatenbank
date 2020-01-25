@@ -34,6 +34,11 @@ import {GroupListComponent} from "./components/group-list/group-list.component";
 import {GroupFormComponent} from "./components/group-form/group-form.component";
 import {GroupDetailsComponent} from "./components/group-details/group-details.component";
 import {MatExpansionModule} from "@angular/material/expansion";
+import {MatTabsModule} from "@angular/material/tabs";
+import { MetaDialogGroupComponent } from './components/meta-dialog-group/meta-dialog-group.component';
+import { MetaDialogAccountComponent } from './components/meta-dialog-account/meta-dialog-account.component';
+import { ListInAccountComponent } from './components/list-in-account/list-in-account.component';
+import { ListInGroupComponent } from './components/list-in-group/list-in-group.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +51,11 @@ import {MatExpansionModule} from "@angular/material/expansion";
   GroupFormComponent,
   AccountDetailsComponent,
   ContactDetailsComponent,
-  GroupDetailsComponent
+  GroupDetailsComponent,
+  MetaDialogGroupComponent,
+  MetaDialogAccountComponent,
+  ListInAccountComponent,
+  ListInGroupComponent
   ],
   imports: [
     BrowserModule,
@@ -73,9 +82,12 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MatRippleModule,
     FlexModule,
     MatDatepickerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTabsModule
   ],
-  entryComponents: [AccountDetailsComponent, ContactDetailsComponent, GroupDetailsComponent],
+  entryComponents: [AccountDetailsComponent, ContactDetailsComponent, GroupDetailsComponent,
+  MetaDialogGroupComponent, MetaDialogAccountComponent,
+    ListInAccountComponent, ListInGroupComponent],
   providers: [ContactService],
   bootstrap: [AppComponent]
 })

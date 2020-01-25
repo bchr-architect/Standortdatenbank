@@ -30,8 +30,21 @@ button {
   font-weight: lighter;
 }
 
+.buttonContainer {
+  display: inline-block;
+  flex-direction: row;
+  width: 100%;
+
+  mat-dialog-actions {
+    padding: 0px;
+    min-height: 0px;
+    margin-bottom: 0px;
+  }
+}
+
 .editButton {
-  margin-top: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .mat-raised-button {

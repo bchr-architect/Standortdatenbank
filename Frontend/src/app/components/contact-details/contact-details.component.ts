@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Contact} from "../../modules/contact";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLinkActive, Routes} from "@angular/router";
 import {ContactService} from "../../services/contact.service";
 import {Account} from "../../modules/account";
 import {AccountService} from "../../services/account.service";
@@ -37,8 +37,7 @@ export class ContactDetailsComponent implements OnInit {
       phone3: string, phone4: string, fax: string, mailbox: string, mailboxPlace: string,
       mailboxPostcode: string, mailboxCountry: string, homepage: string, account1: Account, account2: Account, account3: Account,
       creatorID: string, editedByID: string, representativeID: string,
-      languageID: string,
-      refAddress: string, refAddress2: string, additional: string, additional2: string,
+      languageID: string, additional: string, additional2: string,
       additional3: string, active: boolean, privatePerson: boolean,  appellation: string, title: string,
       memo: number, department1: string; department2:string; department3: string; function1: string; function2: string;  function3: string
       freeFlag1: boolean, freeFlag2: boolean, displayName: string,
@@ -71,6 +70,7 @@ export class ContactDetailsComponent implements OnInit {
         }
       })
     )
+
   }
 
   onSubmit() {

@@ -7,9 +7,9 @@ import {AccountService} from "../../services/account.service";
 import {Account} from "../../modules/account";
 import {AccountFormComponent} from "../account-form/account-form.component";
 import {MatDialog} from "@angular/material/dialog";
-import {AccountDetailsComponent} from "../account-details/account-details.component";
 import {isUndefined} from "util";
 import * as XLSX from "xlsx";
+import {MetaDialogAccountComponent} from "../meta-dialog-account/meta-dialog-account.component";
 
 @Component({
   selector: 'app-account-list',
@@ -22,7 +22,7 @@ export class AccountListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   accountTableSource: MatTableDataSource<Account>;
-  displayedColumns: string[] = ['compName', 'email', 'companyType', 'street', 'place', 'postCode', 'nrOfEmployees', 'ustID'];
+  displayedColumns: string[] = ['compName', 'email', 'companyType', 'street', 'place', 'postCode'];
   private accounts: Account[];
   private account: Account;
   selectedRowIndex: number = -1;
@@ -69,7 +69,7 @@ export class AccountListComponent implements OnInit {
   }
 
   openAccountDetailsDialog(data: Data) {
-    const dialogRef = this.dialog.open(AccountDetailsComponent, {
+    const dialogRef = this.dialog.open(MetaDialogAccountComponent, {
       height: '1800px',
       width: '1200px',
       data: {...data}
