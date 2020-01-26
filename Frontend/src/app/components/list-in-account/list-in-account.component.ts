@@ -21,6 +21,8 @@ export class ListInAccountComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+
+
   tableSource: MatTableDataSource<Contact>;
   displayedColumns: string[] = ['firstName', 'lastName', 'email', 'account', 'group', 'createdDate', 'notes'];
   private contacts: Contact[];
@@ -31,7 +33,16 @@ export class ListInAccountComponent implements OnInit {
               private router: Router,
               private contactService: ContactService,
               public dialog: MatDialog,
-              private changeDetector: ChangeDetectorRef) {
+              private changeDetector: ChangeDetectorRef,
+              @Inject(MAT_DIALOG_DATA) public data1: {
+                id: number, compName: string, email: string, branche: Group,
+                createdDate: number, lastModifiedDate: number, active: boolean, phone: string, phone2: string,
+                street: string, place: string, postCode: string, country: string, ustID: string, companyType: string,
+                mailbox: string, mailboxPlace: string,
+                mailboxPostcode: string, mailboxCountry: string,
+                homepage: string, nrOfEmployees: number, contacts: Array<Contact>;
+              }
+  ) {
               this.tableSource = new MatTableDataSource<Contact>(this.contacts)
   }
 
