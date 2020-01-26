@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Contact} from "../modules/contact";
 
@@ -21,6 +21,13 @@ export class ContactService {
 
   public save(contact: Contact):Observable<Contact> {
     return this.http.post<Contact>(this.contactUrl+'/add', contact);
+  }
+
+  findAllByAccount(compName: string): Observable<Contact[]> {
+    let params = new HttpParams()
+      .set ("compName",compName)
+    return this.http.get<Contact[]>(this.contactUrl+'/all');
+
   }
 }
 

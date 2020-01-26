@@ -42,8 +42,6 @@ export class MetaDialogGroupComponent implements OnInit {
     window.location.href = 'http://localhost:4200/groups';
   }
 
-<<<<<<< HEAD
-=======
   reload() {
     window.location.reload();
   }
@@ -55,6 +53,4 @@ export class MetaDialogGroupComponent implements OnInit {
       return this.class = "nav-bar1";
     }
   }
-
->>>>>>> 414173f13d519f8948a2465cfc857345b2078e29
 }

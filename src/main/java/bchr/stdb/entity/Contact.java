@@ -693,10 +693,12 @@ public class Contact extends Auditable {
 
     public void setAccount2(Account account2) {
         this.account2 = account2;
+        account2.getContacts().add(this);
     }
 
     public void setAccount3(Account account3) {
         this.account3 = account3;
+        account2.getContacts().add(this);
     }
 
 
