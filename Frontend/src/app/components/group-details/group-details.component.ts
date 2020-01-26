@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, Optional} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router'
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {GroupService} from "../../services/group.service";
@@ -22,6 +22,8 @@ export class GroupDetailsComponent {
     private groupService: GroupService,
     public dialogRef: MatDialogRef<GroupDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {id: number, name: string, additive: string, mother: Group,
+      createdDate: number, active: boolean, lastModifiedDate:number;},
+    @Optional() @Inject(MAT_DIALOG_DATA) public optionalData: {id: number, name: string, additive: string, mother: Group,
       createdDate: number, active: boolean, lastModifiedDate:number;}) {
     this.group = new Group();
     this.isReadOnly = true;

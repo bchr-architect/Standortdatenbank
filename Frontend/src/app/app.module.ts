@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpBackend, HttpClient, HttpClientModule} from "@angular/common/http";
 import {ContactService} from "./services/contact.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from "@angular/material/toolbar";
@@ -18,7 +18,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSortModule} from "@angular/material/sort";
 import { AccountListComponent } from './components/account-list/account-list.component';
 import {AccountFormComponent} from "./components/account-form/account-form.component";
-import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatSelectModule} from "@angular/material/select";
 import { MatCardModule, MatIconModule } from '@angular/material';
@@ -40,6 +40,8 @@ import { MetaDialogAccountComponent } from './components/meta-dialog-account/met
 import { ListInAccountComponent } from './components/list-in-account/list-in-account.component';
 import { ListInGroupComponent } from './components/list-in-group/list-in-group.component';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import {AccountService} from "./services/account.service";
+import {GroupService} from "./services/group.service";
 
 @NgModule({
   declarations: [
@@ -90,7 +92,16 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
   entryComponents: [AccountDetailsComponent, ContactDetailsComponent, GroupDetailsComponent,
   MetaDialogGroupComponent, MetaDialogAccountComponent,
     ListInAccountComponent, ListInGroupComponent],
-  providers: [ContactService],
+  providers: [ContactService, AccountService, GroupService,
+    {
+    provide: MAT_DIALOG_DATA,
+    useValue: {}
+  },
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

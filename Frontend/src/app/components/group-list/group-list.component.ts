@@ -74,7 +74,6 @@ export class GroupListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe( result => {
       console.log('The dialog was closed');
-      console.log(this.groupTableSource.data);
 
       if(!isUndefined()) {
         this.groupTableSource.filteredData.filter((value, index) => {

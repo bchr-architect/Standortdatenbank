@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-list-in-group',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListInGroupComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
+    this.router.navigate(['groups/viewgroups']);
+  }
+
+  ngAfterClose() {
+    console.warn('---- Dialog was destroyed in ListInGroup ----');
+    this.router.navigate(['groups']);
   }
 
 }
