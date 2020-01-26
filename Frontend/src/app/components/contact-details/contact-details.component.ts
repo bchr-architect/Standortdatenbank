@@ -7,7 +7,7 @@ import {Account} from "../../modules/account";
 import {AccountService} from "../../services/account.service";
 import {GroupService} from "../../services/group.service";
 import {Group} from "../../modules/group";
-import {isUndefined} from "util";
+import {isNullOrUndefined, isUndefined} from "util";
 
 @Component({
   selector: 'app-contact-details',
@@ -22,6 +22,7 @@ export class ContactDetailsComponent implements OnInit {
   accounts: Account[];
   groups: Group[];
   s: string;
+  b: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -100,6 +101,30 @@ export class ContactDetailsComponent implements OnInit {
 
   compareByGroupId(i1: Group, i2: Group): boolean {
     return i1 && i2 ? i1.id == i2.id : i1 == i2;
+  }
+
+  countBranche(): string {
+    this.b = "";
+
+    if(!isNullOrUndefined(this.data.account1.branche)) {
+      if(this.data.account1 != null) {
+        this.b += this.data.account1.branche.name;
+      }
+    }
+
+    if(!isNullOrUndefined(this.data.account2)) {
+      if(this.data.account2 != null) {
+        this.b += ',' + this.data.account2.branche.name + ',';
+      }
+    }
+
+    if(!isNullOrUndefined(this.data.account3)) {
+      if(this.data.account3 != null) {
+        this.b += this.data.account3.branche.name;
+      }
+    }
+
+    return this.b;
   }
 
   checkNullValues() { //saving "" not possible, saving null is

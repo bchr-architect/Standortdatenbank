@@ -72,11 +72,16 @@ mat-expansion-panel {
   margin: 5px;
   outline-color: #ab8d38;
   background-color: dimgray;
+}
 
+.branche-label {
+  width: 100px;
+  clear: right;
+  margin: 5px;
+  color: #ab8d38;
 }
 
 /*::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
-
   background-color: #005691!important;
 }
 
@@ -87,6 +92,7 @@ mat-expansion-panel {
 .mat-expansion-panel-header.mat-expanded {
   background: #888888;
 }*/
+
 
 ::ng-deep .mat-checkbox-disabled .mat-checkbox-background {
   background-color: #ab8d38;
