@@ -59,11 +59,16 @@ public class ContactService {
 
     public List getAllContactsByAccount(String compName) {
         List contactList =new ArrayList<Contact>();
-        contactList.add(this.contactDao.findContactByAccount1_CompName(compName));
-        contactList.add(this.contactDao.findContactByAccount2_CompName(compName));
-        contactList.add(this.contactDao.findContactByAccount3_CompName(compName));
+        if(this.contactDao.findContactByAccount1_CompName(compName)!=null) {
+            contactList.addAll(contactList.size(), this.contactDao.findContactByAccount1_CompName(compName));
+        }
+        if(this.contactDao.findContactByAccount2_CompName(compName)!=null) {
+            contactList.addAll(contactList.size(), this.contactDao.findContactByAccount2_CompName(compName));
+        }
+        if(this.contactDao.findContactByAccount3_CompName(compName)!=null) {
+            contactList.addAll(contactList.size(), this.contactDao.findContactByAccount3_CompName(compName));
+        }
         return contactList;
-
     }
 
 }

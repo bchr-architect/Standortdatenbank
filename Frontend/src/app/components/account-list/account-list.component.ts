@@ -68,7 +68,8 @@ export class AccountListComponent implements OnInit {
     }
   }
 
-  openAccountDetailsDialog(data: Data) {
+  openAccountDetailsDialog(data: any) {
+    this.accountService.setActualAccount(data.compName);
     const dialogRef = this.dialog.open(MetaDialogAccountComponent, {
       height: '1800px',
       width: '1200px',
@@ -76,7 +77,6 @@ export class AccountListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', this.accountTableSource.data);
-
       if (!isUndefined(result)) {
         this.accountTableSource.filteredData.filter((value, index) => {
           if (value.id == result.id) {

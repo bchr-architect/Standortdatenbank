@@ -8,6 +8,7 @@ import {Account} from "../modules/account";
 })
 export class AccountService {
 
+  private actualAccount: string;
   private accountUrl : string;
 
   constructor(private http: HttpClient) {
@@ -20,6 +21,13 @@ export class AccountService {
 
   public save(account: Account):Observable<Account> {
     return this.http.put<Account>(this.accountUrl+'/add', account);
+  }
+
+  public setActualAccount(compName: string): void {
+    this.actualAccount=compName;
+  }
+  public getActualAccount(): string {
+    return this.actualAccount;
   }
 
 }
