@@ -15,16 +15,16 @@ import {ListInAccountComponent} from "./components/list-in-account/list-in-accou
 const routes: Routes = [
   {path: 'accounts', component: AccountListComponent},
   {path: 'addaccount', component: AccountFormComponent},
-  {path: 'editaccount', component: AccountDetailsComponent},
-  {path: 'viewaccounts', component: ListInAccountComponent},
+  {path: 'accounts/editaccount', component: AccountDetailsComponent},
+  {path: 'accounts/viewaccounts', component: ListInAccountComponent},
 
   {path: 'contacts', component: ContactListComponent},
   {path: 'addcontact', component: ContactFormComponent},
 
   {path: 'groups', component: GroupListComponent},
   {path: 'addgroup', component: GroupFormComponent},
-  {path: 'editgroup', component: GroupDetailsComponent},
-  {path: 'viewgroups', component: ListInGroupComponent}
+  {path: 'groups/editgroup', component: GroupDetailsComponent},
+  {path: 'groups/viewgroups', component: ListInGroupComponent}
 
 ];
 

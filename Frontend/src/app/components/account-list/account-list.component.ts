@@ -75,7 +75,7 @@ export class AccountListComponent implements OnInit {
       data: {...data}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('The dialog was closed', this.accountTableSource.data);
 
       if (!isUndefined(result)) {
         this.accountTableSource.filteredData.filter((value, index) => {
