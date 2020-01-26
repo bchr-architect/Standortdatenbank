@@ -1,4 +1,19 @@
-.mat-nav-bar {
+.mat-tab-link {
+  text-decoration-line: none;
+  font-weight: lighter;
+}
+
+.nav-bar1 {
   position: relative;
-  float: bottom;
+  top: 250px;
+  margin: 30px;
+  border: none;
+  left: -22px;
+}
+
+.nav-bar2 {
+  position: relative;
+  top: 10px;
+  margin-top: 10px;
+  border: none;
 }

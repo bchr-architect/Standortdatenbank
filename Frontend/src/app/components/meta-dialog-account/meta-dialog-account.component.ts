@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Inject, OnInit, Optional} from '@angular/core';
+import {ChangeDetectorRef, Component, Inject, Input, OnInit, Optional, Output} from '@angular/core';
 import {ActivatedRoute, Router, RouterLinkActive, Routes} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Account} from "../../modules/account";
@@ -19,6 +19,8 @@ export class MetaDialogAccountComponent implements OnInit {
   isReadOnly: boolean;
   changeActive: boolean;
   groups: Group[];
+  class: string;
+  //@Output() moveFunction: Function;
 
   constructor(
     private route: ActivatedRoute,
@@ -51,6 +53,7 @@ export class MetaDialogAccountComponent implements OnInit {
 
   ngOnInit() {
     this.router.navigate(['accounts/editaccount']);
+    this.class = "nav-bar1";
     this.groupService.findAll().subscribe(sourceGroups =>
       sourceGroups.forEach(entry => {
         if (entry.active) {
@@ -66,4 +69,23 @@ export class MetaDialogAccountComponent implements OnInit {
     window.location.href = 'http://localhost:4200/accounts';
   }
 
+<<<<<<< HEAD
+=======
+  reload() {
+    window.location.reload();
+  }
+
+  compareByGroupId(i1: Group, i2: Group): boolean {
+    return i1 && i2 ? i1.id == i2.id : i1 == i2;
+  }
+
+  moveFunction() {
+    if(window.location.href == 'http://localhost:4200/accounts/viewaccounts') {
+      return this.class = "nav-bar2";
+    } else {
+      return this.class = "nav-bar1";
+    }
+  }
+
+>>>>>>> 414173f13d519f8948a2465cfc857345b2078e29
 }
