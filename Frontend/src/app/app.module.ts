@@ -42,6 +42,8 @@ import { ListInGroupComponent } from './components/list-in-group/list-in-group.c
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import {AccountService} from "./services/account.service";
 import {GroupService} from "./services/group.service";
+import {MatPaginatorIntl} from "@angular/material/paginator";
+import {getGermanPaginatorIntl} from "../german-paginator-intl";
 
 @NgModule({
   declarations: [
@@ -94,12 +96,16 @@ import {GroupService} from "./services/group.service";
     ListInAccountComponent, ListInGroupComponent],
   providers: [ContactService, AccountService, GroupService,
     {
-    provide: MAT_DIALOG_DATA,
+    provide: MatDialogRef,
     useValue: {}
   },
     {
-      provide: MatDialogRef,
+      provide: MAT_DIALOG_DATA,
       useValue: {}
+    },
+    {
+      provide: MatPaginatorIntl,
+      useValue: getGermanPaginatorIntl()
     }
   ],
   bootstrap: [AppComponent]
