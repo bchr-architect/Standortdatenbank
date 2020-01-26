@@ -20,7 +20,6 @@ export class MetaDialogAccountComponent implements OnInit {
   changeActive: boolean;
   groups: Group[];
   class: string;
-  //@Output() moveFunction: Function;
 
   constructor(
     private route: ActivatedRoute,
@@ -66,7 +65,7 @@ export class MetaDialogAccountComponent implements OnInit {
   ngOnDestroy() {
     console.warn('---- Dialog was destroyed in Accounts ----');
     this.router.navigate(['accounts']);
-    window.location.href = 'http://localhost:4200/accounts';
+    //window.location.href = 'http://localhost:4200/accounts';
   }
 
   reload() {
