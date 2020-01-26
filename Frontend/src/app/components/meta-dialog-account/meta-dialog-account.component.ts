@@ -66,12 +66,4 @@ export class MetaDialogAccountComponent implements OnInit {
     window.location.href = 'http://localhost:4200/accounts';
   }
 
-  reload() {
-    window.location.reload();
-  }
-
-  compareByGroupId(i1: Group, i2: Group): boolean {
-    return i1 && i2 ? i1.id == i2.id : i1 == i2;
-  }
-
 }

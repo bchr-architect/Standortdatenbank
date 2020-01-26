@@ -92,9 +92,14 @@ import {GroupService} from "./services/group.service";
     ListInAccountComponent, ListInGroupComponent],
   providers: [ContactService, AccountService, GroupService,
     {
-    provide: MatDialogRef,
+    provide: MAT_DIALOG_DATA,
     useValue: {}
-  }],
+  },
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -40,8 +40,4 @@ export class MetaDialogGroupComponent implements OnInit {
     window.location.href = 'http://localhost:4200/groups';
   }
 
-  reload() {
-    window.location.reload();
-  }
-
 }
