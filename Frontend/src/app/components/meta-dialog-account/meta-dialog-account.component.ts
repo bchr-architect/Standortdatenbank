@@ -1,12 +1,18 @@
-import {ChangeDetectorRef, Component, Inject, Input, OnInit, Optional, Output} from '@angular/core';
-import {ActivatedRoute, Router, RouterLinkActive, Routes} from "@angular/router";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {ChangeDetectorRef, Component, Inject, Input, OnInit, Optional, Output, ViewChild} from '@angular/core';
+import {ActivatedRoute, Data, Router, RouterLinkActive, Routes} from "@angular/router";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {Account} from "../../modules/account";
 import {Group} from "../../modules/group";
 import {AccountDetailsComponent} from "../account-details/account-details.component";
 import {Contact} from "../../modules/contact";
 import {AccountService} from "../../services/account.service";
 import {GroupService} from "../../services/group.service";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
+import {MatTableDataSource} from "@angular/material/table";
+import {ContactService} from "../../services/contact.service";
+import {ContactDetailsComponent} from "../contact-details/contact-details.component";
+import {isUndefined} from "util";
 
 @Component({
   selector: 'app-meta-dialog-account',
@@ -14,6 +20,7 @@ import {GroupService} from "../../services/group.service";
   styleUrls: ['./meta-dialog-account.component.scss']
 })
 export class MetaDialogAccountComponent implements OnInit {
+
 
   account: Account;
   isReadOnly: boolean;
@@ -59,7 +66,8 @@ export class MetaDialogAccountComponent implements OnInit {
           this.groups.push(entry)
         }
       })
-    )
+    );
+
   }
 
   ngOnDestroy() {

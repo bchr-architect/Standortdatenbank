@@ -53,5 +53,4 @@ export class MetaDialogGroupComponent implements OnInit {
       return this.class = "nav-bar1";
     }
   }
-
 }

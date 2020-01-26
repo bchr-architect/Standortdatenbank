@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,6 +20,14 @@ public class ContactController {
     @GetMapping(path = {"/all"})
     public List getAllContacts() {
         return contactService.getAllContacts();
+    }
+
+    @GetMapping(path = {"/all/account"})
+    @ResponseBody
+    public List getAllContactsByAccount(@RequestParam String compName)
+    {
+
+        return contactService.getAllContactsByAccount(compName);
     }
 
 

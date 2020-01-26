@@ -8,6 +8,7 @@ import bchr.stdb.entity.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -55,4 +56,14 @@ public class ContactService {
         List<Contact> contactList = this.contactDao.findAllContactsWithAccount();
         return contactList;
     }
+
+    public List getAllContactsByAccount(String compName) {
+        List contactList =new ArrayList<Contact>();
+        contactList.add(this.contactDao.findContactByAccount1_CompName(compName));
+        contactList.add(this.contactDao.findContactByAccount2_CompName(compName));
+        contactList.add(this.contactDao.findContactByAccount3_CompName(compName));
+        return contactList;
+
+    }
+
 }
