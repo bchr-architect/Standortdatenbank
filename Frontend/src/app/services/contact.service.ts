@@ -26,7 +26,7 @@ export class ContactService {
   findAllByAccount(compName: string): Observable<Contact[]> {
     let params = new HttpParams()
       .set ("compName",compName)
-    return this.http.get<Contact[]>(this.contactUrl+'/all');
+    return this.http.get<Contact[]>(this.contactUrl+'/all/account',{params});
 
   }
 }

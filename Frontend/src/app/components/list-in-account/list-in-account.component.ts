@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Data, Router} from "@angular/router";
 import {ContactDetailsComponent} from "../contact-details/contact-details.component";
 import {isUndefined} from "util";
@@ -10,23 +10,25 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {Contact} from "../../modules/contact";
+import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-list-in-account',
   templateUrl: './list-in-account.component.html',
   styleUrls: ['./list-in-account.component.scss']
 })
-export class ListInAccountComponent implements OnInit {
+export class ListInAccountComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   tableSource: MatTableDataSource<Contact>;
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'account', 'group', 'createdDate', 'notes'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'createdDate', 'notes'];
   private contacts: Contact[];
   private contact: Contact;
 
 
   constructor(private route: ActivatedRoute,
+              private accountService: AccountService,
               private router: Router,
               private contactService: ContactService,
               public dialog: MatDialog,
@@ -36,8 +38,8 @@ export class ListInAccountComponent implements OnInit {
 
   ngOnInit() {
     this.router.navigate(['accounts/viewaccounts']);
-
-    this.contactService.findAllByAccount("JKU").subscribe(data => {
+    this.contactService.findAllByAccount(this.accountService.getActualAccount()).subscribe(data => {
+      this.contacts=data;
       this.tableSource.data = data;
       this.tableSource.data.forEach(contact => {
         this.checkNullValues(contact);
@@ -69,11 +71,10 @@ export class ListInAccountComponent implements OnInit {
           if(value.id==result.id) {
             value=result;
           }
-
         });
       }
 
-      this.contactService.findAllByAccount("JKU").subscribe(data => {
+      this.contactService.findAllByAccount(this.accountService.getActualAccount()).subscribe(data => {
         this.updateTable(data);
         this.tableSource.sort = this.sort;
         this.tableSource.paginator = this.paginator;
@@ -82,20 +83,7 @@ export class ListInAccountComponent implements OnInit {
   }
 
   checkNullValues(entry: any) {
-    if (!entry.group) {
-      entry.group = new Group();
-      entry.group.name = "";
-      entry.group.additive = "";
-    }
-    if (!entry.account1) {
-      entry.account1 = new Account();
-      entry.account1.id = "";
-      entry.account1.compName = "";
-      entry.account1.email = "";
-      entry.account1.active = "";
-      entry.account1.createdDate="";
-      entry.account1.lastModifiedDate="";
-    }
+    console.log(this.contacts)
 
     if (!entry.createdDate) {
       entry.createdDate = Date.UTC(2019, 11, 20, 13, 45, 0);
@@ -113,11 +101,7 @@ export class ListInAccountComponent implements OnInit {
     this.tableSource.paginator = this.paginator;
   }
 
-
-
-  ngAfterClose() {
-    console.warn('---- Dialog was destroyed in ListInAccount ----');
-    this.router.navigate(['accounts']);
+  ngOnDestroy(): void {
   }
 
 }
