@@ -39,6 +39,7 @@ import { MetaDialogGroupComponent } from './components/meta-dialog-group/meta-di
 import { MetaDialogAccountComponent } from './components/meta-dialog-account/meta-dialog-account.component';
 import { ListInAccountComponent } from './components/list-in-account/list-in-account.component';
 import { ListInGroupComponent } from './components/list-in-group/list-in-group.component';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ListInGroupComponent } from './components/list-in-group/list-in-group.c
   MetaDialogGroupComponent,
   MetaDialogAccountComponent,
   ListInAccountComponent,
-  ListInGroupComponent
+  ListInGroupComponent,
+  SafeUrlPipe
   ],
   imports: [
     BrowserModule,

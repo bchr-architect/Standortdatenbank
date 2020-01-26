@@ -25,13 +25,13 @@ public class Group extends Auditable {
     private String additive;
 
     // 1 Group -> x Contacts
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
-    @JsonIgnoreProperties
+    @OneToMany( mappedBy = "group")
+    @JsonIgnoreProperties(value = "group", allowSetters = true)
     private Set<Contact> contacts = new HashSet<>();
 
     // 1 Group -> x Contacts
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "branche")
-    @JsonIgnoreProperties("branche")
+    @OneToMany( mappedBy = "branche")
+    @JsonIgnoreProperties(value = "branche", allowSetters = true)
     private Set<Account> accounts = new HashSet<>();
 
     public Set<Account> getAccounts() {

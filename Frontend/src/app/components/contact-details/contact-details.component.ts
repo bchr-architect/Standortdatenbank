@@ -8,6 +8,8 @@ import {AccountService} from "../../services/account.service";
 import {GroupService} from "../../services/group.service";
 import {Group} from "../../modules/group";
 import {isUndefined} from "util";
+import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-contact-details',
@@ -23,11 +25,17 @@ export class ContactDetailsComponent implements OnInit {
   groups: Group[];
   s: string;
 
+  fileData: File = null;
+  previewUrl: any = null;
+  fileUploadProgress: string = null;
+  uploadedFilePath: string = null;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private contactService: ContactService,
     private groupService: GroupService,
+    private http: HttpClient,
     public dialogRef: MatDialogRef<ContactDetailsComponent>,
     private accountService: AccountService,
     @Inject(MAT_DIALOG_DATA) public data: {
@@ -38,14 +46,14 @@ export class ContactDetailsComponent implements OnInit {
       mailboxPostcode: string, mailboxCountry: string, homepage: string, account1: Account, account2: Account, account3: Account,
       creatorID: string, editedByID: string, representativeID: string,
       languageID: string, additional: string, additional2: string,
-      additional3: string, active: boolean, privatePerson: boolean,  appellation: string, title: string,
-      memo: number, department1: string; department2:string; department3: string; function1: string; function2: string;  function3: string
+      additional3: string, active: boolean, privatePerson: boolean, appellation: string, title: string,
+      memo: number, department1: string; department2: string; department3: string; function1: string; function2: string; function3: string
       freeFlag1: boolean, freeFlag2: boolean, displayName: string,
       tradeFlag: boolean, productionFlag: boolean, serviceFlag: boolean,
       status: number, dsvFlag: boolean, dsvSourceOfData: string,
       dsvNotification: boolean, dsvDirectAdFlag: boolean, dsvAnonymisedBy: string,
-      dsvDataCollection: number, dsvAnonymised: boolean, region: string, trailingTitle: string, letterSalutation:string, imagePath: string;
-      notes: string;  group: Group;
+      dsvDataCollection: number, dsvAnonymised: boolean, region: string, trailingTitle: string, letterSalutation: string, imagePath: string
+      notes: string; group: Group;
     }) {
     this.contact = new Contact();
     this.isReadOnly = true;
@@ -115,4 +123,36 @@ export class ContactDetailsComponent implements OnInit {
       this.contact = this.data;
     }
   }
+
+  fileProgress(fileInput: any) {
+    this.fileData = <File>fileInput.target.files[0];
+    this.preview();
+  }
+
+  preview() {
+    // Show preview
+    var mimeType = this.fileData.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.readAsDataURL(this.fileData);
+    reader.onload = (_event) => {
+      this.previewUrl = reader.result;
+    }
+  }
+
+  onSubmitPhoto() {
+    const formData = new FormData();
+    formData.append('file', this.fileData);
+
+    this.http.post('http://localhost:8081/upload', formData, {responseType: "text"})
+      .subscribe(res => {
+        console.log(res);
+        this.data.imagePath = res;
+      })
+  }
+
+
 }
