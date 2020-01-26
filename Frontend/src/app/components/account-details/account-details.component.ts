@@ -7,6 +7,7 @@ import {Account} from "../../modules/account";
 import {Contact} from "../../modules/contact";
 import {Group} from "../../modules/group";
 import {GroupService} from "../../services/group.service";
+import {isUndefined} from "util";
 
 @Component({
   selector: 'app-account-details',
@@ -52,12 +53,14 @@ export class AccountDetailsComponent implements OnInit{
   }
 
   onSubmit() {
+    this.checkNullValues();
     this.account = this.data;
     this.changeActive = false;
     this.accountService.save(this.account).subscribe();
   }
 
   onDelete() {
+    this.checkNullValues();
     this.account = this.data;
     this.account.active = false;
     this.accountService.save(this.account).subscribe();
@@ -75,6 +78,14 @@ export class AccountDetailsComponent implements OnInit{
 
   compareByGroupId(i1: Group, i2: Group): boolean {
     return i1 && i2 ? i1.id == i2.id : i1 == i2;
+  }
+
+  checkNullValues() {
+    if(!isUndefined(this.account.branche)) {
+
+    } else {
+      this.data.branche = null;
+    }
   }
 
 }

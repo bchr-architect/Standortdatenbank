@@ -1,6 +1,7 @@
 .dialog-header-title {
   width: 500px;
   position: relative;
+  top: -50px;
   left: 30%;
   font-weight: lighter;
 }
@@ -49,7 +50,11 @@ button {
 
 .mat-raised-button {
   background-color: #888888;
+<<<<<<< HEAD
+  top: -20px;
+=======
   left: -5px;
+>>>>>>> 414173f13d519f8948a2465cfc857345b2078e29
 }
 
 mat-form-field {

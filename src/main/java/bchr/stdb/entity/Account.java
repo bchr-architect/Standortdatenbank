@@ -76,7 +76,7 @@ public class Account extends Auditable {
 
     @Column(name= "CONTACTS")
     @OneToMany(mappedBy = "account1")
-    @JsonIgnoreProperties("account1")
+    @JsonIgnoreProperties(value = "account1", allowSetters = true)
     private Set<Contact> contacts = new HashSet<Contact>();
 
     public Account() {

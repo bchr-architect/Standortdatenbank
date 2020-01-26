@@ -69,6 +69,8 @@ export class MetaDialogAccountComponent implements OnInit {
     window.location.href = 'http://localhost:4200/accounts';
   }
 
+<<<<<<< HEAD
+=======
   reload() {
     window.location.reload();
   }
@@ -85,4 +87,5 @@ export class MetaDialogAccountComponent implements OnInit {
     }
   }
 
+>>>>>>> 414173f13d519f8948a2465cfc857345b2078e29
 }
