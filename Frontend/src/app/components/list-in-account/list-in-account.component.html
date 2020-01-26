@@ -22,18 +22,6 @@
       <td mat-cell *matCellDef="let contact"> {{contact.email}} </td>
     </ng-container>
 
-    <!-- Account Column -->
-    <ng-container matColumnDef="account">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Organisation</th>
-      <td mat-cell *matCellDef="let contact">
-        <ng-container *ngIf="contact.account1 !== null ; else defaultValueA">
-          {{contact.account1.compName}}
-        </ng-container>
-      </td>
-      <ng-template #defaultValueA>
-
-      </ng-template>
-    </ng-container>
 
     <!-- Corporation Column -->
     <ng-container matColumnDef="corporation">
@@ -113,18 +101,6 @@
       <td mat-cell *matCellDef="let contact"> {{contact.notes}} </td>
     </ng-container>
 
-    <!-- Group Column // defaultValue bc null can't be displayed -->
-    <ng-container matColumnDef="group">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Branche</th>
-      <td mat-cell *matCellDef="let contact">
-        <ng-container *ngIf="contact.group !== null; else defaultValueG">
-          {{contact.group.name}}
-        </ng-container>
-      </td>
-      <ng-template #defaultValueG>
-
-      </ng-template>
-    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr (click)="openContactDetailsDialog(contact)" mat-row *matRowDef="let contact

@@ -26,7 +26,6 @@ public class ContactController {
     @ResponseBody
     public List getAllContactsByAccount(@RequestParam String compName)
     {
-
         return contactService.getAllContactsByAccount(compName);
     }
 
