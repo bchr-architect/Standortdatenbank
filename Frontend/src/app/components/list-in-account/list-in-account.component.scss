@@ -1,8 +1,23 @@
 table {
   width: 100%;
   margin-left: auto;
-
 }
+
 .contact-table {
   width:100%;
+}
+
+.header {
+  position: relative;
+  left: 10%;
+  font-weight: lighter;
+  width: max-content;
+}
+
+.mat-row {
+  cursor: pointer;
+}
+
+.mat-row:hover {
+  background-color: #ab8d38
 }

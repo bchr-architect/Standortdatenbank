@@ -1,11 +1,11 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Data, Router} from "@angular/router";
 import {ContactDetailsComponent} from "../contact-details/contact-details.component";
 import {isUndefined} from "util";
 import {Group} from "../../modules/group";
 import {Account} from "../../modules/account";
 import {ContactService} from "../../services/contact.service";
-import {MatDialog} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
@@ -32,8 +32,10 @@ export class ListInAccountComponent implements OnInit, OnDestroy {
               private router: Router,
               private contactService: ContactService,
               public dialog: MatDialog,
-              private changeDetector: ChangeDetectorRef) {
-              this.tableSource = new MatTableDataSource<Contact>(this.contacts)
+              private changeDetector: ChangeDetectorRef,
+              @Inject(MAT_DIALOG_DATA) public data: {compName: string
+              }) {
+    this.tableSource = new MatTableDataSource<Contact>(this.contacts)
   }
 
   ngOnInit() {
@@ -100,12 +102,6 @@ export class ListInAccountComponent implements OnInit, OnDestroy {
     this.tableSource.sort = this.sort;
     this.tableSource.paginator = this.paginator;
   }
-
-  ngAfterClose() {
-    console.warn('---- Dialog was destroyed in ListInAccount ----');
-    this.router.navigate(['accounts']);
-
-}
 
   ngOnDestroy(): void {
   }

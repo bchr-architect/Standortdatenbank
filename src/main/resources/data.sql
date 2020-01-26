@@ -11,8 +11,8 @@ INSERT INTO ACCOUNT_TABLE(id, active, comp_name,country,EMAIL, nr_of_employees, 
 
 INSERT INTO CONTACT_TABLE(id, Active, first_Name,last_Name,email,account1_id, image_Path) VALUES
     (99997, true, 'Christian', 'Brandl', 'brandl.christian@jku.at',99998,'assets/img/bchr.jpg'),
-    (99998, true, 'Marlon','Boler','boler.marlong@jku.at',99998, null),
-    (99999, true, 'Natascha','Ayanfo', 'Ayanfo.Natascha@jku.at',99998, null);
+    (99998, true, 'Marlon','Boler','boler.marlon@jku.at',99998, null),
+    (99999, true, 'Natascha','Ayanfo', 'ayanfo.natascha@jku.at',99998, null);
 
 
 
