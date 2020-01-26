@@ -14,6 +14,7 @@ export class MetaDialogGroupComponent implements OnInit {
   group: Group;
   isReadOnly: boolean;
   changeActive: boolean;
+  class: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +32,7 @@ export class MetaDialogGroupComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.class = "nav-bar1";
     this.router.navigate(['groups/editgroup']);
   }
 
@@ -42,6 +44,14 @@ export class MetaDialogGroupComponent implements OnInit {
 
   reload() {
     window.location.reload();
+  }
+
+  moveFunction() {
+    if(window.location.href == 'http://localhost:4200/groups/viewgroups') {
+      return this.class = "nav-bar2";
+    } else {
+      return this.class = "nav-bar1";
+    }
   }
 
 }
