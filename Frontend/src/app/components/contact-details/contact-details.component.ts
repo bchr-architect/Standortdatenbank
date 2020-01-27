@@ -150,7 +150,7 @@ export class ContactDetailsComponent implements OnInit {
     this.http.post('http://localhost:8081/upload', formData, {responseType: "text"})
       .subscribe(res => {
         console.log(res);
-        this.data.imagePath = res;
+        this.data.imagePath = res.substring(43);
       })
   }
 

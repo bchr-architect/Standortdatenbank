@@ -17,7 +17,7 @@ import java.nio.file.Paths;
 public class ImageController {
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "C:/Projekte/Standortdatenbank/src/main/resources/images/";
+    private static String UPLOADED_FOLDER = "C:/Projekte/Standortdatenbank/Frontend/src/assets/img/";
 
     @GetMapping("/")
     public String index() {
