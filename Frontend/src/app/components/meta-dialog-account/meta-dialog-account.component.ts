@@ -61,13 +61,6 @@ export class MetaDialogAccountComponent implements OnInit {
   ngOnInit() {
     this.router.navigate(['accounts/editaccount']);
     this.class = "nav-bar1";
-    this.groupService.findAll().subscribe(sourceGroups =>
-      sourceGroups.forEach(entry => {
-        if (entry.active) {
-          this.groups.push(entry)
-        }
-      })
-    );
 
   }
 

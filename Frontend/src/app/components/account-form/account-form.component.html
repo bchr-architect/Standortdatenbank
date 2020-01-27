@@ -23,17 +23,9 @@
           </mat-form-field>
         </div>
 
-        <div class="single-mat-field">
-          <mat-form-field>
-            <input matInput type="text" class="form-control" id="email" placeholder="E-Mail" required
-                   [(ngModel)]="account.email"
-                   name="email">
-          </mat-form-field>
-        </div>
-
         <div class="form-group">
           <mat-form-field>
-            <mat-select placeholder="Organisation" [(value)]="account.branche" [compareWith]="compareByGroupId">
+            <mat-select placeholder="Branche" [(value)]="account.branche" [compareWith]="compareByGroupId">
               <mat-option *ngFor="let group of groups" [value]="group">
                 {{group.name}}
               </mat-option>
@@ -77,6 +69,14 @@
             <input matInput type="text" class="form-control" placeholder="2. Telefonnummer" id="phone2"
                    [(ngModel)]="account.phone2"
                    name="phone2">
+          </mat-form-field>
+        </div>
+
+        <div class="single-mat-field">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" id="email" placeholder="E-Mail" required
+                   [(ngModel)]="account.email"
+                   name="email">
           </mat-form-field>
         </div>
 
