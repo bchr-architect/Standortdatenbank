@@ -22,7 +22,7 @@ export class ListInAccountComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   tableSource: MatTableDataSource<Contact>;
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'createdDate', 'notes'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email','function', 'createdDate', 'notes'];
   private contacts: Contact[];
   private contact: Contact;
 
@@ -104,4 +104,16 @@ export class ListInAccountComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
+  private getFunction(contact: Contact) {
+    if (contact.account1.compName==this.accountService.getActualAccount()) {
+      return contact.function1;
+    }
+    if (contact.account2.compName==this.accountService.getActualAccount()) {
+      return contact.function2;
+    }
+    if (contact.account1.compName==this.accountService.getActualAccount()) {
+      return contact.function3;
+    }
+    else return "";
+  }
 }
