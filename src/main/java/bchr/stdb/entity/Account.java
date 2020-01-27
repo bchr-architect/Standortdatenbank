@@ -50,7 +50,7 @@ public class Account extends Auditable {
 
     @ManyToOne
     @JoinColumn(name="GROUP_ID")
-    @JsonIgnoreProperties("groups")
+    @JsonIgnoreProperties({"contacts", "accounts", "groups"})
     private Group branche;
 
     @Column(name = "HOMEPAGE", length = 70)
@@ -76,7 +76,7 @@ public class Account extends Auditable {
 
     @Column(name= "CONTACTS")
     @OneToMany(mappedBy = "account1")
-    @JsonIgnoreProperties(value = "account1", allowSetters = true)
+    @JsonIgnoreProperties(value = {"account1", "account2" , "account3"})
     private Set<Contact> contacts = new HashSet<Contact>();
 
     public Account() {

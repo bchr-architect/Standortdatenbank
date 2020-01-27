@@ -66,6 +66,7 @@ export class ContactListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe( result => {
+      this.contact=result;
       console.log('The dialog was closed');
 
       if(!isUndefined(result)) {

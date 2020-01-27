@@ -74,7 +74,7 @@ export class MetaDialogAccountComponent implements OnInit {
   ngOnDestroy() {
     console.warn('---- Dialog was destroyed in Accounts ----');
     this.router.navigate(['accounts']);
-    window.location.href = 'http://localhost:4200/accounts';
+    //window.location.href = 'http://localhost:4200/accounts';
   }
 
   reload() {

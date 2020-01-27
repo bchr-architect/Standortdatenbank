@@ -82,17 +82,17 @@ public class Contact extends Auditable {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Account1_id")
-    @JsonIgnoreProperties("contacts")
+    @JsonIgnoreProperties({"contacts","branche"})
     public Account account1;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Account2_id")
-    @JsonIgnoreProperties("contacts")
+    @JsonIgnoreProperties({"contacts","branche"})
     public Account account2;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Account3_id")
-    @JsonIgnoreProperties("contacts")
+    @JsonIgnoreProperties({"contacts","branche"})
     public Account account3;
 
     // x Contacts -> 1 Group
@@ -693,12 +693,12 @@ public class Contact extends Auditable {
 
     public void setAccount2(Account account2) {
         this.account2 = account2;
-        account2.getContacts().add(this);
+       // account2.getContacts().add(this);
     }
 
     public void setAccount3(Account account3) {
         this.account3 = account3;
-        account2.getContacts().add(this);
+        //account3.getContacts().add(this);
     }
 
 

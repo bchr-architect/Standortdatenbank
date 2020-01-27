@@ -26,12 +26,12 @@ public class Group extends Auditable {
 
     // 1 Group -> x Contacts
     @OneToMany( mappedBy = "group")
-    @JsonIgnoreProperties(value = "group", allowSetters = true)
+    @JsonIgnoreProperties(value = {"group","contacts"})
     private Set<Contact> contacts = new HashSet<>();
 
     // 1 Group -> x Contacts
     @OneToMany( mappedBy = "branche")
-    @JsonIgnoreProperties(value = "branche", allowSetters = true)
+    @JsonIgnoreProperties(value = {"branche", "accounts"})
     private Set<Account> accounts = new HashSet<>();
 
     public Set<Account> getAccounts() {
