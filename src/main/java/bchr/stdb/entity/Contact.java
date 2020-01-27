@@ -688,7 +688,7 @@ public class Contact extends Auditable {
 
     public void setAccount1(Account account1) {
         this.account1 = account1;
-        account1.getContacts().add(this);
+        //account1.getContacts().add(this);
     }
 
     public void setAccount2(Account account2) {

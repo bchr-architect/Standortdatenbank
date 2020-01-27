@@ -10,6 +10,7 @@ import {Observable} from "rxjs";
 import {map, startWith} from "rxjs/operators";
 import {Group} from "../../modules/group";
 import {GroupService} from "../../services/group.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-contact-form',
@@ -25,10 +26,16 @@ export class ContactFormComponent implements OnInit{
   groups: Group[];
   filteredAccounts: Observable<Account[]>;
 
+  fileData: File = null;
+  previewUrl: any = null;
+  fileUploadProgress: string = null;
+  uploadedFilePath: string = null;
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private http: HttpClient,
     private contactService: ContactService,
     private accountService: AccountService,
     private groupService: GroupService,
@@ -58,7 +65,8 @@ export class ContactFormComponent implements OnInit{
         'mailboxPostcode':[this.contact.mailboxPostcode],
         'mailboxCountry':[this.contact.mailboxCountry],
         'homepage':[this.contact.homepage],
-        'active': [this.contact.active]
+        'active': [this.contact.active],
+        'imagePath': [this.contact.imagePath]
       }
     )
 
@@ -88,8 +96,8 @@ export class ContactFormComponent implements OnInit{
 
   onSubmit() {
     this.contact.active = true;
-    this.contactService.save(this.contact).subscribe();
-    this.dialogRef.close();
+    this.onSubmitPhoto()
+
   }
 
   private _filter(name: string): Account[] {
@@ -108,6 +116,41 @@ export class ContactFormComponent implements OnInit{
 
   compareByGroupId(i1: Group, i2: Group): boolean {
     return i1 && i2 ? i1.id == i2.id : i1 == i2;
+  }
+
+  fileProgress(fileInput: any) {
+    this.fileData = <File>fileInput.target.files[0];
+    this.preview();
+  }
+
+  preview() {
+    // Show preview
+    var mimeType = this.fileData.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.readAsDataURL(this.fileData);
+    reader.onload = (_event) => {
+      this.previewUrl = reader.result;
+    }
+  }
+
+  onSubmitPhoto() {
+    const formData = new FormData();
+    formData.append('file', this.fileData);
+    if(!this.previewUrl){
+      this.contactService.save(this.contact).subscribe(()=>this.dialogRef.close());
+    }
+    else {
+      this.http.post('http://localhost:8081/upload', formData, {responseType: "text"})
+        .subscribe(res => {
+          console.log(res);
+          this.contact.imagePath = res.substring(43);
+          this.contactService.save(this.contact).subscribe(() => this.dialogRef.close());
+        })
+    }
   }
 
 }

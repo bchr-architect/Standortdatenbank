@@ -97,12 +97,8 @@ export class ContactListComponent implements OnInit {
       console.log('The dialog was closed');
       this.contact = result;
       this.contactService.findAll().subscribe(data => {
-        this.tableSource.data = data;
-        this.tableSource.data.forEach(entry => {
+        this.updateTable(data);
 
-          this.checkNullValues(entry);
-
-        });
         this.tableSource.sort = this.sort;
         this.tableSource.paginator = this.paginator;
       });
