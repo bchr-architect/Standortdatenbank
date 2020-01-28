@@ -83,7 +83,8 @@ export class ContactDetailsComponent implements OnInit {
 
   onSubmit() {
     this.checkNullValues();
-    this.contactService.save(this.contact).subscribe();
+    this.contact.active = true;
+    this.onSubmitPhoto()
   }
 
   onDelete() {
@@ -146,12 +147,18 @@ export class ContactDetailsComponent implements OnInit {
   onSubmitPhoto() {
     const formData = new FormData();
     formData.append('file', this.fileData);
-
-    this.http.post('http://localhost:8081/upload', formData, {responseType: "text"})
-      .subscribe(res => {
-        console.log(res);
-        this.data.imagePath = res.substring(43);
-      })
+    if(!this.previewUrl){
+      this.contactService.save(this.contact).subscribe(()=>this.dialogRef.close());
+    }
+    else {
+      this.http.post('http://localhost:8081/upload', formData, {responseType: "text"})
+        .subscribe(res => {
+          console.log(res);
+          let index= res.lastIndexOf('assets/img')
+          this.contact.imagePath = res.substring(index);
+          this.contactService.save(this.contact).subscribe(() => this.dialogRef.close());
+        })
+    }
   }
 
 

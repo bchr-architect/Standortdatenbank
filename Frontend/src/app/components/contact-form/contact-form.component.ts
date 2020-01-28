@@ -147,7 +147,8 @@ export class ContactFormComponent implements OnInit{
       this.http.post('http://localhost:8081/upload', formData, {responseType: "text"})
         .subscribe(res => {
           console.log(res);
-          this.contact.imagePath = res.substring(43);
+          let index= res.lastIndexOf('assets/img')
+          this.contact.imagePath = res.substring(index);
           this.contactService.save(this.contact).subscribe(() => this.dialogRef.close());
         })
     }
