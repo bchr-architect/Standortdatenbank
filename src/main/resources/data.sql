@@ -18,7 +18,7 @@ INSERT INTO ACCOUNT_TABLE(id, active, comp_name,country,EMAIL, nr_of_employees, 
     (99999, true, 'Rosenbauer International AG', 'Österreich','office@rosenbauer.com',3500, '+43 732 6794 0', 'Leonding', '4060', 'Paschinger Straße 90', null, 99997);
 
 INSERT INTO CONTACT_TABLE(id, Active, first_Name,last_Name,email,account1_id, FUNCTION1, image_Path,NOTES) VALUES
-    (99997, true, 'Christian', 'Brandl', 'brandl.christian@jku.at',99998, 'Student','assets/img/bchr.jpg',null),
+    (99997, true, 'Christian', 'Brandl', 'brandl.christian@jku.at',99998, 'Student','assets/img/Max Mustermann.jpg',null),
     (99998, true, 'Marlon','Boler','boler.marlon@jku.at',99998, 'Student', null,null),
     (99999, true, 'Natascha','Ayanfo', 'Ayanfo.Natascha@jku.at',99998, 'Student', null,null),
 (99980, true, 'Sabrina','Naderer-Jelinek', 'bgm@leonding.at',99997, 'Aufsichtsrat', null, 'SPÖ'),
