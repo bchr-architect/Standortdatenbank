@@ -1,5 +1,6 @@
 bchr\stdb\entity\Contact.class
 bchr\stdb\service\AccountService.class
+bchr\stdb\controller\ImageController.class
 bchr\stdb\misc\Auditable.class
 bchr\stdb\dao\AccountDao.class
 bchr\stdb\entity\Account.class
